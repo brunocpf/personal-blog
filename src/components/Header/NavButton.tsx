@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { motion, useCycle, Variants } from 'framer-motion';
+import React from 'react';
+import { motion, Variants } from 'framer-motion';
 import { makeStyles, Typography } from '@material-ui/core';
 import { useRouter } from 'next/router';
 import classNames from 'classnames';
@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
 
 const buttonAnimationVariants: Variants = {
   hover: {
-    translateX: '-25%',
+    // translateX: '-25%',
   },
   rest: {
     translateX: '-125%',
@@ -52,7 +52,7 @@ const NavButton: React.FC<NavButtonProps> = ({ label, href }) => {
   const classes = useStyles();
   const router = useRouter();
 
-  const isActive = href === router.pathname;
+  const isActive = href.split('/')[1] === router.pathname.split('/')[1];
 
   return (
     <motion.div

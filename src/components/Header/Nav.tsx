@@ -29,11 +29,7 @@ const Nav: React.FC<NavProps> = () => {
   ];
 
   return (
-    <Box
-      display={{ xs: 'none', sm: 'grid' }}
-      gridGap={theme.spacing(2)}
-      gridAutoFlow="column"
-    >
+    <Box display="grid" gridGap={theme.spacing(2)} gridAutoFlow="column">
       {navButtons.map(nb => (
         <NavButton label={nb.label} href={nb.href} key={nb.href} />
       ))}

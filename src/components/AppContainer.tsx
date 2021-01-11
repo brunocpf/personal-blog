@@ -7,7 +7,8 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     width: '100vw',
     height: '100vh',
-    background: theme.palette.background.paper,
+    background: theme.palette.background.default,
+    overflowX: 'hidden',
   },
 }));
 

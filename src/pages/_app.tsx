@@ -9,6 +9,7 @@ import { useRouter } from 'next/router';
 import * as locales from 'src/content/locale';
 import Header from 'src/components/Header';
 import AppContainer from 'src/components/AppContainer';
+import Footer from 'src/components/Footer';
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   const router = useRouter();
@@ -35,6 +36,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
         <link rel="icon" type="image/png" sizes="96x96" href="/favicon.png" />
         <meta name="theme-color" content={theme.palette.primary.main} />
         <link href="/globals.css" rel="stylesheet" />
+        <link rel="preload" as="image" href="my-photo.png" />
       </Head>
       <IntlProvider
         locale={locale ?? 'pt'}
@@ -46,6 +48,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
           <AppContainer>
             <Header />
             <Component {...pageProps} />
+            <Footer />
           </AppContainer>
         </ThemeProvider>
       </IntlProvider>

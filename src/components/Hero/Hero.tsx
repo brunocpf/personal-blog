@@ -1,26 +1,29 @@
 import React from 'react';
 import {
   Box,
-  Button,
   Container,
   Grid,
   makeStyles,
   Typography,
-  useMediaQuery,
-  useTheme,
 } from '@material-ui/core';
 import { motion } from 'framer-motion';
 import { useIntl } from 'react-intl';
+import ContactButtons from '../ContactButtons';
 
 const useStyles = makeStyles(theme => ({
   container: {
     ...theme.mixins.gutters(),
+    background: theme.palette.background.paper,
   },
   myImage: {
     backgroundSize: '200%',
     backgroundImage: 'url(my-photo.png)',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: '50% 25%',
+    width: '100%',
+    borderRadius: '50%',
+    height: '0',
+    paddingBottom: '100%',
   },
   imageBg: {
     background: `linear-gradient(45deg, ${
@@ -33,133 +36,56 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export interface HeroProps {}
-const MotionBox = motion.custom(Box);
 const MotionContainer = motion.custom(Container);
 
 const Hero: React.FC<HeroProps> = () => {
   const classes = useStyles();
-  const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up('md'));
   const { formatMessage } = useIntl();
 
-  const renderHelloMessage = () => {
-    const splitText = formatMessage(
-      {
-        id: 'helloMessage',
-      },
-      { name: 'Bruno' },
-    )
-      .split(' ')
-      .map(t => t.split(/(!)/))
-      .flat();
-
-    return splitText.map((s, i) =>
-      s.includes('Bruno') ? (
-        <span className={classes.highlight} key={i}>
-          {s}
-        </span>
-      ) : (
-        <span key={i}>
-          {s}
-          {i === splitText.length - 1 ? '' : ' '}
-        </span>
-      ),
-    );
-  };
-
   return (
-    <Box className={classes.container}>
+    <Box className={classes.container} py={5}>
       <MotionContainer
         initial="hidden"
         animate="visible"
         variants={{
-          hidden: { opacity: 0, translateY: '20px' },
+          hidden: {
+            translateY: '30px',
+            opacity: 0.1,
+          },
           visible: {
-            opacity: 1,
             translateY: '0px',
+            opacity: 1,
           },
         }}
       >
-        <Grid
-          container
-          alignItems="center"
-          direction={matches ? 'row' : 'column-reverse'}
-        >
-          <Grid item md={7}>
-            <Box py={matches ? 8 : 3}>
-              <Box py={matches ? 4 : 2}>
-                <Typography variant="h2" align={matches ? 'left' : 'center'}>
-                  {renderHelloMessage()}
-                </Typography>
-              </Box>
-              <Box>
-                <Typography variant="h5" align={matches ? 'left' : 'center'}>
-                  {formatMessage({
-                    id: 'welcomeMessage',
-                  })}
-                </Typography>
-              </Box>
-              <Box py={2}>
-                <Grid
-                  container
-                  spacing={1}
-                  justify={matches ? 'flex-start' : 'center'}
-                >
-                  <Grid item>
-                    <Button variant="contained" color="primary">
-                      {formatMessage({
-                        id: 'aboutMe',
-                      })}
-                    </Button>
-                  </Grid>
-                  <Grid item>
-                    <Button variant="contained" color="primary">
-                      {formatMessage({
-                        id: 'blog',
-                      })}
-                    </Button>
-                  </Grid>
-                </Grid>
-              </Box>
+        <Grid container spacing={4}>
+          <Grid item xs={4} sm={4} md={2}>
+            <motion.div className={classes.myImage} />
+          </Grid>
+          <Grid item xs={8} sm={8} md={10}>
+            <Typography variant="h6">Bruno Fernandes</Typography>
+            <Typography variant="subtitle1">
+              {formatMessage({
+                id: 'jobDescription',
+              })}
+            </Typography>
+            <Box pt={4} display={{ xs: 'none', sm: 'block' }}>
+              <Typography variant="body1">
+                {formatMessage({
+                  id: 'bio',
+                })}
+              </Typography>
+              <ContactButtons />
             </Box>
           </Grid>
-          <Grid item md={5}>
-            <Box
-              py={matches ? 8 : 2}
-              display="flex"
-              alignItems="center"
-              justifyContent="flex-end"
-            >
-              <Box
-                width={{ xs: '200px', sm: '200px', md: '300px', lg: '400px' }}
-                height={{ xs: '200px', sm: '200px', md: '300px', lg: '400px' }}
-                borderRadius={30}
-                p="5%"
-                className={classes.imageBg}
-              >
-                <MotionBox
-                  width="100%"
-                  height="100%"
-                  borderRadius={30}
-                  initial="hidden"
-                  animate="visible"
-                  variants={{
-                    hidden: {
-                      opacity: 0,
-                      translateY: '0px',
-                      translateX: '0px',
-                    },
-                    visible: {
-                      opacity: 1,
-                      translateY: '-2%',
-                      translateX: '-15%',
-                    },
-                  }}
-                  className={classes.myImage}
-                />
-              </Box>
-            </Box>
-          </Grid>
+          <Box pt={4} px={2} display={{ xs: 'block', sm: 'none' }}>
+            <Typography variant="body1">
+              {formatMessage({
+                id: 'bio',
+              })}
+            </Typography>
+            <ContactButtons />
+          </Box>
         </Grid>
       </MotionContainer>
     </Box>

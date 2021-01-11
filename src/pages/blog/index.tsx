@@ -2,15 +2,15 @@ import { Box } from '@material-ui/core';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import React from 'react';
 import { useIntl } from 'react-intl';
-import Hero from 'src/components/Hero';
-import LatestPosts from 'src/components/LatestPosts';
 import Page from 'src/components/Page';
 import getForLocale from 'src/data/getForLocale';
-import PostMetadata from 'src/data/PostMetadata';
 import makePageTitle from 'src/util/makePageTitle';
+import PostMetadata from 'src/data/PostMetadata';
+import Blog from 'src/components/Blog';
 
-const Home: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
+const BlogPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
   posts,
+  tags,
 }) => {
   const { formatMessage } = useIntl();
 
@@ -18,13 +18,12 @@ const Home: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
     <Page
       title={makePageTitle(
         formatMessage({
-          id: 'home',
+          id: 'blog',
         }),
       )}
     >
       <Box flex="1">
-        <Hero />
-        <LatestPosts posts={posts} />
+        <Blog posts={posts} tags={tags} />
       </Box>
     </Page>
   );
@@ -35,15 +34,18 @@ export const getStaticProps: GetStaticProps<{
     slug: string;
     data: PostMetadata;
   }[];
+  tags: string[];
 }> = async ({ locale }) => {
   const repository = getForLocale(locale ?? 'pt');
-  const posts = await repository.latestPosts();
+  const posts = await repository.posts();
+  const tags = await repository.tags();
 
   return {
     props: {
       posts,
+      tags,
     },
   };
 };
 
-export default Home;
+export default BlogPage;

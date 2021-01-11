@@ -8,18 +8,32 @@ import {
   Typography,
 } from '@material-ui/core';
 import Link from 'next/link';
-import color from 'color';
 import { motion } from 'framer-motion';
 import Nav from './Nav';
 import ColorModeToggler from './ColorModeToggler';
+import LanguageSwitcher from './LanguageSwitcher';
+import MenuToggle from './MenuToggle';
 
 const useStyles = makeStyles(theme => ({
   appBar: {
-    background: color(theme.palette.background.paper).alpha(0.5).toString(),
+    background: theme.palette.background.default,
   },
   logo: {
     fontWeight: 'bold',
     textDecoration: 'none',
+  },
+  nav: {
+    display: 'flex',
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    },
+  },
+  menuNav: {
+    display: 'none',
+    [theme.breakpoints.down('sm')]: {
+      display: 'flex',
+      position: 'relative',
+    },
   },
 }));
 
@@ -31,7 +45,7 @@ const Header: React.FC<HeaderProps> = () => {
   const classes = useStyles();
 
   return (
-    <AppBar position="sticky" className={classes.appBar} elevation={0}>
+    <AppBar position="static" className={classes.appBar} elevation={0}>
       <Toolbar>
         <Container>
           <MotionBox
@@ -53,15 +67,23 @@ const Header: React.FC<HeaderProps> = () => {
                   color="textPrimary"
                   className={classes.logo}
                 >
-                  Bruno Fernandes
+                  bruno-fernandes.dev
                 </Typography>
               </Link>
             </Box>
-            <Box display="flex" alignItems="center">
-              <Box px={1}>
+            <Box display="flex" alignItems="center" className={classes.nav}>
+              <Box>
+                <LanguageSwitcher />
+              </Box>
+
+              <Box px={2}>
                 <ColorModeToggler />
               </Box>
+
               <Nav />
+            </Box>
+            <Box className={classes.menuNav}>
+              <MenuToggle />
             </Box>
           </MotionBox>
         </Container>

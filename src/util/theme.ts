@@ -6,12 +6,12 @@ import {
 
 const themeOptions: ThemeOptions = {
   typography: {
-    fontFamily: 'Montserrat Alternates',
+    fontFamily: 'Josefin Sans',
     h2: {
       fontWeight: 'bold',
     },
     h6: {
-      fontWeight: 'bolder',
+      fontWeight: 600,
     },
     button: {
       textTransform: 'none',
@@ -50,12 +50,15 @@ export const lightTheme = responsiveFontSizes(
     palette: {
       type: 'light',
       background: {
-        default: '#FFFFFF',
-        paper: '#F3F9FD',
+        default: '#ffffff',
+        paper: '#f2f2f2',
+      },
+      primary: {
+        main: '#a91b1b',
       },
       text: {
-        primary: '#1B3B51',
-        secondary: '#57BBFF',
+        primary: '#666666',
+        secondary: '#a91b1b',
       },
     },
     ...themeOptions,

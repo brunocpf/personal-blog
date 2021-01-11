@@ -7,6 +7,8 @@ export interface Locale {
   contact: string;
   helloMessage: StringWithPlaceHolder<'name'>;
   welcomeMessage: string;
+  jobDescription: string;
+  bio: string;
   aboutMe: string;
   [key: string]: string;
 }
