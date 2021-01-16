@@ -6,12 +6,13 @@ import Page from 'src/components/Page';
 import getForLocale from 'src/data/getForLocale';
 import makePageTitle from 'src/util/makePageTitle';
 import PostMetadata from 'src/data/PostMetadata';
-import Blog from 'src/components/Blog';
 import { useRouter } from 'next/router';
+import Post from 'src/components/Post';
 
-const BlogPageForTag: React.FC<
-  InferGetStaticPropsType<typeof getStaticProps>
-> = ({ posts, tags, currentTag }) => {
+const BlogPost: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
+  post,
+  slug,
+}) => {
   const { formatMessage } = useIntl();
   const { isFallback } = useRouter();
 
@@ -23,11 +24,7 @@ const BlogPageForTag: React.FC<
         }),
       )}
     >
-      <Box flex="1">
-        {!isFallback && (
-          <Blog posts={posts} tags={tags} currentTag={currentTag} />
-        )}
-      </Box>
+      <Box flex="1">{!isFallback && <Post postData={post} />}</Box>
     </Page>
   );
 };
@@ -35,9 +32,9 @@ const BlogPageForTag: React.FC<
 export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
   const pathsPerLocale = await Promise.all(
     locales?.map(async locale => {
-      const tags = await getForLocale(locale).tags();
-      return tags.map(t => ({
-        params: { tag: t },
+      const slugs = await getForLocale(locale).slugs();
+      return slugs.map(s => ({
+        params: { slug: s },
         locale,
       }));
     }) ?? [],
@@ -52,29 +49,26 @@ export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
 
 export const getStaticProps: GetStaticProps<
   {
-    posts: {
-      slug: string;
+    slug: string;
+    post: {
       data: PostMetadata;
-    }[];
-    tags: string[];
-    currentTag?: string;
+      content: string;
+    };
   },
   {
-    tag: string;
+    slug: string;
   }
 > = async ({ locale, params }) => {
-  const tag = params?.tag ?? '';
+  const slug = params?.slug ?? '';
   const repository = getForLocale(locale ?? 'pt');
-  const posts = await repository.posts([tag]);
-  const tags = await repository.tags();
+  const post = await repository.post(slug);
 
   return {
     props: {
-      posts,
-      tags,
-      currentTag: tag,
+      slug,
+      post,
     },
   };
 };
 
-export default BlogPageForTag;
+export default BlogPost;
