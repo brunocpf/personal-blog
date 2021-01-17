@@ -1,5 +1,5 @@
 import PostMetadata from './PostMetadata';
-import fs from 'fs/promises';
+import { promises as fs } from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 

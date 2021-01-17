@@ -12,7 +12,6 @@ module.exports = {
       if (!isServer) {
         config.node = {
           fs: 'empty',
-          'fs/promises': 'empty',
         };
       }
 
