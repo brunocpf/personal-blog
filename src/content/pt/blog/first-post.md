@@ -1,34 +1,18 @@
 ---
 title: Primeiro Post!
 summary: Esse é o primeiro post do meu blog!
-date: 2021-01-05T01:19:33.122Z
+date: 2021-01-16T01:19:33.122Z
 tags:
   - pessoal
   - meta
 ---
 
-# Sobre mim
+# Primeiro Post!
 
-Opa, eu sou o Bruno!
+Minha idéia era apenas praticar e aprender sobre Next.JS, mas o tédio e as dicas de [Scott Hanselman](https://www.hanselman.com/blog/your-words-are-wasted) me inspiraram a desenvolver e manter um blog/portfólio.
 
-Sou desenvolvedor de software e moro em Belo Horizonte (MG), Brasil. Atualmente trabalho em tempo integral como líder técnico e engenheiro de software, principalmente de aplicações web, em uma empresa de Belo Horizonte.
+Então... bem vindo! Ainda não tenho certeza sobre o que eu vou publicar aqui, mas pretendo pelo menos documentar alguns detalhes sobre o desenvolvimento desse blog, que eu fiz do "zero" usando Next.JS, além de outros projetos que estou desenvolvendo. Não quero me limitar a posts sobre programação, então quem sabe alguma coisa sobre a minha vida pessoal também? Não me considero um bom escritor, ou ter uma vida exceptcionalmente excitante, mas acho que pode ser divertido.
 
-Lista (curta) dos meus interesses e experiências profissionais como desenvolvedor, sem nenhuma ordem em particular:
+A princípio, vou tentar fazer 2 a 4 posts por mês (em inglês e português).
 
-- Aplicações web
-- Aplicações mobile
-- React, React Native
-- TypeScript
-- Plataformas .NET
-- Node.JS
-- Serverless
-- SOA
-- Domain Driven Design
-- Arquitetura de software
-- Unity
-
-Fora isso... gosto de games! Atualmente, jogando muito Final Fantasy XIV. 😁
-
-Criei esse blog inspirado nas dicas de [Scott Hanselman](https://www.hanselman.com/blog/your-words-are-wasted)... e um pouco de tédio haha. Espero postar principalmente sobre desenvolvimento web, meus projetos e os tópicos acima, a princípio, com um toque de assuntos pessoais também.
-
-Também estou aberto para desenvolver projetos. [Clique aqui para entrar em contato, caso tenha interesse!](/contact)
+Até o prómixo!
