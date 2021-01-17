@@ -7,5 +7,16 @@ module.exports = {
     // a non-locale prefixed path e.g. `/hello`
     defaultLocale: 'pt',
     localeDetection: false,
+    webpack: (config, { isServer }) => {
+      // Fixes npm packages that depend on `fs` module
+      if (!isServer) {
+        config.node = {
+          fs: 'empty',
+          'fs/promises': 'empty',
+        };
+      }
+
+      return config;
+    },
   },
 };
