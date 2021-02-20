@@ -37,9 +37,14 @@ type ToggleButtonProps = {
 
 const ToggleButton: React.FC<ToggleButtonProps> = ({ toggle }) => {
   const classes = useStyles();
+  const { formatMessage } = useIntl();
 
   return (
-    <button onClick={toggle} className={classes.button}>
+    <button
+      onClick={toggle}
+      className={classes.button}
+      aria-label={formatMessage({ id: 'openMenu' })}
+    >
       <svg width="23" height="23" viewBox="0 0 23 23" fill="currentColor">
         <Path
           variants={{

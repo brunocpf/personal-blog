@@ -16,4 +16,5 @@ export const pt: Locale = {
   toggleTheme: 'Alterar Tema',
   seeMore: 'Ver Mais',
   metaDescription: `Blog pessoal de Bruno Fernandes. Projetos de programação, desenvolvimento web e mobile and mobile.`,
+  openMenu: 'Abrir Menu',
 };

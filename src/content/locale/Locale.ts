@@ -13,5 +13,6 @@ export interface Locale {
   toggleTheme: string;
   seeMore: string;
   metaDescription: string;
+  openMenu: string;
   [key: string]: string;
 }
