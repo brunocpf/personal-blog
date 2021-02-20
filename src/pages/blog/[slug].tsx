@@ -20,7 +20,16 @@ const BlogPost: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
   return (
     <>
       <Head>
-        <meta name="description" content={post.data.summary} />
+        <meta
+          name="description"
+          content={
+            isFallback
+              ? formatMessage({
+                  id: 'metaDescription',
+                })
+              : post.data.summary
+          }
+        />
       </Head>
       <Page
         title={makePageTitle(
