@@ -8,6 +8,7 @@ import makePageTitle from 'src/util/makePageTitle';
 import PostMetadata from 'src/data/PostMetadata';
 import { useRouter } from 'next/router';
 import Post from 'src/components/Post';
+import Head from 'next/head';
 
 const BlogPost: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
   post,
@@ -17,15 +18,20 @@ const BlogPost: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
   const { isFallback } = useRouter();
 
   return (
-    <Page
-      title={makePageTitle(
-        formatMessage({
-          id: 'blog',
-        }),
-      )}
-    >
-      <Box flex="1">{!isFallback && <Post postData={post} />}</Box>
-    </Page>
+    <>
+      <Head>
+        <meta name="description" content={post.data.summary} />
+      </Head>
+      <Page
+        title={makePageTitle(
+          formatMessage({
+            id: 'blog',
+          }),
+        )}
+      >
+        <Box flex="1">{!isFallback && <Post postData={post} />}</Box>
+      </Page>
+    </>
   );
 };
 

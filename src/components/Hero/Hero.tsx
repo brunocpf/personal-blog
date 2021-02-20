@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
   },
   myImage: {
     backgroundSize: '200%',
-    backgroundImage: 'url(my-photo.png)',
+    backgroundImage: 'url(my-photo.webp)',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: '50% 25%',
     width: '100%',

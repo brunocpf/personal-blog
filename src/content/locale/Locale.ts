@@ -10,5 +10,8 @@ export interface Locale {
   jobDescription: string;
   bio: string;
   aboutMe: string;
+  toggleTheme: string;
+  seeMore: string;
+  metaDescription: string;
   [key: string]: string;
 }

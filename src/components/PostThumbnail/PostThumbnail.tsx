@@ -13,6 +13,7 @@ import { FaEllipsisH } from 'react-icons/fa';
 import PostMetadata from 'src/data/PostMetadata';
 import Link from 'next/link';
 import TagsList from '../TagsList';
+import { useIntl } from 'react-intl';
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -47,6 +48,7 @@ export interface PostThumbnailProps {
 const PostThumbnail: React.FC<PostThumbnailProps> = ({ post }) => {
   const classes = useStyles(post);
   const format = useDateFormatter();
+  const { formatMessage } = useIntl();
 
   return (
     <Card className={classes.card}>
@@ -78,7 +80,11 @@ const PostThumbnail: React.FC<PostThumbnailProps> = ({ post }) => {
             href={{ pathname: '/blog/[slug]', query: { slug: post.slug } }}
             passHref
           >
-            <IconButton>
+            <IconButton
+              aria-label={formatMessage({
+                id: 'seeMore',
+              })}
+            >
               <FaEllipsisH />
             </IconButton>
           </Link>

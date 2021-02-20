@@ -7,6 +7,7 @@ import Page from 'src/components/Page';
 import getForLocale from 'src/data/getForLocale';
 import makePageTitle from 'src/util/makePageTitle';
 import PostMetadata from 'src/data/PostMetadata';
+import Head from 'next/head';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -35,25 +36,35 @@ const About: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
   const { formatMessage } = useIntl();
 
   return (
-    <Page
-      title={makePageTitle(
-        formatMessage({
-          id: 'about',
-        }),
-      )}
-    >
-      <Box flex="1">
-        <Box className={classes.root} py={4}>
-          <Container>
-            <Card className={classes.card}>
-              <Box p={2}>
-                <Markdown>{content}</Markdown>
-              </Box>
-            </Card>
-          </Container>
+    <>
+      <Head>
+        <meta
+          name="description"
+          content={formatMessage({
+            id: 'metaDescription',
+          })}
+        />
+      </Head>
+      <Page
+        title={makePageTitle(
+          formatMessage({
+            id: 'about',
+          }),
+        )}
+      >
+        <Box flex="1">
+          <Box className={classes.root} py={4}>
+            <Container>
+              <Card className={classes.card}>
+                <Box p={2}>
+                  <Markdown>{content}</Markdown>
+                </Box>
+              </Card>
+            </Container>
+          </Box>
         </Box>
-      </Box>
-    </Page>
+      </Page>
+    </>
   );
 };
 

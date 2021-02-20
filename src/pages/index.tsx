@@ -1,5 +1,6 @@
 import { Box } from '@material-ui/core';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
+import Head from 'next/head';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import Hero from 'src/components/Hero';
@@ -15,18 +16,28 @@ const Home: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
   const { formatMessage } = useIntl();
 
   return (
-    <Page
-      title={makePageTitle(
-        formatMessage({
-          id: 'home',
-        }),
-      )}
-    >
-      <Box flex="1">
-        <Hero />
-        <LatestPosts posts={posts} />
-      </Box>
-    </Page>
+    <>
+      <Head>
+        <meta
+          name="description"
+          content={formatMessage({
+            id: 'metaDescription',
+          })}
+        />
+      </Head>
+      <Page
+        title={makePageTitle(
+          formatMessage({
+            id: 'home',
+          }),
+        )}
+      >
+        <Box flex="1">
+          <Hero />
+          <LatestPosts posts={posts} />
+        </Box>
+      </Page>
+    </>
   );
 };
 

@@ -33,10 +33,9 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
         <title>Bruno Fernandes</title>
         <meta content="IE=edge" httpEquiv="X-UA-Compatible" />
         <meta content="width=device-width, initial-scale=1" name="viewport" />
-        <link rel="icon" type="image/png" sizes="96x96" href="/favicon.png" />
+        <link rel="icon" type="image/png" href="/favicon.png" />
         <meta name="theme-color" content={theme.palette.primary.main} />
         <link href="/globals.css" rel="stylesheet" />
-        <link rel="preload" as="image" href="my-photo.png" />
       </Head>
       <IntlProvider
         locale={locale ?? 'pt'}
