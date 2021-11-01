@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, useTheme } from '@material-ui/core';
+import { Box, useTheme } from '@mui/material';
 import { useIntl } from 'react-intl';
 import NavButton from './NavButton';
 
@@ -29,7 +29,7 @@ const Nav: React.FC<NavProps> = () => {
   ];
 
   return (
-    <Box display="grid" gridGap={theme.spacing(2)} gridAutoFlow="column">
+    <Box display="grid" gap={theme.spacing(2)} gridAutoFlow="column">
       {navButtons.map(nb => (
         <NavButton label={nb.label} href={nb.href} key={nb.href} />
       ))}

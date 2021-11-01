@@ -1,5 +1,6 @@
 import React from 'react';
-import { Box, Grid, makeStyles, Switch, Typography } from '@material-ui/core';
+import { Box, Grid, Switch, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { useRouter } from 'next/router';
 
 const useStyles = makeStyles(theme => ({

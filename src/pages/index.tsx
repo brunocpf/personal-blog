@@ -1,4 +1,4 @@
-import { Box } from '@material-ui/core';
+import { Box } from '@mui/material';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import Head from 'next/head';
 import React from 'react';

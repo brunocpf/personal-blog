@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion, Variants } from 'framer-motion';
-import { makeStyles, Typography } from '@material-ui/core';
+import { Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { useRouter } from 'next/router';
 import classNames from 'classnames';
 import Link from 'next/link';

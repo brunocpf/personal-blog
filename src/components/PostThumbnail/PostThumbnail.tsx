@@ -1,12 +1,6 @@
 import React from 'react';
-import {
-  Box,
-  Card,
-  IconButton,
-  makeStyles,
-  Typography,
-  Link as MaterialLink,
-} from '@material-ui/core';
+import { Box, Card, IconButton, Typography, Link as MaterialLink } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import useDateFormatter from 'src/util/useDateFormatter';
 import color from 'color';
 import { FaEllipsisH } from 'react-icons/fa';
@@ -18,11 +12,11 @@ import { useIntl } from 'react-intl';
 const useStyles = makeStyles(theme => ({
   card: {
     boxShadow:
-      theme.palette.type === 'dark'
+      theme.palette.mode === 'dark'
         ? 'none'
         : `0px 0px 20px 10px rgb(0 0 0 / 12%)`,
     border:
-      theme.palette.type === 'dark'
+      theme.palette.mode === 'dark'
         ? `1px solid ${theme.palette.background.paper}`
         : 'none',
   },
@@ -68,7 +62,7 @@ const PostThumbnail: React.FC<PostThumbnailProps> = ({ post }) => {
             href={{ pathname: '/blog/[slug]', query: { slug: post.slug } }}
             passHref
           >
-            <MaterialLink>
+            <MaterialLink underline="hover">
               <Typography variant="h6">{post.data.title}</Typography>
             </MaterialLink>
           </Link>
@@ -84,7 +78,7 @@ const PostThumbnail: React.FC<PostThumbnailProps> = ({ post }) => {
               aria-label={formatMessage({
                 id: 'seeMore',
               })}
-            >
+              size="large">
               <FaEllipsisH />
             </IconButton>
           </Link>

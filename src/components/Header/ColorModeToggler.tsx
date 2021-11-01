@@ -1,8 +1,9 @@
 import React from 'react';
 import useDarkMode from 'use-dark-mode';
-import LightThemeIcon from '@material-ui/icons/Brightness7Rounded';
-import DarkThemeIcon from '@material-ui/icons/Brightness1Rounded';
-import { IconButton, makeStyles } from '@material-ui/core';
+import LightThemeIcon from '@mui/icons-material/Brightness7Rounded';
+import DarkThemeIcon from '@mui/icons-material/Brightness1Rounded';
+import { IconButton } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { useIntl } from 'react-intl';
 
 const useStyles = makeStyles(theme => ({
@@ -25,7 +26,7 @@ const ColorModeToggler: React.FC<ColorModeTogglerProps> = () => {
       aria-label={formatMessage({
         id: 'toggleTheme',
       })}
-    >
+      size="large">
       {isDarkMode ? <LightThemeIcon /> : <DarkThemeIcon />}
     </IconButton>
   );

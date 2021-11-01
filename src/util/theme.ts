@@ -1,8 +1,4 @@
-import {
-  createTheme,
-  responsiveFontSizes,
-  ThemeOptions,
-} from '@material-ui/core';
+import { createTheme, responsiveFontSizes, ThemeOptions } from '@mui/material';
 
 const themeOptions: ThemeOptions = {
   typography: {
@@ -18,11 +14,13 @@ const themeOptions: ThemeOptions = {
       fontWeight: 'bold',
     },
   },
-  overrides: {
+  components: {
     MuiButton: {
-      contained: {
-        borderRadius: '20px',
-        boxShadow: 'none',
+      styleOverrides: {
+        contained: {
+          borderRadius: '20px',
+          boxShadow: 'none',
+        },
       },
     },
   },
@@ -31,7 +29,7 @@ const themeOptions: ThemeOptions = {
 export const darkTheme = responsiveFontSizes(
   createTheme({
     palette: {
-      type: 'dark',
+      mode: 'dark',
       background: {
         default: '#151515',
         paper: '#343434',
@@ -48,7 +46,7 @@ export const darkTheme = responsiveFontSizes(
 export const lightTheme = responsiveFontSizes(
   createTheme({
     palette: {
-      type: 'light',
+      mode: 'light',
       background: {
         default: '#ffffff',
         paper: '#f2f2f2',

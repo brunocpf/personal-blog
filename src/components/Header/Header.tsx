@@ -1,12 +1,6 @@
 import React from 'react';
-import {
-  AppBar,
-  Box,
-  Container,
-  makeStyles,
-  Toolbar,
-  Typography,
-} from '@material-ui/core';
+import { AppBar, Box, Container, Toolbar, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import Nav from './Nav';
@@ -24,13 +18,13 @@ const useStyles = makeStyles(theme => ({
   },
   nav: {
     display: 'flex',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       display: 'none',
     },
   },
   menuNav: {
     display: 'none',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       display: 'flex',
       position: 'relative',
     },

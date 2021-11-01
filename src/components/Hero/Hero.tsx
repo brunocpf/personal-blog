@@ -1,11 +1,6 @@
 import React from 'react';
-import {
-  Box,
-  Container,
-  Grid,
-  makeStyles,
-  Typography,
-} from '@material-ui/core';
+import { Box, Container, Grid, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { motion } from 'framer-motion';
 import { useIntl } from 'react-intl';
 import ContactButtons from '../ContactButtons';
@@ -32,11 +27,11 @@ const useStyles = makeStyles(theme => ({
   },
   imageBg: {
     background: `linear-gradient(45deg, ${
-      theme.palette.type === 'light' ? '#C1D8E8' : '#828282'
+      theme.palette.mode === 'light' ? '#C1D8E8' : '#828282'
     }, transparent)`,
   },
   highlight: {
-    color: theme.palette.type === 'light' ? '#57BBFF' : '#F3F9FD',
+    color: theme.palette.mode === 'light' ? '#57BBFF' : '#F3F9FD',
   },
 }));
 

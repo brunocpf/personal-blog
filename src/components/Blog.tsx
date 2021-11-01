@@ -1,11 +1,6 @@
 import React from 'react';
-import {
-  Box,
-  Container,
-  Grid,
-  makeStyles,
-  Typography,
-} from '@material-ui/core';
+import { Box, Container, Grid, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import PostMetadata from 'src/data/PostMetadata';
 import LatestPosts from './LatestPosts';
 import TagsList from './TagsList';
@@ -44,7 +39,7 @@ const Blog: React.FC<BlogProps> = ({ posts, tags, currentTag }) => {
           </Grid>
           <Grid item xs={12} sm={2}>
             <Box py={3}>
-              <Box p={1} bgcolor="background.paper" borderRadius={10}>
+              <Box p={1} bgcolor="background.paper" borderRadius="10px">
                 <TagsList tags={tags} currentTag={currentTag} />
               </Box>
             </Box>

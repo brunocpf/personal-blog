@@ -1,11 +1,6 @@
 import React from 'react';
-import {
-  Box,
-  Card,
-  Container,
-  makeStyles,
-  Typography,
-} from '@material-ui/core';
+import { Box, Card, Container, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import PostMetadata from 'src/data/PostMetadata';
 import Markdown from './Markdown';
 import useDateFormatter from 'src/util/useDateFormatter';
@@ -24,11 +19,11 @@ const useStyles = makeStyles(theme => ({
   card: {
     background: theme.palette.background.default,
     boxShadow:
-      theme.palette.type === 'dark'
+      theme.palette.mode === 'dark'
         ? 'none'
         : `0px 0px 20px 10px rgb(0 0 0 / 12%)`,
     border:
-      theme.palette.type === 'dark'
+      theme.palette.mode === 'dark'
         ? `1px solid ${theme.palette.background.paper}`
         : 'none',
   },

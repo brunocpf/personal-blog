@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Box, Drawer, makeStyles, Toolbar, useTheme } from '@material-ui/core';
+import { Box, Drawer, Toolbar, useTheme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { useIntl } from 'react-intl';
 import NavButton from './NavButton';
 import ColorModeToggler from './ColorModeToggler';
@@ -124,7 +125,7 @@ const MenuToggle: React.FC<MenuToggleProps> = () => {
         </Box>
         <Box
           display="grid"
-          gridGap={theme.spacing(2)}
+          gap={theme.spacing(2)}
           gridAutoFlow="rows"
           pl={2}
           pr={8}

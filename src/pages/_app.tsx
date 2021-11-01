@@ -1,8 +1,12 @@
 import { AppProps } from 'next/app';
-import React, { useEffect } from 'react';
 import Head from 'next/head';
 import { lightTheme, darkTheme } from 'src/util/theme';
-import { CssBaseline, ThemeProvider } from '@material-ui/core';
+import {
+  CssBaseline,
+  ThemeProvider,
+  StyledEngineProvider,
+  Theme,
+} from '@mui/material';
 import useDarkMode from 'use-dark-mode';
 import { IntlProvider } from 'react-intl';
 import { useRouter } from 'next/router';
@@ -10,8 +14,25 @@ import * as locales from 'src/content/locale';
 import Header from 'src/components/Header';
 import AppContainer from 'src/components/AppContainer';
 import Footer from 'src/components/Footer';
+import { CacheProvider, EmotionCache } from '@emotion/react';
+import createEmotionCache from 'src/util/createEmotionCache';
 
-const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
+const clientSideEmotionCache = createEmotionCache();
+
+declare module '@mui/styles/defaultTheme' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface DefaultTheme extends Theme {}
+}
+
+interface MyAppProps extends AppProps {
+  emotionCache?: EmotionCache;
+}
+
+const MyApp: React.FC<MyAppProps> = ({
+  Component,
+  pageProps,
+  emotionCache = clientSideEmotionCache,
+}) => {
   const router = useRouter();
   const { locale, defaultLocale } = router;
   const messages = locales[(locale ?? 'pt') as keyof typeof locales];
@@ -20,15 +41,8 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
 
   const theme = isDark ? darkTheme : lightTheme;
 
-  useEffect(() => {
-    const jssStyles = document.querySelector('#jss-server-side');
-    if (jssStyles) {
-      jssStyles.parentElement?.removeChild(jssStyles);
-    }
-  }, []);
-
   return (
-    <>
+    <CacheProvider value={emotionCache}>
       <Head>
         <title>Bruno Fernandes</title>
         <meta content="IE=edge" httpEquiv="X-UA-Compatible" />
@@ -44,16 +58,18 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
         defaultLocale={defaultLocale}
         messages={messages}
       >
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <AppContainer>
-            <Header />
-            <Component {...pageProps} />
-            <Footer />
-          </AppContainer>
-        </ThemeProvider>
+        <StyledEngineProvider injectFirst>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <AppContainer>
+              <Header />
+              <Component {...pageProps} />
+              <Footer />
+            </AppContainer>
+          </ThemeProvider>
+        </StyledEngineProvider>
       </IntlProvider>
-    </>
+    </CacheProvider>
   );
 };
 

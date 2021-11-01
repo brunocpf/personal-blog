@@ -1,5 +1,6 @@
 import React from 'react';
-import { Box, Container, Grid, makeStyles } from '@material-ui/core';
+import { Box, Container, Grid } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import PostThumbnail from '../PostThumbnail';
 import PostMetadata from 'src/data/PostMetadata';
 
