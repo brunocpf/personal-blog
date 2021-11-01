@@ -1,10 +1,16 @@
 import React from 'react';
+import { styled } from '@mui/material/styles';
 import { Box, Divider, Typography } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
 import ContactButtons from '../ContactButtons';
 
-const useStyles = makeStyles(theme => ({
-  contactContainer: {
+const PREFIX = 'Footer';
+
+const classes = {
+  contactContainer: `${PREFIX}contactContainer`,
+};
+
+const StyledBox = styled(Box)(({ theme }) => ({
+  [`& .${classes.contactContainer}`]: {
     display: 'flex',
     justifyContent: 'center',
     transform: 'scale(0.8)',
@@ -14,9 +20,8 @@ const useStyles = makeStyles(theme => ({
 export interface FooterProps {}
 
 const Footer: React.FC<FooterProps> = () => {
-  const classes = useStyles();
   return (
-    <Box component="footer" bgcolor="background.paper" p={1}>
+    <StyledBox component="footer" bgcolor="background.paper" p={1}>
       <Box p={1} className={classes.contactContainer}>
         <ContactButtons />
       </Box>
@@ -26,7 +31,7 @@ const Footer: React.FC<FooterProps> = () => {
           &copy; bruno-fernandes.dev | Designed and Developed by Bruno Fernandes
         </Typography>
       </Box>
-    </Box>
+    </StyledBox>
   );
 };
 

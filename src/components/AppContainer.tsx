@@ -1,8 +1,14 @@
 import React from 'react';
-import makeStyles from '@mui/styles/makeStyles';
+import { styled } from '@mui/material/styles';
 
-const useStyles = makeStyles(theme => ({
-  appLayout: {
+const PREFIX = 'AppContainer';
+
+const classes = {
+  appLayout: `${PREFIX}appLayout`,
+};
+
+const Root = styled('div')(({ theme }) => ({
+  [`&.${classes.appLayout}`]: {
     display: 'flex',
     flexDirection: 'column',
     width: '100vw',
@@ -15,8 +21,7 @@ const useStyles = makeStyles(theme => ({
 export interface AppContainerProps {}
 
 const AppContainer: React.FC<AppContainerProps> = ({ children }) => {
-  const classes = useStyles();
-  return <div className={classes.appLayout}>{children}</div>;
+  return <Root className={classes.appLayout}>{children}</Root>;
 };
 
 export default AppContainer;

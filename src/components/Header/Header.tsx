@@ -1,6 +1,5 @@
 import React from 'react';
 import { AppBar, Box, Container, Toolbar, Typography } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import Nav from './Nav';
@@ -8,38 +7,17 @@ import ColorModeToggler from './ColorModeToggler';
 import LanguageSwitcher from './LanguageSwitcher';
 import MenuToggle from './MenuToggle';
 
-const useStyles = makeStyles(theme => ({
-  appBar: {
-    background: theme.palette.background.default,
-  },
-  logo: {
-    fontWeight: 'bold',
-    textDecoration: 'none',
-  },
-  nav: {
-    display: 'flex',
-    [theme.breakpoints.down('md')]: {
-      display: 'none',
-    },
-  },
-  menuNav: {
-    display: 'none',
-    [theme.breakpoints.down('md')]: {
-      display: 'flex',
-      position: 'relative',
-    },
-  },
-}));
-
 const MotionBox = motion(Box);
 
 export interface HeaderProps {}
 
 const Header: React.FC<HeaderProps> = () => {
-  const classes = useStyles();
-
   return (
-    <AppBar position="static" className={classes.appBar} elevation={0}>
+    <AppBar
+      position="static"
+      elevation={0}
+      sx={{ background: theme => theme.palette.background.default }}
+    >
       <Toolbar>
         <Container>
           <MotionBox
@@ -59,13 +37,18 @@ const Header: React.FC<HeaderProps> = () => {
                   variant="h6"
                   component="a"
                   color="textPrimary"
-                  className={classes.logo}
+                  fontWeight="bold"
+                  sx={{ textDecoration: 'none' }}
                 >
                   bruno-fernandes.dev
                 </Typography>
               </Link>
             </Box>
-            <Box display="flex" alignItems="center" className={classes.nav}>
+            <Box
+              display="flex"
+              alignItems="center"
+              sx={{ display: { xs: 'none', md: 'flex' } }}
+            >
               <Box>
                 <LanguageSwitcher />
               </Box>
@@ -76,7 +59,9 @@ const Header: React.FC<HeaderProps> = () => {
 
               <Nav />
             </Box>
-            <Box className={classes.menuNav}>
+            <Box
+              sx={{ position: 'relative', display: { xs: 'flex', md: 'none' } }}
+            >
               <MenuToggle />
             </Box>
           </MotionBox>

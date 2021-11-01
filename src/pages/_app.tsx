@@ -1,13 +1,6 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-import { lightTheme, darkTheme } from 'src/util/theme';
-import {
-  CssBaseline,
-  ThemeProvider,
-  StyledEngineProvider,
-  Theme,
-} from '@mui/material';
-import useDarkMode from 'use-dark-mode';
+import { CssBaseline } from '@mui/material';
 import { IntlProvider } from 'react-intl';
 import { useRouter } from 'next/router';
 import * as locales from 'src/content/locale';
@@ -15,14 +8,10 @@ import Header from 'src/components/Header';
 import AppContainer from 'src/components/AppContainer';
 import Footer from 'src/components/Footer';
 import { CacheProvider, EmotionCache } from '@emotion/react';
-import createEmotionCache from 'src/util/createEmotionCache';
+import { createEmotionCache } from 'src/util/emotionCache';
+import { ThemeProvider } from 'src/components/ThemeContext';
 
 const clientSideEmotionCache = createEmotionCache();
-
-declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme {}
-}
 
 interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
@@ -37,10 +26,6 @@ const MyApp: React.FC<MyAppProps> = ({
   const { locale, defaultLocale } = router;
   const messages = locales[(locale ?? 'pt') as keyof typeof locales];
 
-  const { value: isDark } = useDarkMode();
-
-  const theme = isDark ? darkTheme : lightTheme;
-
   return (
     <CacheProvider value={emotionCache}>
       <Head>
@@ -48,7 +33,7 @@ const MyApp: React.FC<MyAppProps> = ({
         <meta content="IE=edge" httpEquiv="X-UA-Compatible" />
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <link rel="icon" type="image/png" href="/favicon.png" />
-        <meta name="theme-color" content={theme.palette.primary.main} />
+        <meta name="theme-color" content="#a91b1b" />
         <link href="/globals.css" rel="stylesheet" />
         <link rel="manifest" href="/manifest.json" />
         <link rel="apple-touch-icon" href="/favicon.png" />
@@ -58,16 +43,14 @@ const MyApp: React.FC<MyAppProps> = ({
         defaultLocale={defaultLocale}
         messages={messages}
       >
-        <StyledEngineProvider injectFirst>
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <AppContainer>
-              <Header />
-              <Component {...pageProps} />
-              <Footer />
-            </AppContainer>
-          </ThemeProvider>
-        </StyledEngineProvider>
+        <ThemeProvider>
+          <CssBaseline />
+          <AppContainer>
+            <Header />
+            <Component {...pageProps} />
+            <Footer />
+          </AppContainer>
+        </ThemeProvider>
       </IntlProvider>
     </CacheProvider>
   );

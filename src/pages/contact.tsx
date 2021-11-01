@@ -1,5 +1,5 @@
 import { Box, Container, Card } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import { styled } from '@mui/material/styles';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import React from 'react';
 import { useIntl } from 'react-intl';
@@ -10,8 +10,16 @@ import makePageTitle from 'src/util/makePageTitle';
 import PostMetadata from 'src/data/PostMetadata';
 import Head from 'next/head';
 
-const useStyles = makeStyles(theme => ({
-  root: {
+const PREFIX = 'Contact';
+
+const classes = {
+  root: `${PREFIX}root`,
+  list: `${PREFIX}list`,
+  card: `${PREFIX}card`,
+};
+
+const Root = styled(Box)(({ theme }) => ({
+  [`& .${classes.root}`]: {
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
     [theme.breakpoints.up('sm')]: {
@@ -19,10 +27,12 @@ const useStyles = makeStyles(theme => ({
       paddingRight: theme.spacing(3),
     },
   },
-  list: {
+
+  [`& .${classes.list}`]: {
     margin: 0,
   },
-  card: {
+
+  [`& .${classes.card}`]: {
     background: theme.palette.background.default,
     boxShadow:
       theme.palette.mode === 'dark'
@@ -38,7 +48,6 @@ const useStyles = makeStyles(theme => ({
 const Contact: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
   content,
 }) => {
-  const classes = useStyles();
   const { formatMessage } = useIntl();
 
   return (
@@ -58,7 +67,7 @@ const Contact: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
           }),
         )}
       >
-        <Box flex="1">
+        <Root flex="1">
           <Box className={classes.root} py={4}>
             <Container>
               <Card className={classes.card}>
@@ -68,7 +77,7 @@ const Contact: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
               </Card>
             </Container>
           </Box>
-        </Box>
+        </Root>
       </Page>
     </>
   );

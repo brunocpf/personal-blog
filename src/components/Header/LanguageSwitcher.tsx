@@ -1,18 +1,23 @@
 import React from 'react';
+import { styled } from '@mui/material/styles';
 import { Box, Grid, Switch, Typography } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
 import { useRouter } from 'next/router';
 
-const useStyles = makeStyles(theme => ({
-  label: {
+const PREFIX = 'LanguageSwitcher';
+
+const classes = {
+  label: `${PREFIX}label`,
+};
+
+const StyledTypography = styled(Typography)(({ theme }) => ({
+  [`& .${classes.label}`]: {
     verticalAlign: 'sub',
   },
-}));
+})) as typeof Typography;
 
 export interface LanguageSwitcherProps {}
 
 const LanguageSwitcher: React.FC<LanguageSwitcherProps> = () => {
-  const classes = useStyles();
   const { locale, push, pathname, query } = useRouter();
   const isPortuguese = locale?.toLowerCase().includes('pt') ?? false;
 
@@ -21,7 +26,7 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = () => {
   };
 
   return (
-    <Typography
+    <StyledTypography
       component="div"
       color="textPrimary"
       variant="body2"
@@ -56,7 +61,7 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = () => {
           </Box>
         </Grid>
       </Grid>
-    </Typography>
+    </StyledTypography>
   );
 };
 

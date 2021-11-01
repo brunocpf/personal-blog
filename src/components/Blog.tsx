@@ -1,12 +1,18 @@
 import React from 'react';
+import { styled } from '@mui/material/styles';
 import { Box, Container, Grid, Typography } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
 import PostMetadata from 'src/data/PostMetadata';
 import LatestPosts from './LatestPosts';
 import TagsList from './TagsList';
 
-const useStyles = makeStyles(theme => ({
-  root: {
+const PREFIX = 'Blog';
+
+const classes = {
+  root: `${PREFIX}root`,
+};
+
+const StyledBox = styled(Box)(({ theme }) => ({
+  [`&.${classes.root}`]: {
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
     [theme.breakpoints.up('sm')]: {
@@ -26,9 +32,8 @@ export interface BlogProps {
 }
 
 const Blog: React.FC<BlogProps> = ({ posts, tags, currentTag }) => {
-  const classes = useStyles();
   return (
-    <Box className={classes.root} py={4}>
+    <StyledBox className={classes.root} py={4}>
       <Container>
         <Grid container>
           <Grid item xs={12} sm={10}>
@@ -46,7 +51,7 @@ const Blog: React.FC<BlogProps> = ({ posts, tags, currentTag }) => {
           </Grid>
         </Grid>
       </Container>
-    </Box>
+    </StyledBox>
   );
 };
 

@@ -1,6 +1,11 @@
 import React from 'react';
-import { Box, Card, IconButton, Typography, Link as MaterialLink } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
+import {
+  Box,
+  Card,
+  IconButton,
+  Typography,
+  Link as MaterialLink,
+} from '@mui/material';
 import useDateFormatter from 'src/util/useDateFormatter';
 import color from 'color';
 import { FaEllipsisH } from 'react-icons/fa';
@@ -8,29 +13,6 @@ import PostMetadata from 'src/data/PostMetadata';
 import Link from 'next/link';
 import TagsList from '../TagsList';
 import { useIntl } from 'react-intl';
-
-const useStyles = makeStyles(theme => ({
-  card: {
-    boxShadow:
-      theme.palette.mode === 'dark'
-        ? 'none'
-        : `0px 0px 20px 10px rgb(0 0 0 / 12%)`,
-    border:
-      theme.palette.mode === 'dark'
-        ? `1px solid ${theme.palette.background.paper}`
-        : 'none',
-  },
-  image: ({ data }: { data: { image?: string } }) => ({
-    backgroundImage: data.image
-      ? `linear-gradient(0deg, ${theme.palette.background.paper}, ${color(
-          theme.palette.background.paper,
-        )
-          .alpha(0.4)
-          .toString()}), url(${data.image})`
-      : '',
-    backgroundSize: 'cover',
-  }),
-}));
 
 export interface PostThumbnailProps {
   post: {
@@ -40,18 +22,38 @@ export interface PostThumbnailProps {
 }
 
 const PostThumbnail: React.FC<PostThumbnailProps> = ({ post }) => {
-  const classes = useStyles(post);
   const format = useDateFormatter();
   const { formatMessage } = useIntl();
 
   return (
-    <Card className={classes.card}>
+    <Card
+      sx={{
+        boxShadow: theme =>
+          theme.palette.mode === 'dark'
+            ? 'none'
+            : `0px 0px 20px 10px rgb(0 0 0 / 12%)`,
+        border: theme =>
+          theme.palette.mode === 'dark'
+            ? `1px solid ${theme.palette.background.paper}`
+            : 'none',
+      }}
+    >
       <Box
         px={1}
         pt={4}
         display="flex"
         justifyContent="space-between"
-        className={classes.image}
+        sx={{
+          backgroundImage: theme =>
+            post.data.image
+              ? `linear-gradient(0deg, ${
+                  theme.palette.background.paper
+                }, ${color(theme.palette.background.paper)
+                  .alpha(0.4)
+                  .toString()}), url(${post.data.image})`
+              : '',
+          backgroundSize: 'cover',
+        }}
       >
         <Typography>{format(post.data.date)}</Typography>
         <Typography>Bruno</Typography>
@@ -78,7 +80,8 @@ const PostThumbnail: React.FC<PostThumbnailProps> = ({ post }) => {
               aria-label={formatMessage({
                 id: 'seeMore',
               })}
-              size="large">
+              size="large"
+            >
               <FaEllipsisH />
             </IconButton>
           </Link>

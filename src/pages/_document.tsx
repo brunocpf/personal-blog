@@ -1,7 +1,7 @@
 import React from 'react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import createEmotionServer from '@emotion/server/create-instance';
-import createEmotionCache from 'src/util/createEmotionCache';
+import { createEmotionCache } from 'src/util/emotionCache';
 
 export default class MyDocument extends Document {
   render() {
@@ -27,7 +27,7 @@ export default class MyDocument extends Document {
           <link rel="preconnect" href="https://static.cloudflareinsights.com" />
         </Head>
         <body>
-          <script src="noflash.js" />
+          <script src="/noflash.js" />
           <Main />
           <NextScript />
         </body>

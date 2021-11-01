@@ -1,13 +1,19 @@
 import React from 'react';
-import useDarkMode from 'use-dark-mode';
+import { styled } from '@mui/material/styles';
 import LightThemeIcon from '@mui/icons-material/Brightness7Rounded';
 import DarkThemeIcon from '@mui/icons-material/Brightness1Rounded';
 import { IconButton } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
 import { useIntl } from 'react-intl';
+import { useThemeContext } from '../ThemeContext';
 
-const useStyles = makeStyles(theme => ({
-  button: {
+const PREFIX = 'ColorModeToggler';
+
+const classes = {
+  button: `${PREFIX}button`,
+};
+
+const StyledIconButton = styled(IconButton)(({ theme }) => ({
+  [`&.${classes.button}`]: {
     color: theme.palette.text.primary,
   },
 }));
@@ -15,20 +21,20 @@ const useStyles = makeStyles(theme => ({
 export interface ColorModeTogglerProps {}
 
 const ColorModeToggler: React.FC<ColorModeTogglerProps> = () => {
-  const classes = useStyles();
-  const { value: isDarkMode, toggle: toggleDarkMode } = useDarkMode();
+  const { mode, toggleMode } = useThemeContext();
   const { formatMessage } = useIntl();
 
   return (
-    <IconButton
-      onClick={toggleDarkMode}
+    <StyledIconButton
+      onClick={toggleMode}
       className={classes.button}
       aria-label={formatMessage({
         id: 'toggleTheme',
       })}
-      size="large">
-      {isDarkMode ? <LightThemeIcon /> : <DarkThemeIcon />}
-    </IconButton>
+      size="large"
+    >
+      {mode === 'dark' ? <LightThemeIcon /> : <DarkThemeIcon />}
+    </StyledIconButton>
   );
 };
 

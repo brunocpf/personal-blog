@@ -1,44 +1,10 @@
 import React from 'react';
 import { Box, Card, Container, Typography } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
 import PostMetadata from 'src/data/PostMetadata';
 import Markdown from './Markdown';
 import useDateFormatter from 'src/util/useDateFormatter';
 import TagsList from './TagsList';
 import color from 'color';
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(2),
-    [theme.breakpoints.up('sm')]: {
-      paddingLeft: theme.spacing(3),
-      paddingRight: theme.spacing(3),
-    },
-  },
-  card: {
-    background: theme.palette.background.default,
-    boxShadow:
-      theme.palette.mode === 'dark'
-        ? 'none'
-        : `0px 0px 20px 10px rgb(0 0 0 / 12%)`,
-    border:
-      theme.palette.mode === 'dark'
-        ? `1px solid ${theme.palette.background.paper}`
-        : 'none',
-  },
-  image: ({ data }: { data: { image?: string } }) => ({
-    backgroundImage: data.image
-      ? `linear-gradient(0deg, ${theme.palette.background.paper}, ${color(
-          theme.palette.background.paper,
-        )
-          .alpha(0.4)
-          .toString()}), url(${data.image})`
-      : '',
-    backgroundSize: 'cover',
-    backgroundColor: theme.palette.background.paper,
-  }),
-}));
 
 export interface PostProps {
   postData: {
@@ -51,15 +17,37 @@ const Post: React.FC<PostProps> = ({ postData }) => {
   const { content, data } = postData;
   const format = useDateFormatter();
 
-  const classes = useStyles(postData);
   return (
-    <Box className={classes.root} py={4}>
+    <Box px={{ xs: 2, md: 3 }} py={4}>
       <Container>
-        <Card className={classes.card}>
+        <Card
+          sx={{
+            background: theme => theme.palette.background.default,
+            boxShadow: theme =>
+              theme.palette.mode === 'dark'
+                ? 'none'
+                : `0px 0px 20px 10px rgb(0 0 0 / 12%)`,
+            border: theme =>
+              theme.palette.mode === 'dark'
+                ? `1px solid ${theme.palette.background.paper}`
+                : 'none',
+          }}
+        >
           <Box
             px={2}
             pt={8}
-            className={classes.image}
+            sx={{
+              backgroundImage: theme =>
+                data.image
+                  ? `linear-gradient(0deg, ${
+                      theme.palette.background.paper
+                    }, ${color(theme.palette.background.paper)
+                      .alpha(0.4)
+                      .toString()}), url(${data.image})`
+                  : '',
+              backgroundSize: 'cover',
+              backgroundColor: theme => theme.palette.background.paper,
+            }}
             display="flex"
             justifyContent="space-between"
           >

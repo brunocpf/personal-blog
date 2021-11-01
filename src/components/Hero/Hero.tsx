@@ -1,12 +1,21 @@
 import React from 'react';
+import { styled } from '@mui/material/styles';
 import { Box, Container, Grid, Typography } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
 import { motion } from 'framer-motion';
 import { useIntl } from 'react-intl';
 import ContactButtons from '../ContactButtons';
 
-const useStyles = makeStyles(theme => ({
-  container: {
+const PREFIX = 'Hero';
+
+const classes = {
+  container: `${PREFIX}container`,
+  myImage: `${PREFIX}myImage`,
+  imageBg: `${PREFIX}imageBg`,
+  highlight: `${PREFIX}highlight`,
+};
+
+const StyledBox = styled(Box)(({ theme }) => ({
+  [`&.${classes.container}`]: {
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
     [theme.breakpoints.up('sm')]: {
@@ -15,7 +24,8 @@ const useStyles = makeStyles(theme => ({
     },
     background: theme.palette.background.paper,
   },
-  myImage: {
+
+  [`& .${classes.myImage}`]: {
     backgroundSize: '200%',
     backgroundImage: 'url(my-photo.webp)',
     backgroundRepeat: 'no-repeat',
@@ -25,12 +35,14 @@ const useStyles = makeStyles(theme => ({
     height: '0',
     paddingBottom: '100%',
   },
-  imageBg: {
+
+  [`& .${classes.imageBg}`]: {
     background: `linear-gradient(45deg, ${
       theme.palette.mode === 'light' ? '#C1D8E8' : '#828282'
     }, transparent)`,
   },
-  highlight: {
+
+  [`& .${classes.highlight}`]: {
     color: theme.palette.mode === 'light' ? '#57BBFF' : '#F3F9FD',
   },
 }));
@@ -39,11 +51,10 @@ export interface HeroProps {}
 const MotionContainer = motion(Container);
 
 const Hero: React.FC<HeroProps> = () => {
-  const classes = useStyles();
   const { formatMessage } = useIntl();
 
   return (
-    <Box className={classes.container} py={5}>
+    <StyledBox className={classes.container} py={5}>
       <MotionContainer
         initial="hidden"
         animate="visible"
@@ -88,7 +99,7 @@ const Hero: React.FC<HeroProps> = () => {
           </Box>
         </Grid>
       </MotionContainer>
-    </Box>
+    </StyledBox>
   );
 };
 

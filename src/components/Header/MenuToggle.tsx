@@ -1,25 +1,11 @@
 import React, { useState } from 'react';
+import { styled } from '@mui/material/styles';
 import { motion } from 'framer-motion';
 import { Box, Drawer, Toolbar, useTheme } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
 import { useIntl } from 'react-intl';
 import NavButton from './NavButton';
 import ColorModeToggler from './ColorModeToggler';
 import LanguageSwitcher from './LanguageSwitcher';
-
-const useStyles = makeStyles(theme => ({
-  button: {
-    width: '32px',
-    height: '32px',
-    borderRadius: '50%',
-    outline: 'none',
-    border: 'none',
-    padding: '6px',
-    cursor: 'pointer',
-    background: 'transparent',
-    color: theme.palette.text.primary,
-  },
-}));
 
 const Path: React.FC<React.ComponentProps<typeof motion.path>> = props => (
   <motion.path
@@ -37,13 +23,23 @@ type ToggleButtonProps = {
 };
 
 const ToggleButton: React.FC<ToggleButtonProps> = ({ toggle }) => {
-  const classes = useStyles();
   const { formatMessage } = useIntl();
 
   return (
-    <button
+    <Box
+      component="button"
       onClick={toggle}
-      className={classes.button}
+      sx={{
+        width: '32px',
+        height: '32px',
+        borderRadius: '50%',
+        outline: 'none',
+        border: 'none',
+        padding: '6px',
+        cursor: 'pointer',
+        background: 'transparent',
+        color: theme => theme.palette.text.primary,
+      }}
       aria-label={formatMessage({ id: 'openMenu' })}
     >
       <svg width="23" height="23" viewBox="0 0 23 23" fill="currentColor">
@@ -77,7 +73,7 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({ toggle }) => {
           }}
         />
       </svg>
-    </button>
+    </Box>
   );
 };
 
