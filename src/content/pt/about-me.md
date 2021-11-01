@@ -18,8 +18,10 @@ Lista (curta) dos meus interesses e experiências profissionais como desenvolved
 - Aplicações mobile
 - React, React Native
 - TypeScript
+- GraphQL
 - Plataformas .NET
-- Node.JS
+- Progressive Web Apps
+- Node.JS (Next.js, NestJS, express)
 - Serverless
 - SOA
 - Domain Driven Design

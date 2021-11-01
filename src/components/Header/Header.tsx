@@ -37,7 +37,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const MotionBox = motion.custom(Box);
+const MotionBox = motion(Box);
 
 export interface HeaderProps {}
 

@@ -36,6 +36,8 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
         <link rel="icon" type="image/png" href="/favicon.png" />
         <meta name="theme-color" content={theme.palette.primary.main} />
         <link href="/globals.css" rel="stylesheet" />
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="apple-touch-icon" href="/favicon.png" />
       </Head>
       <IntlProvider
         locale={locale ?? 'pt'}

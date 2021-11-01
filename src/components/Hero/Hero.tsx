@@ -12,7 +12,12 @@ import ContactButtons from '../ContactButtons';
 
 const useStyles = makeStyles(theme => ({
   container: {
-    ...theme.mixins.gutters(),
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
+    [theme.breakpoints.up('sm')]: {
+      paddingLeft: theme.spacing(3),
+      paddingRight: theme.spacing(3),
+    },
     background: theme.palette.background.paper,
   },
   myImage: {
@@ -36,7 +41,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export interface HeroProps {}
-const MotionContainer = motion.custom(Container);
+const MotionContainer = motion(Container);
 
 const Hero: React.FC<HeroProps> = () => {
   const classes = useStyles();

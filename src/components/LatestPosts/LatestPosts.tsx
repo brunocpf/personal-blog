@@ -5,7 +5,12 @@ import PostMetadata from 'src/data/PostMetadata';
 
 const useStyles = makeStyles(theme => ({
   container: {
-    ...theme.mixins.gutters(),
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
+    [theme.breakpoints.up('sm')]: {
+      paddingLeft: theme.spacing(3),
+      paddingRight: theme.spacing(3),
+    },
   },
 }));
 

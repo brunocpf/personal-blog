@@ -18,8 +18,10 @@ I'm a software developer located in Belo Horizonte (MG), Brazil. I currently wor
 - Mobile apps
 - React, React Native
 - TypeScript
+- GraphQL
+- Progressive Web Apps
 - .NET Platforms
-- Node.JS
+- Node.JS (Next.js, NestJS, express)
 - Serverless
 - SOA
 - Domain Driven Design

@@ -14,7 +14,12 @@ import color from 'color';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    ...theme.mixins.gutters(),
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
+    [theme.breakpoints.up('sm')]: {
+      paddingLeft: theme.spacing(3),
+      paddingRight: theme.spacing(3),
+    },
   },
   card: {
     background: theme.palette.background.default,

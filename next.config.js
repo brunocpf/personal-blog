@@ -1,4 +1,7 @@
-module.exports = {
+const withPWA = require('next-pwa');
+
+module.exports = withPWA({
+  reactStrictMode: true,
   i18n: {
     // These are all the locales you want to support in
     // your application
@@ -18,4 +21,10 @@ module.exports = {
       return config;
     },
   },
-};
+  pwa: {
+    dest: 'public',
+    register: true,
+    skipWaiting: true,
+    disable: process.env.NODE_ENV === 'development',
+  },
+});
