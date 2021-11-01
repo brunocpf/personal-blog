@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { styled } from '@mui/material/styles';
 import { motion } from 'framer-motion';
 import { Box, Drawer, Toolbar, useTheme } from '@mui/material';
 import { useIntl } from 'react-intl';
