@@ -1,7 +1,7 @@
 ---
 title: Dark Theme with SSR (Next.js) and Material UI v5
 summary: Setting up a theme switcher using Material UI v5 and server side rendering with Next.js
-date: 2021-11-14T08:19:33.122Z
+date: 2021-10-14T08:19:33.122Z
 tags:
   - ssr
   - react
