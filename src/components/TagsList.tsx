@@ -24,9 +24,9 @@ export interface TagsListProps {
 
 const TagsList: React.FC<TagsListProps> = ({ tags, currentTag }) => {
   return (
-    <Root>
+    <Root sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
       {tags.map(t => (
-        <Box component="span" marginRight={1} key={t}>
+        <Box component="span" key={t}>
           <Link
             href={{
               pathname: '/blog/tag/[tag]',
