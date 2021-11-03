@@ -68,7 +68,7 @@ It's important to point out that component library authors acknowledge this flaw
 
 Although Tailwind is very complete by itself, you don't want to implement some common components like modals from scratch across multiple projects. It's possible to use Tailwind along with component libraries that offer such components, but I wouldn't recommend it, since you'd be mixing multiple different styling paradigms, making your code harder to maintain.
 
-With this in mind, Tailwind's authors developed [headless ui](https://headlessui.dev/), which offers unstyled common components, and are completely compatile (and intended to be used) with Tailwind.
+With this in mind, Tailwind's authors developed [headless ui](https://headlessui.dev/), which offers unstyled common components, and are completely compatible (and intended to be used) with Tailwind.
 
 <br>
 
