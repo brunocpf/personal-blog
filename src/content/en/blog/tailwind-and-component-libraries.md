@@ -54,11 +54,11 @@ For example, colors. By default, when you use Tailwind you're constrained by a [
 
 <br>
 
-## 4. Boilerplate e Ease of Use
+## 4. Boilerplate and Ease of Use
 
 Except for very specific things, like background images, when I've used Tailwind I never had to write a single line of CSS code. I'm serious. The Tailwind utility classes are enough 99% of the time. That doesn't mean your CSS knowledge is useless, it's the opposite: the more you know about CSS, the more you'll know how to properly use Tailwind's classes. Also, Tailwind has first-class support for building responsive layouts with pre-defined breakpoints, which saves a lot of the headache that comes with media queries.
 
-This is a notable difference when compared to component libraries, perhaps ironically. To guarantee a unique visual identity you have to change the default component styles with CSS, forcing the developer to switch contexts and stop focusing on the DOM.
+This is a notable difference when compared to component libraries, perhaps ironically. To guarantee a unique visual identity you have to change the default component styles with CSS, forcing the developer to switch contexts and stop focusing on the markup.
 
 It's important to point out that component library authors acknowledge this flaw and embrace CSS-in-JS, and, more recently the [MUI System](https://mui.com/system/basics/) API, which follows a paradigm that feels very similar to Tailwind's in this regard.
 

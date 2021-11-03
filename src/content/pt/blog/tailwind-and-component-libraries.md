@@ -58,7 +58,7 @@ Por exemplo, cores. Por padrão, ao usar Tailwind você está restringido a uma 
 
 A não ser para coisas muito específicas, como por exemplo imagens de background, ao usar Tailwind eu nunca precisei escrever uma linha de CSS. De verdade. As classes utilitárias do Tailwind são suficientes 99% das vezes. Isso não quer dizer que o seu conhecimento de CSS é dispensável, pelo contrário: quanto mais você sabe sobre CSS, mais você saberá utilizar corretamente as classes do Tailwind. Além disso, Tailwind tem suporte de primeira classe para construção de layouts responsivos com breakpoints pré-definidos, que remove a dor de cabeça ao trabalhar com media queries.
 
-Isso é uma diferença notável em comparação a bibliotecas de componentes, talvez ironicamente. Para garantir uma identidade visual única é necessário alterar os estilos padrões dos componentes com CSS, forçando ao desenvolvedor mudar de contexto e deixar de focar no DOM.
+Isso é uma diferença notável em comparação a bibliotecas de componentes, talvez ironicamente. Para garantir uma identidade visual única é necessário alterar os estilos padrões dos componentes com CSS, forçando ao desenvolvedor mudar de contexto e deixar de focar no markup.
 
 É importante ressaltar que os autores bibliotecas de componentes reconhecem esse problema e oferecem soluções como CSS-in-JS e mais recentemente a API [MUI System](https://mui.com/system/basics/), que segue um modelo parecido com o Tailwind.
 
