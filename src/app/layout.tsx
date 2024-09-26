@@ -1,6 +1,8 @@
 import { Josefin_Sans, Josefin_Slab } from "next/font/google";
 import type { Metadata, Viewport } from "next";
 import { ThemeProvider } from "@/components/theme-provider";
+import { PageHeader } from "@/components/page-header";
+import { PageFooter } from "@/components/page-footer";
 import "@/styles/globals.css";
 
 const josefinSans = Josefin_Sans({
@@ -27,17 +29,18 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: React.PropsWithChildren) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${josefinSans.variable} ${josefinSlab.variable} antialiased font-sans`}
+        className={`min-h-screen font-sans antialiased ${josefinSans.variable} ${josefinSlab.variable}`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <div vaul-drawer-wrapper="">
+            <div className="relative flex min-h-screen flex-col">
+              <PageHeader />
+              <main className="flex-1">{children}</main>
+              <PageFooter />
+            </div>
+          </div>
         </ThemeProvider>
       </body>
     </html>

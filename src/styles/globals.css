@@ -10,22 +10,22 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
+    --background: from theme("colors.zinc.100") h s l;
+    --foreground: from theme("colors.stone.500") h s l;
+    --card: from theme("colors.white") h s l;
+    --card-foreground: from theme("colors.stone.500") h s l;
+    --popover: from theme("colors.white") h s l;
+    --popover-foreground: from theme("colors.stone.500") h s l;
+    --primary: from theme("colors.stone.500") h s l;
+    --primary-foreground: from theme("colors.stone.500") h s l;
+    --secondary: from theme("colors.red.800") h s l;
+    --secondary-foreground: from theme("colors.stone.500") h s l;
+    --muted: from theme("colors.red.800") h s l;
+    --muted-foreground: from theme("colors.red.800") h s l;
+    --accent: from theme("colors.red.800") h s l;
+    --accent-foreground: from theme("colors.stone.500") h s l;
+    --destructive: from theme("colors.stone.500") h s l;
+    --destructive-foreground: from theme("colors.stone.500") h s l;
     --border: 0 0% 89.8%;
     --input: 0 0% 89.8%;
     --ring: 0 0% 3.9%;
@@ -37,10 +37,10 @@
     --radius: 0.5rem;
   }
   .dark {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
+    --background: from theme("colors.neutral.700") h s l;
+    --foreground: from theme("colors.neutral.900") h s l;
+    --card: from theme("colors.neutral.700") h s l;
+    --card-foreground: from theme("colors.neutral.900") h s l;
     --popover: 0 0% 3.9%;
     --popover-foreground: 0 0% 98%;
     --primary: 0 0% 98%;
@@ -75,5 +75,15 @@
     @apply bg-background text-foreground;
     font-synthesis-weight: none;
     text-rendering: optimizeLegibility;
+  }
+}
+
+.container {
+  @apply mx-auto px-4;
+}
+
+@media (min-width: theme("screens.sm")) {
+  .container {
+    @apply px-6;
   }
 }
