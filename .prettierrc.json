@@ -1,0 +1,7 @@
+{
+  "plugins": [
+    "prettier-plugin-tailwindcss",
+    "./node_modules/prettier-plugin-sort-imports/dist/index.2.js"
+  ],
+  "importTypeOrder": ["NPMPackages", "localImports"]
+}

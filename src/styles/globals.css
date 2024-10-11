@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@layer base {
+  :root {
+    --background: from theme("colors.zinc.100") h s l;
+    --foreground: from theme("colors.stone.500") h s l;
+    --card: from theme("colors.white") h s l;
+    --card-foreground: from theme("colors.stone.500") h s l;
+    --popover: from theme("colors.white") h s l;
+    --popover-foreground: from theme("colors.stone.500") h s l;
+    --primary: from theme("colors.neutral.500") h s l;
+    --primary-foreground: from theme("colors.zinc.100") h s l;
+    --secondary: from theme("colors.red.800") h s l;
+    --secondary-foreground: from theme("colors.zinc.100") h s l;
+    --muted: from theme("colors.red.800") h s l;
+    --muted-foreground: from theme("colors.zinc.100") h s l;
+    --accent: from theme("colors.stone.500") h s l / 25%;
+    --accent-foreground: from theme("colors.neutral.500") h s l;
+    --destructive: from theme("colors.red.800") h s l;
+    --destructive-foreground: from theme("colors.zinc.100") h s l;
+    --border: from theme("colors.stone.500") h s l / 25%;
+    --input: from theme("colors.stone.500") h s l / 25%;
+    --ring: 0 0% 3.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+  }
+  .dark {
+    --background: from theme("colors.neutral.700") h s l;
+    --foreground: from theme("colors.neutral.200") h s l;
+    --card: from theme("colors.neutral.900") h s l;
+    --card-foreground: from theme("colors.neutral.200") h s l;
+    --popover: from theme("colors.neutral.900") h s l;
+    --popover-foreground: from theme("colors.neutral.200") h s l;
+    --primary: from theme("colors.white") h s l;
+    --primary-foreground: from theme("colors.neutral.700") h s l;
+    --secondary: from theme("colors.blue.300") h s l;
+    --secondary-foreground: from theme("colors.neutral.700") h s l;
+    --muted: from theme("colors.blue.300") h s l;
+    --muted-foreground: from theme("colors.neutral.700") h s l;
+    --accent: from theme("colors.neutral.200") h s l / 25%;
+    --accent-foreground: from theme("colors.white") h s l;
+    --destructive: from theme("colors.blue.300") h s l;
+    --destructive-foreground: from theme("colors.neutral.700") h s l;
+    --border: from theme("colors.neutral.700") h s l;
+    --input: from theme("colors.neutral.200") h s l;
+    --ring: 0 0% 83.1%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    @apply scroll-smooth;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+  }
+}
+
+.container {
+  @apply mx-auto px-4;
+}
+
+@media (min-width: theme("screens.sm")) {
+  .container {
+    @apply px-6;
+  }
+}
