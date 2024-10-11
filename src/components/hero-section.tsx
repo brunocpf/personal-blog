@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ContactLinks } from "@/components/contact-links";
 
 const bio = `I'm a software developer located in Belo Horizonte (MG), Brazil. I currently work full time as a web developer, but I'm always open to taking on new exciting projects. This is my space on the internet, where I share my projects, experiences and discoveries, both as a developer and in my personal life.`;
@@ -6,11 +7,16 @@ export function HeroSection() {
   return (
     <div className="container py-8 flex flex-wrap">
       <div className="flex-grow-0 basis-1/3 max-w-60">
-        <div
-          className="w-full h-0 pb-[100%] rounded-full bg-[url('/img/hero.png')] bg-no-repeat bg-[length:105%] bg-[80%_35%]"
-          role="img"
-          aria-label="Hero Image"
-        />
+        <div className="w-full h-0 pb-[100%] rounded-full relative overflow-hidden">
+          <Image
+            src="/img/hero.png"
+            alt="Hero Image"
+            fill
+            className="object-cover object-[80%_35%]"
+            sizes="50vw"
+            draggable={false}
+          />
+        </div>
       </div>
       <div className="flex-1 ml-8">
         <header>

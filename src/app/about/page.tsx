@@ -24,7 +24,7 @@ export default async function About() {
     <div className="bg-card min-h-screen">
       <div className="container py-8">
         <article className="rounded bg-card shadow-lg dark:border-2">
-          <div className="p-4 prose min-w-fit">
+          <div className="p-4 prose min-w-full">
             <CustomPortableText value={content.body} />
           </div>
         </article>

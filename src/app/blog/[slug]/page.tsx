@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { ResolvingMetadata } from "next";
 import Link from "next/link";
 import { CustomPortableText } from "@/components/custom-portable-text";
+import { ShareButton } from "@/components/share-button";
 import { dateFormatter } from "@/lib/utils";
 import client from "@/client";
 
@@ -19,6 +20,7 @@ export default async function BlogPost({ params: { slug } }: BlogPostProps) {
     | {
         title: string;
         body: PortableTextBlock[];
+        summary: PortableTextBlock[];
         publishedAt: string;
         author: { name: string };
         categories: { title: string }[];
@@ -30,6 +32,7 @@ export default async function BlogPost({ params: { slug } }: BlogPostProps) {
         title,
         body,
         publishedAt,
+        summary,
         author->{
           name
         },
@@ -54,10 +57,15 @@ export default async function BlogPost({ params: { slug } }: BlogPostProps) {
             <span>{formattedDate}</span>
             <span>{post.author.name}</span>
           </div>
-          <div className="p-4 prose min-w-fit">
+          <div className="p-4 prose min-w-full">
             <CustomPortableText value={post.body} />
           </div>
           <aside className="bg-background py-4 px-2 flex gap-2 flex-wrap prose min-w-full">
+            <ShareButton
+              title={post.title}
+              url={`https://bruno-fernandes.dev/blog/${slug}`}
+              text={`"${toPlainText(post.summary)}"`}
+            />
             {post.categories.map((category) => (
               <Link
                 key={category.title}

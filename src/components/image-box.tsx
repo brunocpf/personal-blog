@@ -18,7 +18,7 @@ export default function ImageBox({
   alt = "Image",
   width,
   height,
-  size,
+  size = "50vw",
   classesWrapper,
   ...props
 }: ImageBoxProps) {
@@ -37,14 +37,14 @@ export default function ImageBox({
     >
       {imageUrl && (
         <Image
-          className="absolute h-full w-full m-0 py-2"
+          className="absolute h-full w-full m-0 py-2 object-contain"
           alt={alt}
           width={width}
           height={height}
           sizes={size}
           fill={!width && !height}
-          objectFit="contain"
           src={imageUrl}
+          priority
         />
       )}
     </div>
