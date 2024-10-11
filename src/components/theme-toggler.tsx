@@ -1,6 +1,9 @@
 "use client";
 
-import { SunIcon, MoonIcon, LaptopIcon } from "@radix-ui/react-icons";
+import * as SwitchPrimitives from "@radix-ui/react-switch";
+import { SunIcon, MoonIcon } from "@radix-ui/react-icons";
+import { Display as DisplayIcon } from "@geist-ui/icons";
+import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import {
   Tooltip,
@@ -8,11 +11,19 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import * as SwitchPrimitives from "@radix-ui/react-switch";
 import { Toggle } from "@/components/ui/toggle";
 
 export function ThemeToggler() {
   const { setTheme, theme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return <div className="h-12 w-[113px] p-2" />;
+  }
 
   return (
     <TooltipProvider>
@@ -23,12 +34,12 @@ export function ThemeToggler() {
               <Toggle
                 variant="outline"
                 className="rounded-full p-2 h-fit"
-                pressed={theme === "system"}
+                pressed={!mounted ? true : theme === "system"}
                 onPressedChange={() =>
                   void setTheme(theme === "system" ? resolvedTheme : "system")
                 }
               >
-                <LaptopIcon />
+                <DisplayIcon className="p-1" />
               </Toggle>
             </div>
           </TooltipTrigger>
@@ -42,7 +53,7 @@ export function ThemeToggler() {
             <div className="flex">
               <SwitchPrimitives.Root
                 suppressHydrationWarning
-                checked={resolvedTheme === "dark"}
+                checked={!mounted ? false : resolvedTheme === "dark"}
                 onCheckedChange={(checked) =>
                   void setTheme(checked ? "dark" : "light")
                 }

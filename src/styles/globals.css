@@ -53,7 +53,7 @@
     --accent-foreground: from theme("colors.white") h s l;
     --destructive: from theme("colors.blue.300") h s l;
     --destructive-foreground: from theme("colors.neutral.700") h s l;
-    --border: from theme("colors.neutral.200") h s l;
+    --border: from theme("colors.neutral.700") h s l;
     --input: from theme("colors.neutral.200") h s l;
     --ring: 0 0% 83.1%;
     --chart-1: 220 70% 50%;

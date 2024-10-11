@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/sheet";
 import { ThemeToggler } from "@/components/theme-toggler";
 import { Button } from "@/components/ui/button";
-import { NavLink } from "./nav-link";
+import { NavLink } from "@/components/nav-link";
 
 export function MobileNav() {
   const [open, setOpen] = useState(false);

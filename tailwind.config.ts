@@ -1,6 +1,6 @@
+import tailwindcssTypography from "@tailwindcss/typography";
 import tailwindcssAnimate from "tailwindcss-animate";
 import type { Config } from "tailwindcss";
-import tailwindcssTypography from "@tailwindcss/typography";
 
 const config: Config = {
   darkMode: ["class"],
@@ -62,6 +62,30 @@ const config: Config = {
         sans: ["var(--josefin-sans)", "ui-sans-serif", "system-ui"],
         serif: ["var(--josefin-slab)", "ui-serif", "Georgia"],
       },
+      typography: ({ theme }: { theme: (cls: string) => string }) => ({
+        DEFAULT: {
+          css: {
+            "--tw-prose-body": theme("colors.foreground"),
+            "--tw-prose-headings": theme("colors.foreground"),
+            "--tw-prose-lead": theme("colors.foreground"),
+            "--tw-prose-links": theme("colors.secondary.DEFAULT"),
+            code: {
+              "&::before": {
+                content: "'' !important",
+              },
+              "&::after": {
+                content: "'' !important",
+              },
+            },
+            a: {
+              textDecoration: "none",
+              "&:hover": {
+                textDecoration: "underline",
+              },
+            },
+          },
+        },
+      }),
     },
   },
   plugins: [tailwindcssAnimate, tailwindcssTypography],

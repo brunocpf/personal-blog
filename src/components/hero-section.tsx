@@ -7,7 +7,7 @@ export function HeroSection() {
     <div className="container py-8 flex flex-wrap">
       <div className="flex-grow-0 basis-1/3 max-w-60">
         <div
-          className="w-full h-0 pb-[100%] rounded-full bg-[url('/img/hero_2.png')] bg-no-repeat bg-[length:105%] bg-[50%_35%]"
+          className="w-full h-0 pb-[100%] rounded-full bg-[url('/img/hero.png')] bg-no-repeat bg-[length:105%] bg-[80%_35%]"
           role="img"
           aria-label="Hero Image"
         />

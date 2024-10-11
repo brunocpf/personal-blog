@@ -1,10 +1,13 @@
 import { HeroSection } from "@/components/hero-section";
+import { PostList } from "@/components/post-list";
 
 export default function Home() {
   return (
     <div>
       <HeroSection />
-      <div className="h-96 bg-card"></div>
+      <div className="bg-card">
+        <PostList maxPosts={9} />
+      </div>
     </div>
   );
 }

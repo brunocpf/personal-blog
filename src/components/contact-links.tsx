@@ -1,5 +1,8 @@
-import { GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
-import { EnvelopeIcon } from "@heroicons/react/24/solid";
+import {
+  Github as GithubIcon,
+  Linkedin as LinkedinIcon,
+  Mail as MailIcon,
+} from "@geist-ui/icons";
 import { Button } from "@/components/ui/button";
 
 export interface ContactLinksProps {
@@ -26,7 +29,7 @@ export function ContactLinks({ size = "sm" }: ContactLinksProps) {
           rel="noopener noreferrer"
           title="GitHub"
         >
-          <GitHubLogoIcon className={classesForSize[size]} />
+          <GithubIcon className={classesForSize[size]} />
         </a>
       </Button>
       <Button
@@ -40,7 +43,7 @@ export function ContactLinks({ size = "sm" }: ContactLinksProps) {
           rel="noopener noreferrer"
           title="LinkedIn"
         >
-          <LinkedInLogoIcon className={classesForSize[size]} />
+          <LinkedinIcon className={classesForSize[size]} />
         </a>
       </Button>
 
@@ -55,7 +58,7 @@ export function ContactLinks({ size = "sm" }: ContactLinksProps) {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <EnvelopeIcon className={classesForSize[size]} />
+          <MailIcon className={classesForSize[size]} />
         </a>
       </Button>
     </div>
