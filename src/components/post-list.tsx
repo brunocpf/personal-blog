@@ -34,7 +34,6 @@ export async function PostList({ category, maxPosts }: PostListProps) {
         },
     }`,
     category ? { category } : {},
-    { cache: "no-cache" },
   );
 
   return (

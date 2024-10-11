@@ -5,11 +5,14 @@ import Link from "next/link";
 import { CustomPortableText } from "@/components/custom-portable-text";
 import { dateFormatter } from "@/lib/utils";
 import client from "@/client";
+
 interface BlogPostProps {
   params: {
     slug: string;
   };
 }
+
+export const revalidate = 3600 * 24;
 
 export default async function BlogPost({ params: { slug } }: BlogPostProps) {
   const post = await client.fetch<
@@ -35,7 +38,6 @@ export default async function BlogPost({ params: { slug } }: BlogPostProps) {
         }
     }`,
     { slug },
-    { cache: "no-cache" },
   );
 
   if (!post) {

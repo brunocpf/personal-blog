@@ -10,6 +10,8 @@ export const metadata: Metadata = {
   description: "Bruno's blog",
 };
 
+export const revalidate = 3600 * 24;
+
 interface BlogPostProps {
   searchParams: {
     category?: string;
