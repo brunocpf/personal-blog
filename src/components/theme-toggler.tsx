@@ -36,7 +36,7 @@ export function ThemeToggler() {
                 className="rounded-full p-2 h-fit"
                 pressed={!mounted ? true : theme === "system"}
                 onPressedChange={() =>
-                  void setTheme(theme === "system" ? resolvedTheme : "system")
+                  void setTheme(theme === "system" ? resolvedTheme! : "system")
                 }
               >
                 <DisplayIcon className="p-1" />
