@@ -1,6 +1,7 @@
 import createImageUrlBuilder from "@sanity/image-url";
-import { sanityConfig } from "@/client";
 import type { Image } from "sanity";
+
+import { sanityConfig } from "@/client";
 
 const imageBuilder = createImageUrlBuilder({
   projectId: sanityConfig.projectId ?? "",

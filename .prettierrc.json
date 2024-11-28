@@ -1,7 +1,8 @@
 {
   "plugins": [
     "prettier-plugin-tailwindcss",
-    "./node_modules/prettier-plugin-sort-imports/dist/index.2.js"
+    "@trivago/prettier-plugin-sort-imports"
   ],
-  "importTypeOrder": ["NPMPackages", "localImports"]
+  "importOrder": ["<THIRD_PARTY_MODULES>", "^@/(.*)$"],
+  "importOrderSeparation": true
 }

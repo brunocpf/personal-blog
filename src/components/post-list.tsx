@@ -1,7 +1,8 @@
 import { groq, PortableTextBlock, toPlainText } from "next-sanity";
-import { PostSummaryCard } from "@/components/post-summary-card";
 import type { Image } from "sanity";
+
 import client from "@/client";
+import { PostSummaryCard } from "@/components/post-summary-card";
 
 export interface PostListProps {
   category?: string;
@@ -37,7 +38,7 @@ export async function PostList({ category, maxPosts }: PostListProps) {
   );
 
   return (
-    <div className="container py-8 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="container grid grid-cols-1 gap-8 py-8 sm:grid-cols-2 lg:grid-cols-3">
       {posts.map((post) => (
         <PostSummaryCard
           key={post.slug}

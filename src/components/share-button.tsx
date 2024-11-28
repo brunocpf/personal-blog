@@ -1,7 +1,7 @@
 "use client";
 
-import { Share2Icon } from "@radix-ui/react-icons";
 import { Button } from "./ui/button";
+import { Share2Icon } from "@radix-ui/react-icons";
 
 export interface ShareButtonProps {
   url: string;
@@ -27,7 +27,7 @@ export function ShareButton({ title, url, text }: ShareButtonProps) {
   return (
     <Button
       variant="ghost"
-      className="rounded-full p-2 h-fit"
+      className="h-fit rounded-full p-2"
       onClick={handleShare}
     >
       <Share2Icon />

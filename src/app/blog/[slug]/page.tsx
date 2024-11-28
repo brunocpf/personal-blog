@@ -1,11 +1,12 @@
-import { groq, PortableTextBlock, toPlainText } from "next-sanity";
-import { notFound } from "next/navigation";
 import { ResolvingMetadata } from "next";
+import { groq, PortableTextBlock, toPlainText } from "next-sanity";
 import Link from "next/link";
+import { notFound } from "next/navigation";
+
+import client from "@/client";
 import { CustomPortableText } from "@/components/custom-portable-text";
 import { ShareButton } from "@/components/share-button";
 import { dateFormatter } from "@/lib/utils";
-import client from "@/client";
 
 interface BlogPostProps {
   params: {
@@ -50,17 +51,17 @@ export default async function BlogPost({ params: { slug } }: BlogPostProps) {
   const formattedDate = dateFormatter.format(new Date(post.publishedAt));
 
   return (
-    <div className="bg-card min-h-screen">
+    <div className="min-h-screen bg-card">
       <div className="container py-8">
         <article className="rounded bg-card shadow-lg dark:border-2">
-          <div className="bg-background pt-10 px-2 flex justify-between">
+          <div className="flex justify-between bg-background px-2 pt-10">
             <span>{formattedDate}</span>
             <span>{post.author.name}</span>
           </div>
-          <div className="p-4 prose min-w-full">
+          <div className="prose min-w-full p-4">
             <CustomPortableText value={post.body} />
           </div>
-          <aside className="bg-background py-4 px-2 flex gap-2 flex-wrap prose min-w-full">
+          <aside className="prose flex min-w-full flex-wrap gap-2 bg-background px-2 py-4">
             <ShareButton
               title={post.title}
               url={`https://bruno-fernandes.dev/blog/${slug}`}

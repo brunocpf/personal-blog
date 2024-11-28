@@ -1,17 +1,18 @@
 "use client";
 
-import * as SwitchPrimitives from "@radix-ui/react-switch";
-import { SunIcon, MoonIcon } from "@radix-ui/react-icons";
 import { Display as DisplayIcon } from "@geist-ui/icons";
-import { useEffect, useState } from "react";
+import { SunIcon, MoonIcon } from "@radix-ui/react-icons";
+import * as SwitchPrimitives from "@radix-ui/react-switch";
 import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
+
+import { Toggle } from "@/components/ui/toggle";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { Toggle } from "@/components/ui/toggle";
 
 export function ThemeToggler() {
   const { setTheme, theme, resolvedTheme } = useTheme();
@@ -27,13 +28,13 @@ export function ThemeToggler() {
 
   return (
     <TooltipProvider>
-      <div className="flex items-center justify-center sm:h-12 gap-2 w-fit p-2">
+      <div className="flex w-fit items-center justify-center gap-2 p-2 sm:h-12">
         <Tooltip>
           <TooltipTrigger asChild>
             <div>
               <Toggle
                 variant="outline"
-                className="rounded-full p-2 h-fit"
+                className="h-fit rounded-full p-2"
                 pressed={!mounted ? true : theme === "system"}
                 onPressedChange={() =>
                   void setTheme(theme === "system" ? resolvedTheme! : "system")
@@ -61,10 +62,10 @@ export function ThemeToggler() {
               >
                 <SwitchPrimitives.Thumb
                   suppressHydrationWarning
-                  className="group pointer-events-none block h-6 w-6 rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-7 data-[state=unchecked]:translate-x-0 p-1 relative"
+                  className="group pointer-events-none relative block h-6 w-6 rounded-full bg-background p-1 shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-7 data-[state=unchecked]:translate-x-0"
                 >
                   <SunIcon className="absolute left-0 right-0 mx-auto w-fit transition-none group-data-[state=checked]:opacity-0" />
-                  <MoonIcon className="absolute left-0 right-0 mx-auto w-fit transition-none opacity-0 group-data-[state=checked]:opacity-100" />
+                  <MoonIcon className="absolute left-0 right-0 mx-auto w-fit opacity-0 transition-none group-data-[state=checked]:opacity-100" />
                 </SwitchPrimitives.Thumb>
               </SwitchPrimitives.Root>
             </div>

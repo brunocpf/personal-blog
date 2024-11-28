@@ -3,6 +3,7 @@ import {
   Linkedin as LinkedinIcon,
   Mail as MailIcon,
 } from "@geist-ui/icons";
+
 import { Button } from "@/components/ui/button";
 
 export interface ContactLinksProps {
@@ -20,7 +21,7 @@ export function ContactLinks({ size = "sm" }: ContactLinksProps) {
     <div className="flex justify-center gap-1">
       <Button
         variant="link"
-        className="hover:bg-accent focus-visible:bg-accent rounded-full text-primary p-2 h-fit w-fit"
+        className="h-fit w-fit rounded-full p-2 text-primary hover:bg-accent focus-visible:bg-accent"
         asChild
       >
         <a
@@ -34,7 +35,7 @@ export function ContactLinks({ size = "sm" }: ContactLinksProps) {
       </Button>
       <Button
         variant="link"
-        className="hover:bg-accent focus-visible:bg-accent rounded-full text-primary p-2 h-fit w-fit"
+        className="h-fit w-fit rounded-full p-2 text-primary hover:bg-accent focus-visible:bg-accent"
         asChild
       >
         <a
@@ -49,7 +50,7 @@ export function ContactLinks({ size = "sm" }: ContactLinksProps) {
 
       <Button
         variant="link"
-        className="hover:bg-accent focus-visible:bg-accent rounded-full text-primary p-2 h-fit w-fit"
+        className="h-fit w-fit rounded-full p-2 text-primary hover:bg-accent focus-visible:bg-accent"
         asChild
         title="Email"
       >

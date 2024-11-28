@@ -1,8 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { PropsWithChildren } from "react";
-import Link from "next/link";
+
 import { cn } from "@/lib/utils";
 
 export interface NavLinkProps extends PropsWithChildren {

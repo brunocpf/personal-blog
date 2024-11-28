@@ -1,8 +1,9 @@
-import { Josefin_Sans, Josefin_Slab } from "next/font/google";
 import type { Metadata, Viewport } from "next";
-import { ThemeProvider } from "@/components/theme-provider";
-import { PageHeader } from "@/components/page-header";
+import { Josefin_Sans, Josefin_Slab } from "next/font/google";
+
 import { PageFooter } from "@/components/page-footer";
+import { PageHeader } from "@/components/page-header";
+import { ThemeProvider } from "@/components/theme-provider";
 import "@/styles/globals.css";
 
 const josefinSans = Josefin_Sans({

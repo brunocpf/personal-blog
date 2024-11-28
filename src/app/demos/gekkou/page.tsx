@@ -37,12 +37,8 @@ export default function Gekkou() {
   ];
 
   return (
-    <div className="h-screen w-screen grid place-items-center bg-white saturate-200">
-      <div
-        className="w-[500px] h-[500px] bg-gradient-to-b from-[#0b042e] to-[#292465]
-      shadow-lg shadow-gray-900 relative overflow-hidden
-      "
-      >
+    <div className="grid h-screen w-screen place-items-center bg-white saturate-200">
+      <div className="relative h-[500px] w-[500px] overflow-hidden bg-gradient-to-b from-[#0b042e] to-[#292465] shadow-lg shadow-gray-900">
         {starLayers.map((layer) => (
           <div
             key={layer.zIndex}
@@ -51,16 +47,16 @@ export default function Gekkou() {
               animation: `star-movement ${layer.speed} linear infinite`,
               animationDelay: `-${parseFloat(layer.speed) / 2}s`,
             }}
-            className={`${layer.size} ${layer.zIndex} rounded-full absolute`}
+            className={`${layer.size} ${layer.zIndex} absolute rounded-full`}
           ></div>
         ))}
-        <div className="h-full w-full grid place-items-center">
-          <div className="bg-black h-72 w-72 rounded-full z-40 shadow-lg shadow-white grid place-items-center">
-            <span className="[text-shadow:0_0_10px_white] text-4xl font-bold text-white">
+        <div className="grid h-full w-full place-items-center">
+          <div className="z-40 grid h-72 w-72 place-items-center rounded-full bg-black shadow-lg shadow-white">
+            <span className="text-4xl font-bold text-white [text-shadow:0_0_10px_white]">
               月光
             </span>
           </div>
-          <div className="absolute z-50 bottom-0 left-1/2 rounded-full shadow-[0px_0px_200px_50px_#eeadb1,0px_0px_150px_#6354a2]" />
+          <div className="absolute bottom-0 left-1/2 z-50 rounded-full shadow-[0px_0px_200px_50px_#eeadb1,0px_0px_150px_#6354a2]" />
         </div>
       </div>
       <style jsx>

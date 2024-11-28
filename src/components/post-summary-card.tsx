@@ -1,5 +1,6 @@
 import { MoreHorizontal as MoreIcon } from "@geist-ui/icons";
 import Link from "next/link";
+
 import { Button } from "@/components/ui/button";
 import { dateFormatter } from "@/lib/utils";
 
@@ -24,16 +25,16 @@ export function PostSummaryCard({
 
   return (
     <div>
-      <div className="rounded bg-card dark:border-2 shadow-lg min-w-48">
-        <div className="bg-background pt-6 px-2 flex justify-between">
+      <div className="min-w-48 rounded bg-card shadow-lg dark:border-2">
+        <div className="flex justify-between bg-background px-2 pt-6">
           <span>{formattedDate}</span>
           <span>{author}</span>
         </div>
-        <div className="p-2 min-h-28 prose">
+        <div className="prose min-h-28 p-2">
           <h3>
             <Link href={`/blog/${slug}`}>{title}</Link>
           </h3>
-          <span className="flex gap-2 flex-wrap">
+          <span className="flex flex-wrap gap-2">
             {categories.map((category) => (
               <Link
                 key={category}
@@ -43,10 +44,10 @@ export function PostSummaryCard({
           </span>
           <p>{summary}</p>
         </div>
-        <div className="py-2 px-2 flex justify-center">
+        <div className="flex justify-center px-2 py-2">
           <Button
             variant="link"
-            className="hover:bg-accent focus-visible:bg-accent rounded-full text-primary p-2 h-fit w-fit"
+            className="h-fit w-fit rounded-full p-2 text-primary hover:bg-accent focus-visible:bg-accent"
             asChild
             title="More"
           >

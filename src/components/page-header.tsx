@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { MobileNav } from "@/components/mobile-nav";
+
 import { MainNav } from "@/components/main-nav";
+import { MobileNav } from "@/components/mobile-nav";
 
 export function PageHeader() {
   return (

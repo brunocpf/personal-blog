@@ -1,9 +1,10 @@
-import { groq } from "next-sanity";
 import { Metadata } from "next";
+import { groq } from "next-sanity";
 import Link from "next/link";
+
+import client from "@/client";
 import { PostList } from "@/components/post-list";
 import { cn } from "@/lib/utils";
-import client from "@/client";
 
 export const metadata: Metadata = {
   title: "Blog | bruno-fernandes.dev",
@@ -29,9 +30,9 @@ export default async function Blog({
   );
 
   return (
-    <div className="bg-card min-h-screen">
+    <div className="min-h-screen bg-card">
       <div className="container pt-2">
-        <div className="flex gap-2 flex-wrap bg-background prose min-w-full rounded-xl p-2">
+        <div className="prose flex min-w-full flex-wrap gap-2 rounded-xl bg-background p-2">
           <Link
             href="/blog"
             className={cn({

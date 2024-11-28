@@ -1,10 +1,10 @@
-import { ThemeToggler } from "@/components/theme-toggler";
 import { NavLink } from "@/components/nav-link";
+import { ThemeToggler } from "@/components/theme-toggler";
 
 export function MainNav() {
   return (
-    <div className="hidden md:flex md:items-center gap-4">
-      <nav className="my-4 flex gap-3 items-center">
+    <div className="hidden gap-4 md:flex md:items-center">
+      <nav className="my-4 flex items-center gap-3">
         <div>
           <NavLink href="/">Home</NavLink>
         </div>

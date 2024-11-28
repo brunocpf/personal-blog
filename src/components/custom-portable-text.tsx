@@ -3,9 +3,9 @@ import {
   type PortableTextBlock,
   type PortableTextComponents,
 } from "next-sanity";
+import SyntaxHighlighter from "react-syntax-highlighter";
 import type { Image } from "sanity";
 
-import SyntaxHighlighter from "react-syntax-highlighter";
 import ImageBox from "@/components/image-box";
 
 export function CustomPortableText({
@@ -35,7 +35,7 @@ export function CustomPortableText({
       },
       inlineCode: ({ children }) => {
         return (
-          <code className="px-1 py-0.5 rounded bg-gray-100 dark:bg-gray-950 dark:text-gray-100">
+          <code className="rounded bg-gray-100 px-1 py-0.5 dark:bg-gray-950 dark:text-gray-100">
             {children}
           </code>
         );
@@ -68,7 +68,7 @@ export function CustomPortableText({
         if (isInline) {
           return (
             <code
-              className="px-1 py-0.5 rounded"
+              className="rounded px-1 py-0.5"
               style={{ whiteSpace: "pre-wrap" }}
             >
               {code}

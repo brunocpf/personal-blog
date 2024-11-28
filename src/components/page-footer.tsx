@@ -7,7 +7,7 @@ export function PageFooter() {
         <ContactLinks />
       </div>
       <hr />
-      <p className="text-sm text-center p-2">
+      <p className="p-2 text-center text-sm">
         &copy; {new Date().getFullYear()} bruno-fernandes.dev | Developed by
         Bruno Fernandes
       </p>

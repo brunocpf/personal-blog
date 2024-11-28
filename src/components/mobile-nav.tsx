@@ -2,6 +2,10 @@
 
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
+
+import { NavLink } from "@/components/nav-link";
+import { ThemeToggler } from "@/components/theme-toggler";
+import { Button } from "@/components/ui/button";
 import {
   Sheet,
   SheetContent,
@@ -10,9 +14,6 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { ThemeToggler } from "@/components/theme-toggler";
-import { Button } from "@/components/ui/button";
-import { NavLink } from "@/components/nav-link";
 
 export function MobileNav() {
   const [open, setOpen] = useState(false);
@@ -22,9 +23,9 @@ export function MobileNav() {
       <SheetTrigger asChild>
         <Button
           variant="ghost"
-          className="opacity-70 transition-opacity hover:opacity-100 mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent md:hidden"
+          className="mr-2 px-0 text-base opacity-70 transition-opacity hover:bg-transparent hover:opacity-100 focus-visible:bg-transparent md:hidden"
         >
-          <HamburgerMenuIcon className="w-8 h-8" />
+          <HamburgerMenuIcon className="h-8 w-8" />
         </Button>
       </SheetTrigger>
       <SheetContent>
@@ -33,7 +34,7 @@ export function MobileNav() {
             bruno-fernandes.dev
           </SheetTitle>
           <SheetDescription className="sr-only">Nav</SheetDescription>
-          <div className="w-full flex justify-center">
+          <div className="flex w-full justify-center">
             <ThemeToggler />
           </div>
         </SheetHeader>

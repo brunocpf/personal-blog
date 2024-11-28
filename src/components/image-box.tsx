@@ -37,7 +37,7 @@ export default function ImageBox({
     >
       {imageUrl && (
         <Image
-          className="absolute h-full w-full m-0 py-2 object-contain"
+          className="absolute m-0 h-full w-full object-contain py-2"
           alt={alt}
           width={width}
           height={height}
