@@ -1,7 +1,8 @@
 "use client";
 
-import { Button } from "./ui/button";
 import { Share2Icon } from "@radix-ui/react-icons";
+
+import { Button } from "./ui/button";
 
 export interface ShareButtonProps {
   url: string;
