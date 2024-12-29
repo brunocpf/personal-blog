@@ -22,10 +22,6 @@ export function ThemeToggler() {
     setMounted(true);
   }, []);
 
-  if (!mounted) {
-    return <div className="h-12 w-[113px] p-2" />;
-  }
-
   return (
     <TooltipProvider>
       <div className="flex w-fit items-center justify-center gap-2 p-2 sm:h-12">
@@ -33,9 +29,10 @@ export function ThemeToggler() {
           <TooltipTrigger asChild>
             <div>
               <Toggle
+                suppressHydrationWarning
                 variant="outline"
                 className="h-fit rounded-full p-2"
-                pressed={!mounted ? true : theme === "system"}
+                pressed={mounted && theme === "system"}
                 onPressedChange={() =>
                   void setTheme(theme === "system" ? resolvedTheme! : "system")
                 }
@@ -48,32 +45,85 @@ export function ThemeToggler() {
             <p>Automatic light/dark mode</p>
           </TooltipContent>
         </Tooltip>
-
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <div className="flex">
-              <SwitchPrimitives.Root
-                suppressHydrationWarning
-                checked={!mounted ? false : resolvedTheme === "dark"}
-                onCheckedChange={(checked) =>
-                  void setTheme(checked ? "dark" : "light")
-                }
-                className="peer inline-flex h-7 w-14 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input"
-              >
-                <SwitchPrimitives.Thumb
+        {mounted ? (
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <div className="flex">
+                <SwitchPrimitives.Root
                   suppressHydrationWarning
-                  className="group pointer-events-none relative block h-6 w-6 rounded-full bg-background p-1 shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-7 data-[state=unchecked]:translate-x-0"
+                  checked={resolvedTheme === "dark"}
+                  onCheckedChange={(checked) =>
+                    void setTheme(checked ? "dark" : "light")
+                  }
+                  className="peer inline-flex h-7 w-14 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input"
                 >
-                  <SunIcon className="absolute left-0 right-0 mx-auto w-fit transition-none group-data-[state=checked]:opacity-0" />
-                  <MoonIcon className="absolute left-0 right-0 mx-auto w-fit opacity-0 transition-none group-data-[state=checked]:opacity-100" />
-                </SwitchPrimitives.Thumb>
-              </SwitchPrimitives.Root>
+                  <SwitchPrimitives.Thumb
+                    suppressHydrationWarning
+                    className="group pointer-events-none relative block h-6 w-6 rounded-full bg-background p-1 shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-7 data-[state=unchecked]:translate-x-0"
+                  >
+                    <SunIcon className="absolute left-0 right-0 mx-auto w-fit transition-none group-data-[state=checked]:opacity-0" />
+                    <MoonIcon className="absolute left-0 right-0 mx-auto w-fit opacity-0 transition-none group-data-[state=checked]:opacity-100" />
+                  </SwitchPrimitives.Thumb>
+                </SwitchPrimitives.Root>
+              </div>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Toggle light/dark mode</p>
+            </TooltipContent>
+          </Tooltip>
+        ) : (
+          <>
+            <div className="dark:hidden block">
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <div className="flex">
+                    <SwitchPrimitives.Root
+                      suppressHydrationWarning
+                      checked={false}
+                      className="peer inline-flex h-7 w-14 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input"
+                    >
+                      <SwitchPrimitives.Thumb
+                        suppressHydrationWarning
+                        className="group pointer-events-none relative block h-6 w-6 rounded-full bg-background p-1 shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-7 data-[state=unchecked]:translate-x-0"
+                      >
+                        <SunIcon className="absolute left-0 right-0 mx-auto w-fit transition-none group-data-[state=checked]:opacity-0" />
+                        <MoonIcon className="absolute left-0 right-0 mx-auto w-fit opacity-0 transition-none group-data-[state=checked]:opacity-100" />
+                      </SwitchPrimitives.Thumb>
+                    </SwitchPrimitives.Root>
+                  </div>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Toggle light/dark mode</p>
+                </TooltipContent>
+              </Tooltip>
             </div>
-          </TooltipTrigger>
-          <TooltipContent>
-            <p>Toggle light/dark mode</p>
-          </TooltipContent>
-        </Tooltip>
+
+            <div className="dark:block hidden">
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <div className="flex">
+                    <SwitchPrimitives.Root
+                      suppressHydrationWarning
+                      checked
+                      className="peer inline-flex h-7 w-14 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input"
+                    >
+                      <SwitchPrimitives.Thumb
+                        suppressHydrationWarning
+                        className="group pointer-events-none relative block h-6 w-6 rounded-full bg-background p-1 shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-7 data-[state=unchecked]:translate-x-0"
+                      >
+                        <SunIcon className="absolute left-0 right-0 mx-auto w-fit transition-none group-data-[state=checked]:opacity-0" />
+                        <MoonIcon className="absolute left-0 right-0 mx-auto w-fit opacity-0 transition-none group-data-[state=checked]:opacity-100" />
+                      </SwitchPrimitives.Thumb>
+                    </SwitchPrimitives.Root>
+                  </div>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Toggle light/dark mode</p>
+                </TooltipContent>
+              </Tooltip>
+            </div>
+          </>
+        )}
       </div>
     </TooltipProvider>
   );
