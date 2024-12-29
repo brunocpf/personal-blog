@@ -28,7 +28,11 @@ export function MobileNav() {
           <HamburgerMenuIcon className="h-8 w-8" />
         </Button>
       </SheetTrigger>
-      <SheetContent>
+      <SheetContent
+        style={{
+          viewTransitionName: "mobile-nav",
+        }}
+      >
         <SheetHeader className="mt-10">
           <SheetTitle className="sr-only cursor-default">
             bruno-fernandes.dev
