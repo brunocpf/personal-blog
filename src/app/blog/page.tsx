@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description: "Bruno's blog",
 };
 
-export const revalidate = 3600 * 24;
+export const revalidate = 3600;
 
 interface BlogPostProps {
   searchParams: {

@@ -1,7 +1,7 @@
 import { HeroSection } from "@/components/hero-section";
 import { PostList } from "@/components/post-list";
 
-export const revalidate = 3600 * 24;
+export const revalidate = 3600;
 
 export default function Home() {
   return (

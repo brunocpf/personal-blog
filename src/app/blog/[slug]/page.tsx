@@ -14,7 +14,7 @@ interface BlogPostProps {
   };
 }
 
-export const revalidate = 3600 * 24;
+export const revalidate = 3600;
 
 export default async function BlogPost({ params: { slug } }: BlogPostProps) {
   const post = await client.fetch<
