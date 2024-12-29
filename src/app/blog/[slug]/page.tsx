@@ -42,7 +42,6 @@ export default async function BlogPost({ params: { slug } }: BlogPostProps) {
         }
     }`,
     { slug },
-    { cache: "no-cache" },
   );
 
   if (!post) {
