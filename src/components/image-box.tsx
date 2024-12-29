@@ -32,12 +32,20 @@ export default function ImageBox({
 
   return (
     <div
-      className={`w-full overflow-hidden rounded-2xl bg-gray-50 dark:bg-gray-900 ${classesWrapper}`}
+      className={`relative overflow-hidden bg-gray-50 dark:bg-gray-900 ${width ? "h-fit" : "w-full aspect-[1/1] sm:aspect-[16/9] md:aspect-[4/3] rounded-2xl"} ${classesWrapper}`}
       data-sanity={props["data-sanity"]}
+      style={
+        width
+          ? {
+              width: `${width}px`,
+              height: `${height}px`,
+            }
+          : {}
+      }
     >
       {imageUrl && (
         <Image
-          className="absolute m-0 h-full w-full object-contain py-2"
+          className={`absolute m-0 ${width ? "" : "w-full h-full object-contain py-2"}`}
           alt={alt}
           width={width}
           height={height}

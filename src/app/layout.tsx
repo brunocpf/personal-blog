@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { ViewTransitions } from "next-view-transitions";
 import { Josefin_Sans, Josefin_Slab } from "next/font/google";
 
 import { PageFooter } from "@/components/page-footer";
@@ -30,20 +31,22 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: React.PropsWithChildren) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={`min-h-screen font-sans antialiased ${josefinSans.variable} ${josefinSlab.variable}`}
-      >
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <div vaul-drawer-wrapper="">
-            <div className="relative flex min-h-screen flex-col">
-              <PageHeader />
-              <main className="flex-1">{children}</main>
-              <PageFooter />
+    <ViewTransitions>
+      <html lang="en" suppressHydrationWarning>
+        <body
+          className={`min-h-screen font-sans antialiased ${josefinSans.variable} ${josefinSlab.variable}`}
+        >
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <div vaul-drawer-wrapper="">
+              <div className="relative flex min-h-screen flex-col">
+                <PageHeader />
+                <main className="flex-1">{children}</main>
+                <PageFooter />
+              </div>
             </div>
-          </div>
-        </ThemeProvider>
-      </body>
-    </html>
+          </ThemeProvider>
+        </body>
+      </html>
+    </ViewTransitions>
   );
 }

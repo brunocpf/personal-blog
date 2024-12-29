@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 
 import { MainNav } from "@/components/main-nav";
 import { MobileNav } from "@/components/mobile-nav";

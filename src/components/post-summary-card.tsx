@@ -1,5 +1,5 @@
 import { MoreHorizontal as MoreIcon } from "@geist-ui/icons";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 
 import { Button } from "@/components/ui/button";
 import { dateFormatter } from "@/lib/utils";

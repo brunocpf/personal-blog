@@ -1,6 +1,6 @@
 import { ResolvingMetadata } from "next";
 import { groq, PortableTextBlock, toPlainText } from "next-sanity";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { notFound } from "next/navigation";
 
 import client from "@/client";
@@ -42,6 +42,7 @@ export default async function BlogPost({ params: { slug } }: BlogPostProps) {
         }
     }`,
     { slug },
+    { cache: "no-cache" },
   );
 
   if (!post) {

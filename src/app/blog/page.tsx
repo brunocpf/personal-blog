@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { groq } from "next-sanity";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 
 import client from "@/client";
 import { PostList } from "@/components/post-list";
