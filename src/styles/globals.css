@@ -87,23 +87,3 @@
     @apply px-6;
   }
 }
-
-@keyframes move-out {
-  from {
-    transform: scale(1);
-  }
-
-  to {
-    transform: scale(0);
-  }
-}
-
-@keyframes move-in {
-  from {
-    transform: scale(0);
-  }
-
-  to {
-    transform: scale(1);
-  }
-}
