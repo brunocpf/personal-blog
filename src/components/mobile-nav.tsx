@@ -57,7 +57,7 @@ export function MobileNav() {
           </div>
         </nav>
       </SheetContent>
-      <style jsx>{`
+      <style jsx global>{`
         ::view-transition-group(mobile-nav) {
           z-index: 99999;
         }
