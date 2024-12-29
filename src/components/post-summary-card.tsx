@@ -25,7 +25,12 @@ export function PostSummaryCard({
 
   return (
     <div>
-      <div className="min-w-48 rounded bg-card shadow-lg dark:border-2">
+      <div
+        className="min-w-48 rounded bg-card shadow-lg dark:border-2"
+        style={{
+          viewTransitionName: `article-view-${slug}`,
+        }}
+      >
         <div className="flex justify-between bg-background px-2 pt-6">
           <span>{formattedDate}</span>
           <span>{author}</span>

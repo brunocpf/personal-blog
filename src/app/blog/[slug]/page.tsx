@@ -53,7 +53,12 @@ export default async function BlogPost({ params: { slug } }: BlogPostProps) {
   return (
     <div className="min-h-screen bg-card">
       <div className="container py-8">
-        <article className="rounded bg-card shadow-lg dark:border-2">
+        <article
+          className="article-view rounded bg-card shadow-lg dark:border-2"
+          style={{
+            viewTransitionName: `article-view-${slug}`,
+          }}
+        >
           <div className="flex justify-between bg-background px-2 pt-10">
             <span>{formattedDate}</span>
             <span>{post.author.name}</span>
