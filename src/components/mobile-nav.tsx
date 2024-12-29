@@ -57,6 +57,15 @@ export function MobileNav() {
           </div>
         </nav>
       </SheetContent>
+      <style jsx>{`
+        ::view-transition-group(mobile-nav) {
+          z-index: 99999;
+        }
+
+        ::view-transition-group(sheet-overlay) {
+          z-index: 99999;
+        }
+      `}</style>
     </Sheet>
   );
 }
