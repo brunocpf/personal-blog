@@ -59,11 +59,33 @@ export default async function BlogPost({ params: { slug } }: BlogPostProps) {
             viewTransitionName: `article-view-${slug}`,
           }}
         >
-          <div className="flex justify-between bg-background px-2 pt-10">
-            <span>{formattedDate}</span>
-            <span>{post.author.name}</span>
+          <div
+            className="flex justify-between bg-background px-2 pt-10"
+            style={{
+              viewTransitionName: `article-view-header-${slug}`,
+            }}
+          >
+            <span
+              style={{
+                viewTransitionName: `article-view-timestamp-${slug}`,
+              }}
+            >
+              {formattedDate}
+            </span>
+            <span
+              style={{
+                viewTransitionName: `article-view-author-${slug}`,
+              }}
+            >
+              {post.author.name}
+            </span>
           </div>
-          <div className="prose min-w-full p-4">
+          <div
+            className="prose min-w-full p-4"
+            style={{
+              viewTransitionName: `article-view-content-${slug}`,
+            }}
+          >
             <CustomPortableText value={post.body} />
           </div>
           <aside className="prose flex min-w-full flex-wrap gap-2 bg-background px-2 py-4">

@@ -31,11 +31,33 @@ export function PostSummaryCard({
           viewTransitionName: `article-view-${slug}`,
         }}
       >
-        <div className="flex justify-between bg-background px-2 pt-6">
-          <span>{formattedDate}</span>
-          <span>{author}</span>
+        <div
+          className="flex justify-between bg-background px-2 pt-6"
+          style={{
+            viewTransitionName: `article-view-header-${slug}`,
+          }}
+        >
+          <span
+            style={{
+              viewTransitionName: `article-view-timestamp-${slug}`,
+            }}
+          >
+            {formattedDate}
+          </span>
+          <span
+            style={{
+              viewTransitionName: `article-view-author-${slug}`,
+            }}
+          >
+            {author}
+          </span>
         </div>
-        <div className="prose min-h-28 p-2">
+        <div
+          style={{
+            viewTransitionName: `article-view-content-${slug}`,
+          }}
+          className="prose min-h-28 p-2"
+        >
           <h3>
             <Link href={`/blog/${slug}`}>{title}</Link>
           </h3>
