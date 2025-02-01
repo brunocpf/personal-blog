@@ -14,14 +14,16 @@ export const metadata: Metadata = {
 export const revalidate = 3600;
 
 interface BlogPostProps {
-  searchParams: {
+  searchParams: Promise<{
     category?: string;
-  };
+  }>;
 }
 
-export default async function Blog({
-  searchParams: { category },
-}: BlogPostProps) {
+export default async function Blog(props: BlogPostProps) {
+  const searchParams = await props.searchParams;
+
+  const { category } = searchParams;
+
   const categories = await client.fetch<{ title: string }[]>(
     groq`
     *[_type == "category"]{

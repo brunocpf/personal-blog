@@ -9,14 +9,18 @@ import { ShareButton } from "@/components/share-button";
 import { dateFormatter } from "@/lib/utils";
 
 interface BlogPostProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export const revalidate = 3600;
 
-export default async function BlogPost({ params: { slug } }: BlogPostProps) {
+export default async function BlogPost(props: BlogPostProps) {
+  const params = await props.params;
+
+  const { slug } = params;
+
   const post = await client.fetch<
     | {
         title: string;
@@ -108,9 +112,13 @@ export default async function BlogPost({ params: { slug } }: BlogPostProps) {
 }
 
 export async function generateMetadata(
-  { params: { slug } }: BlogPostProps,
+  props: BlogPostProps,
   parent: ResolvingMetadata,
 ) {
+  const params = await props.params;
+
+  const { slug } = params;
+
   const post = await client.fetch<
     | {
         title: string;
