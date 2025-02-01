@@ -1,5 +1,5 @@
-import type { SanityImageAssetDocument as ImageType } from "@sanity/client";
 import Image from "next/image";
+import type { Image as ImageType } from "sanity";
 
 import { urlForImage } from "@/lib/sanity-utils";
 

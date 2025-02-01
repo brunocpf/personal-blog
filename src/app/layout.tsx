@@ -40,7 +40,7 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
             <div vaul-drawer-wrapper="">
               <div className="relative flex min-h-screen flex-col">
                 <PageHeader />
-                <main className="flex-1">{children}</main>
+                <main className="flex-1 flex flex-col">{children}</main>
                 <PageFooter />
               </div>
             </div>

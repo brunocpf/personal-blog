@@ -37,7 +37,7 @@ export default function Gekkou() {
   ];
 
   return (
-    <div className="grid h-screen w-screen place-items-center bg-white saturate-200">
+    <div className="grid flex-1 w-screen place-items-center bg-white saturate-200">
       <div className="relative h-[500px] w-[500px] overflow-hidden bg-linear-to-b from-[#0b042e] to-[#292465] shadow-lg shadow-gray-900">
         {starLayers.map((layer) => (
           <div
