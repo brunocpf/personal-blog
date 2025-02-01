@@ -31,7 +31,7 @@ export function ThemeToggler() {
               <Toggle
                 suppressHydrationWarning
                 variant="outline"
-                className="h-fit rounded-full p-2"
+                className="h-fit rounded-full p-2 cursor-pointer"
                 pressed={mounted && theme === "system"}
                 onPressedChange={() =>
                   void setTheme(theme === "system" ? resolvedTheme! : "system")
@@ -55,7 +55,7 @@ export function ThemeToggler() {
                   onCheckedChange={(checked) =>
                     void setTheme(checked ? "dark" : "light")
                   }
-                  className="peer inline-flex h-7 w-14 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input"
+                  className="peer inline-flex h-7 w-14 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent shadow-xs transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input"
                 >
                   <SwitchPrimitives.Thumb
                     suppressHydrationWarning
@@ -80,7 +80,7 @@ export function ThemeToggler() {
                     <SwitchPrimitives.Root
                       suppressHydrationWarning
                       checked={false}
-                      className="peer inline-flex h-7 w-14 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input"
+                      className="peer inline-flex h-7 w-14 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent shadow-xs transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input"
                     >
                       <SwitchPrimitives.Thumb
                         suppressHydrationWarning
@@ -105,7 +105,7 @@ export function ThemeToggler() {
                     <SwitchPrimitives.Root
                       suppressHydrationWarning
                       checked
-                      className="peer inline-flex h-7 w-14 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input"
+                      className="peer inline-flex h-7 w-14 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent shadow-xs transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input"
                     >
                       <SwitchPrimitives.Thumb
                         suppressHydrationWarning

@@ -1,5 +1,5 @@
+import type { SanityImageAssetDocument as ImageType } from "@sanity/client";
 import Image from "next/image";
-import type { Image as ImageType } from "sanity";
 
 import { urlForImage } from "@/lib/sanity-utils";
 
@@ -32,7 +32,7 @@ export default function ImageBox({
 
   return (
     <div
-      className={`relative max-w-full overflow-hidden bg-gray-50 dark:bg-gray-900 ${width ? "h-fit" : "w-full aspect-[1/1] sm:aspect-[16/9] md:aspect-[4/3] rounded-2xl"} ${classesWrapper}`}
+      className={`relative max-w-full overflow-hidden bg-gray-50 dark:bg-gray-900 ${width ? "h-fit" : "w-full aspect-1/1 sm:aspect-16/9 md:aspect-4/3 rounded-2xl"} ${classesWrapper}`}
       data-sanity={props["data-sanity"]}
       style={
         width
