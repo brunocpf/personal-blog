@@ -39,9 +39,9 @@ export default async function Special() {
 
   return (
     <div className="bg-card min-h-screen">
-      <div className="container py-8">
+      <div className="container py-8 animate-pulse">
         <HeartSpawner />
-        <article className="rounded bg-card shadow-lg dark:border-2">
+        <article className="rounded bg-card shadow-xl bg-gradient-to-b from-gray-50 to-gray-200 dark:from-gray-700 dark:to-gray-950">
           <div
             className={`p-4 prose min-w-fit ${pressStart2P.variable} [font-family:var(--dot-gothic-16)]`}
           >
