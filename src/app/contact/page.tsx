@@ -6,7 +6,7 @@ import { CustomPortableText } from "@/components/custom-portable-text";
 
 export const metadata: Metadata = {
   title: "Contact | bruno-fernandes.dev",
-  description: "About Bruno",
+  description: "Contact Bruno",
 };
 
 export default async function About() {

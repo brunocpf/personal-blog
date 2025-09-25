@@ -10,7 +10,7 @@ export function HeroSection() {
       <div className="max-w-60 grow-0 basis-1/3">
         <div className="relative h-0 w-full overflow-hidden rounded-full pb-[100%]">
           <Image
-            src="/img/hero.png"
+            src="/img/hero.jpg"
             alt="Hero Image"
             fill
             className="object-cover object-[80%_35%]"
