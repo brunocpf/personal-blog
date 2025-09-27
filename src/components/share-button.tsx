@@ -20,7 +20,12 @@ export function ShareButton({ title, url, text }: ShareButtonProps) {
           text,
         });
       } catch (error) {
-        console.error("Error sharing:", error);
+        if (error instanceof Error && error.name === "AbortError") {
+          console.warn("Sharing aborted:", error);
+          return;
+        } else {
+          console.error("Error sharing:", error);
+        }
       }
     }
   };

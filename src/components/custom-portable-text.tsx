@@ -6,6 +6,7 @@ import {
 import SyntaxHighlighter from "react-syntax-highlighter";
 import type { Image } from "sanity";
 
+import { ClipboardCopyButton } from "@/components/clipboard-copy-button";
 import ImageBox from "@/components/image-box";
 
 export function CustomPortableText({
@@ -83,7 +84,12 @@ export function CustomPortableText({
         }
 
         return (
-          <div className="dark:invert">
+          <div className="dark:invert relative">
+            <ClipboardCopyButton
+              text={code}
+              className="absolute top-2 right-2 z-10 dark:invert"
+            />
+
             <SyntaxHighlighter
               showLineNumbers
               showInlineLineNumbers
