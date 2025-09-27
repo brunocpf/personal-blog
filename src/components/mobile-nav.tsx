@@ -24,6 +24,7 @@ export function MobileNav() {
         <Button
           variant="ghost"
           className="mr-2 px-0 text-base opacity-70 transition-opacity hover:bg-transparent hover:opacity-100 focus-visible:bg-transparent md:hidden cursor-pointer"
+          aria-label="Menu"
         >
           <HamburgerMenuIcon className="h-8 w-8" />
         </Button>

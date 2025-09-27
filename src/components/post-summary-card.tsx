@@ -56,11 +56,11 @@ export function PostSummaryCard({
           style={{
             viewTransitionName: `article-view-content-${slug}`,
           }}
-          className="prose min-h-28 p-2"
+          className="prose min-h-28 p-2 prose-h2:mb-3 prose-h2:text-xl/[1.6]"
         >
-          <h3>
+          <h2>
             <Link href={`/blog/${slug}`}>{title}</Link>
-          </h3>
+          </h2>
           <span className="flex flex-wrap gap-2">
             {categories.map((category) => (
               <Link
