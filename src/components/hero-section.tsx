@@ -2,6 +2,8 @@ import Image from "next/image";
 
 import { ContactLinks } from "@/components/contact-links";
 
+import image from "../../public/img/hero.jpg";
+
 const bio = `I'm a software developer located in Belo Horizonte (MG), Brazil. I currently work full time as a web developer, but I'm always open to taking on new exciting projects. This is my space on the internet, where I share my projects, experiences and discoveries, both as a developer and in my personal life.`;
 
 export function HeroSection() {
@@ -10,11 +12,12 @@ export function HeroSection() {
       <div className="max-w-60 grow-0 basis-1/3">
         <div className="relative h-0 w-full overflow-hidden rounded-full pb-[100%]">
           <Image
-            src="/img/hero.jpg"
+            src={image}
             alt="Hero Image"
             fill
             className="object-cover object-[80%_35%]"
             sizes="50vw"
+            placeholder="blur"
             draggable={false}
           />
         </div>
