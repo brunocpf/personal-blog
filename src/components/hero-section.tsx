@@ -19,6 +19,7 @@ export function HeroSection() {
             sizes="50vw"
             placeholder="blur"
             draggable={false}
+            priority
           />
         </div>
       </div>
