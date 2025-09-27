@@ -13,6 +13,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
 
 export function ThemeToggler() {
   const { setTheme, theme, resolvedTheme } = useTheme();
@@ -27,12 +28,20 @@ export function ThemeToggler() {
       <div className="flex w-fit items-center justify-center gap-2 p-2 sm:h-12">
         <Tooltip>
           <TooltipTrigger asChild>
-            <div>
+            <div
+              suppressHydrationWarning
+              className={cn({
+                "transition-opacity duration-75": true,
+                "opacity-0": !mounted,
+                "opacity-100": mounted,
+              })}
+            >
               <Toggle
                 suppressHydrationWarning
                 variant="outline"
                 className="h-fit rounded-full p-2 cursor-pointer"
                 pressed={mounted && theme === "system"}
+                aria-label="Toggle automatic light/dark mode"
                 onPressedChange={() =>
                   void setTheme(theme === "system" ? resolvedTheme! : "system")
                 }
@@ -60,6 +69,7 @@ export function ThemeToggler() {
                   <SwitchPrimitives.Thumb
                     suppressHydrationWarning
                     className="group pointer-events-none relative block h-6 w-6 rounded-full bg-background p-1 shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-7 data-[state=unchecked]:translate-x-0"
+                    aria-label="Toggle light/dark mode"
                   >
                     <SunIcon className="absolute left-0 right-0 mx-auto w-fit transition-none group-data-[state=checked]:opacity-0" />
                     <MoonIcon className="absolute left-0 right-0 mx-auto w-fit opacity-0 transition-none group-data-[state=checked]:opacity-100" />
@@ -73,10 +83,10 @@ export function ThemeToggler() {
           </Tooltip>
         ) : (
           <>
-            <div className="dark:hidden block">
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <div className="flex">
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <div>
+                  <div className="dark:hidden flex">
                     <SwitchPrimitives.Root
                       suppressHydrationWarning
                       checked={false}
@@ -85,23 +95,14 @@ export function ThemeToggler() {
                       <SwitchPrimitives.Thumb
                         suppressHydrationWarning
                         className="group pointer-events-none relative block h-6 w-6 rounded-full bg-background p-1 shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-7 data-[state=unchecked]:translate-x-0"
+                        aria-label="Toggle light/dark mode"
                       >
                         <SunIcon className="absolute left-0 right-0 mx-auto w-fit transition-none group-data-[state=checked]:opacity-0" />
                         <MoonIcon className="absolute left-0 right-0 mx-auto w-fit opacity-0 transition-none group-data-[state=checked]:opacity-100" />
                       </SwitchPrimitives.Thumb>
                     </SwitchPrimitives.Root>
                   </div>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>Toggle light/dark mode</p>
-                </TooltipContent>
-              </Tooltip>
-            </div>
-
-            <div className="dark:block hidden">
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <div className="flex">
+                  <div className="dark:flex hidden">
                     <SwitchPrimitives.Root
                       suppressHydrationWarning
                       checked
@@ -110,18 +111,19 @@ export function ThemeToggler() {
                       <SwitchPrimitives.Thumb
                         suppressHydrationWarning
                         className="group pointer-events-none relative block h-6 w-6 rounded-full bg-background p-1 shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-7 data-[state=unchecked]:translate-x-0"
+                        aria-label="Toggle light/dark mode"
                       >
                         <SunIcon className="absolute left-0 right-0 mx-auto w-fit transition-none group-data-[state=checked]:opacity-0" />
                         <MoonIcon className="absolute left-0 right-0 mx-auto w-fit opacity-0 transition-none group-data-[state=checked]:opacity-100" />
                       </SwitchPrimitives.Thumb>
                     </SwitchPrimitives.Root>
                   </div>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>Toggle light/dark mode</p>
-                </TooltipContent>
-              </Tooltip>
-            </div>
+                </div>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Toggle light/dark mode</p>
+              </TooltipContent>
+            </Tooltip>
           </>
         )}
       </div>

@@ -14,10 +14,8 @@ export function HeroSection() {
           <Image
             src={image}
             alt="Hero Image"
-            fill
-            className="object-cover object-[80%_35%]"
+            className="object-cover relative bottom-[65px]"
             sizes="50vw"
-            placeholder="blur"
             draggable={false}
             priority
           />

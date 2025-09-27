@@ -29,6 +29,8 @@ export default function ImageBox({
   const imageUrl = imageUrlBuilder
     ?.fit(!width && !height ? "max" : "crop")
     .url();
+  const fill = !width && !height;
+  console.log(fill, imageUrl);
 
   return (
     <div
@@ -45,13 +47,13 @@ export default function ImageBox({
     >
       {imageUrl && (
         <Image
-          className={`absolute m-0 ${width ? "" : "w-full h-full object-contain py-2"} not-prose`}
+          src={imageUrl}
           alt={alt}
+          fill={fill}
+          className={`absolute m-0 ${width ? "" : "w-full h-full object-contain py-2"} not-prose`}
           width={width}
           height={height}
           sizes={size}
-          fill={!width && !height}
-          src={imageUrl}
           priority
         />
       )}
