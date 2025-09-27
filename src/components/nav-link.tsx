@@ -13,7 +13,8 @@ export interface NavLinkProps extends PropsWithChildren {
 export function NavLink({ href, children }: NavLinkProps) {
   const pathname = usePathname();
 
-  const isCurrent = href === "/" ? pathname === "/" : pathname.startsWith(href);
+  const isCurrent =
+    href === "/" ? pathname === "/" || !pathname : pathname.startsWith(href);
 
   return (
     <Link
