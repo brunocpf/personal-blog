@@ -14,7 +14,7 @@ export function HeroSection() {
           <Image
             src={image}
             alt="Hero Image"
-            className="object-cover relative bottom-[65px]"
+            className="object-cover relative bottom-[45px] sm:bottom-[65px]"
             sizes="50vw"
             draggable={false}
             priority
