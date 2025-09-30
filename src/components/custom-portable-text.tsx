@@ -29,6 +29,7 @@ export function CustomPortableText({
             className="underline transition hover:opacity-50"
             href={value?.href}
             rel="noreferrer noopener"
+            target={value?.href?.startsWith("/") ? undefined : "_blank"}
           >
             {children}
           </a>
