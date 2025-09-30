@@ -16,6 +16,8 @@ export function NavLink({ href, children }: NavLinkProps) {
   const isCurrent =
     href === "/" ? pathname === "/" || !pathname : pathname.startsWith(href);
 
+  console.log({ href, pathname, isCurrent });
+
   return (
     <Link
       href={href}
