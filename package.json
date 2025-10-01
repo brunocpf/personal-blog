@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "studio": "npm --prefix ./studio run dev"
   },
   "dependencies": {
     "@geist-ui/icons": "^1.0.2",
