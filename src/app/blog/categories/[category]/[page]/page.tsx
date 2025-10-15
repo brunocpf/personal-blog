@@ -17,7 +17,7 @@ export async function generateMetadata({
   return {
     title:
       pageNum === 1
-        ? "Blog | bruno-fernandes.dev"
+        ? `Blog - #${category} | bruno-fernandes.dev`
         : `Blog – Page ${pageNum} - #${category} | bruno-fernandes.dev`,
     description: "Bruno's blog",
     alternates: {
