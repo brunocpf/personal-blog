@@ -121,7 +121,7 @@ export function ThemeToggler() {
                 </div>
               </TooltipTrigger>
               <TooltipContent>
-                <p className="m-0!">Toggle light/dark mode</p>
+                <p>Toggle light/dark mode</p>
               </TooltipContent>
             </Tooltip>
           </>

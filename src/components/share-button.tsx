@@ -55,7 +55,7 @@ export function ShareButton({ title, url, text }: ShareButtonProps) {
           </Button>
         </TooltipTrigger>
         <TooltipContent>
-          <p className="m-0!">Share this post</p>
+          <p className="not-prose">Share this post</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>

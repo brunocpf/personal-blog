@@ -59,7 +59,7 @@ export function ClipboardCopyButton({
           </Button>
         </TooltipTrigger>
         <TooltipContent>
-          <p className="m-0!">Copy to clipboard</p>
+          <p className="not-prose">Copy to clipboard</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>
