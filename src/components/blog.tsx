@@ -52,10 +52,10 @@ export default async function Blog({ category, page = 1 }: BlogPostProps) {
           ))}
         </div>
       </div>
-      <div className="flex flex-col md:flex-col-reverse">
+      <div className="flex flex-col sm:flex-col-reverse">
         <PostList category={category} pageSize={PAGE_SIZE} page={page} />
         <TooltipProvider>
-          <div className="flex container gap-2 pb-8 md:pb-0 md:pt-8 justify-center">
+          <div className="flex container gap-2 pb-8 sm:pb-0 sm:pt-8 justify-center">
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button
