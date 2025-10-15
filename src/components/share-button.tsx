@@ -3,6 +3,12 @@
 import { Share2Icon } from "@radix-ui/react-icons";
 
 import { Button } from "@/components/ui/button";
+import {
+  Tooltip,
+  TooltipProvider,
+  TooltipTrigger,
+  TooltipContent,
+} from "@/components/ui/tooltip";
 
 export interface ShareButtonProps {
   url: string;
@@ -20,9 +26,14 @@ export function ShareButton({ title, url, text }: ShareButtonProps) {
           text,
         });
       } catch (error) {
-        if (error instanceof Error && error.name === "AbortError") {
+        if (error instanceof DOMException && error.name === "AbortError") {
           console.warn("Sharing aborted:", error);
           return;
+        } else if (
+          error instanceof DOMException &&
+          error.name === "InvalidStateError"
+        ) {
+          console.warn("Sharing failed: Invalid state", error);
         } else {
           console.error("Error sharing:", error);
         }
@@ -31,12 +42,22 @@ export function ShareButton({ title, url, text }: ShareButtonProps) {
   };
 
   return (
-    <Button
-      variant="ghost"
-      className="h-fit rounded-full p-2"
-      onClick={handleShare}
-    >
-      <Share2Icon />
-    </Button>
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button
+            variant="link"
+            className="h-fit w-fit rounded-full p-2 text-primary hover:bg-accent focus-visible:bg-accent cursor-pointer"
+            onClick={handleShare}
+            aria-label="Share this post"
+          >
+            <Share2Icon />
+          </Button>
+        </TooltipTrigger>
+        <TooltipContent>
+          <p className="m-0!">Share this post</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
   );
 }
