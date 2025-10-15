@@ -65,7 +65,7 @@ export function PostSummaryCard({
             {categories.map((category) => (
               <Link
                 key={category}
-                href={`/blog?category=${category}`}
+                href={`/blog/categories/${category}`}
               >{`#${category}`}</Link>
             ))}
           </span>

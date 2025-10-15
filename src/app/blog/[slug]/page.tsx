@@ -101,7 +101,7 @@ export default async function BlogPost(props: BlogPostProps) {
             {post.categories.map((category) => (
               <Link
                 key={category.title}
-                href={`/blog?category=${category.title}`}
+                href={`/blog/categories/${category.title}`}
               >{`#${category.title}`}</Link>
             ))}
           </aside>

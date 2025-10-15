@@ -2,7 +2,7 @@
 
 import { Share2Icon } from "@radix-ui/react-icons";
 
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
 
 export interface ShareButtonProps {
   url: string;
