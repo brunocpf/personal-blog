@@ -6,10 +6,18 @@ import { PostSummaryCard } from "@/components/post-summary-card";
 
 export interface PostListProps {
   category?: string;
-  maxPosts?: number;
+  pageSize?: number;
+  page?: number;
 }
 
-export async function PostList({ category, maxPosts }: PostListProps) {
+export async function PostList({
+  category,
+  pageSize,
+  page = 1,
+}: PostListProps) {
+  const start = pageSize ? pageSize * (page - 1) : 0;
+  const end = pageSize ? start + pageSize - 1 : undefined;
+  const slice = pageSize ? `[${start}..${end}]` : "";
   const posts = await client.fetch<
     {
       title: string;
@@ -22,18 +30,19 @@ export async function PostList({ category, maxPosts }: PostListProps) {
     }[]
   >(
     groq`
-  *[_type == "post" ${category ? `&& $category in categories[]->title` : ""}] | order(publishedAt desc) ${maxPosts ? `[0..${maxPosts - 1}]` : ""}{
+      *[_type == "post" ${category ? `&& $category in categories[]->title` : ""}] | order(publishedAt desc) ${slice}{
         title,
         author->{
-            name
+          name
         },
         publishedAt,
         summary,
         "slug": slug.current,
         categories[]->{
-            title
+          title
         },
-    }`,
+      }
+    `,
     category ? { category } : {},
   );
 
