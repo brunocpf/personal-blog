@@ -6,6 +6,7 @@ import { dateFormatter } from "@/lib/utils";
 
 export interface PostSummaryCardProps {
   slug: string;
+  isDraft: boolean;
   title: string;
   author: string;
   publishedAt: Date;
@@ -15,6 +16,7 @@ export interface PostSummaryCardProps {
 
 export function PostSummaryCard({
   slug,
+  isDraft,
   title,
   author,
   publishedAt,
@@ -59,8 +61,12 @@ export function PostSummaryCard({
           className="prose min-h-28 p-2 prose-h2:mb-3 prose-h2:text-xl/[1.6]"
         >
           <h2>
-            <Link href={`/blog/${slug}`}>{title}</Link>
+            <Link href={`/blog/${slug}`}>{title}</Link>{" "}
+            {isDraft ? (
+              <span className="text-xs not-prose">(Draft)</span>
+            ) : null}
           </h2>
+
           <span className="flex flex-wrap gap-2">
             {categories.map((category) => (
               <Link

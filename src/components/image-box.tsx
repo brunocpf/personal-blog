@@ -30,7 +30,6 @@ export default function ImageBox({
     ?.fit(!width && !height ? "max" : "crop")
     .url();
   const fill = !width && !height;
-  console.log(fill, imageUrl);
 
   return (
     <div

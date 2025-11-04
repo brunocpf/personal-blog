@@ -53,6 +53,15 @@ export default defineType({
       name: 'body',
       title: 'Body',
       type: 'blockContent',
+      deprecated: {
+        reason: 'Use Body Markdown instead',
+      },
+      readOnly: true,
+    }),
+    defineField({
+      name: 'bodyMd',
+      title: 'Body Markdown',
+      type: 'markdown',
     }),
   ],
 

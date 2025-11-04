@@ -27,8 +27,8 @@ export default async function BlogPost(props: BlogPostProps) {
         body: PortableTextBlock[];
         summary: PortableTextBlock[];
         publishedAt: string;
-        author: { name: string };
-        categories: { title: string }[];
+        author?: { name: string };
+        categories?: { title: string }[];
       }
     | undefined
   >(
@@ -81,7 +81,7 @@ export default async function BlogPost(props: BlogPostProps) {
                 viewTransitionName: `article-view-author-${slug}`,
               }}
             >
-              {post.author.name}
+              {post.author?.name}
             </span>
           </div>
           <div
@@ -98,7 +98,7 @@ export default async function BlogPost(props: BlogPostProps) {
               url={`https://bruno-fernandes.dev/blog/${slug}`}
               text={`"${toPlainText(post.summary)}"`}
             />
-            {post.categories.map((category) => (
+            {post.categories?.map((category) => (
               <Link
                 key={category.title}
                 href={`/blog/categories/${category.title}`}

@@ -20,17 +20,21 @@ export async function PostList({
   const slice = pageSize ? `[${start}..${end}]` : "";
   const posts = await client.fetch<
     {
+      _id: string;
+      _originalId: string;
       title: string;
       author: { name: string };
       publishedAt: string;
       summary: PortableTextBlock[];
       slug: string;
-      categories: { title: string }[];
-      mainImage: Image;
+      categories?: { title: string }[];
+      mainImage?: Image;
     }[]
   >(
     groq`
       *[_type == "post" ${category ? `&& $category in categories[]->title` : ""}] | order(publishedAt desc) ${slice}{
+        _id,
+        _originalId,
         title,
         author->{
           name
@@ -51,12 +55,13 @@ export async function PostList({
       {posts.map((post) => (
         <PostSummaryCard
           key={post.slug}
+          isDraft={post._originalId.startsWith("drafts.")}
           title={post.title}
           author={post.author.name}
           publishedAt={new Date(post.publishedAt)}
           slug={post.slug}
           summary={toPlainText(post.summary)}
-          categories={post.categories.map((category) => category.title)}
+          categories={post.categories?.map((category) => category.title) ?? []}
         />
       ))}
     </div>
