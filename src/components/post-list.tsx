@@ -21,7 +21,7 @@ export async function PostList({
   const posts = await client.fetch<
     {
       _id: string;
-      _originalId: string;
+      _originalId?: string | null;
       title: string;
       author: { name: string };
       publishedAt: string;
@@ -55,7 +55,7 @@ export async function PostList({
       {posts.map((post) => (
         <PostSummaryCard
           key={post.slug}
-          isDraft={post._originalId.startsWith("drafts.")}
+          isDraft={post._originalId?.startsWith("drafts.") ?? false}
           title={post.title}
           author={post.author.name}
           publishedAt={new Date(post.publishedAt)}

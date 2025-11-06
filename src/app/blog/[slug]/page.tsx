@@ -4,7 +4,7 @@ import { Link } from "next-view-transitions";
 import { notFound } from "next/navigation";
 
 import client from "@/client";
-import { CustomPortableText } from "@/components/custom-portable-text";
+import { CustomMarkdownText } from "@/components/custom-markdown-text";
 import { ShareButton } from "@/components/share-button";
 import { dateFormatter } from "@/lib/utils";
 
@@ -24,7 +24,7 @@ export default async function BlogPost(props: BlogPostProps) {
   const post = await client.fetch<
     | {
         title: string;
-        body: PortableTextBlock[];
+        bodyMd: string;
         summary: PortableTextBlock[];
         publishedAt: string;
         author?: { name: string };
@@ -35,7 +35,7 @@ export default async function BlogPost(props: BlogPostProps) {
     groq`
     *[_type == "post" && slug.current == $slug][0]{
         title,
-        body,
+        bodyMd,
         publishedAt,
         summary,
         author->{
@@ -90,7 +90,7 @@ export default async function BlogPost(props: BlogPostProps) {
               viewTransitionName: `article-view-content-${slug}`,
             }}
           >
-            <CustomPortableText value={post.body} />
+            <CustomMarkdownText value={post.bodyMd} />
           </div>
           <aside className="prose flex min-w-full flex-wrap gap-2 bg-background px-2 py-4">
             <ShareButton
