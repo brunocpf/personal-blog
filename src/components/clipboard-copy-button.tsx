@@ -1,9 +1,6 @@
 "use client";
 
-import {
-  Clipboard as ClipboardIcon,
-  Check as CheckIcon,
-} from "@geist-ui/icons";
+import { Copy as CopyIcon, Check as CheckIcon } from "@geist-ui/icons";
 import { useRef, useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -54,7 +51,7 @@ export function ClipboardCopyButton({
             {copied ? (
               <CheckIcon className="w-4 h-4" />
             ) : (
-              <ClipboardIcon className="w-4 h-4" />
+              <CopyIcon className="w-4 h-4" />
             )}
           </Button>
         </TooltipTrigger>

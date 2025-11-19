@@ -35,9 +35,13 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: React.PropsWithChildren) {
   return (
     <ViewTransitions>
-      <html lang="en" suppressHydrationWarning>
+      <html
+        lang="en"
+        suppressHydrationWarning
+        className="[@media(display-mode:standalone)]:overscroll-none [@media(display-mode:fullscreen)]:overscroll-none [@media(display-mode:minimal-ui)]:overscroll-contain"
+      >
         <body
-          className={`min-h-screen font-sans antialiased ${josefinSans.variable} ${josefinSlab.variable} [@media(display-mode:standalone)]:overscroll-y-contain [@media(display-mode:fullscreen)]:overscroll-y-contain [@media(display-mode:minimal-ui)]:overscroll-y-contain`}
+          className={`min-h-screen font-sans antialiased ${josefinSans.variable} ${josefinSlab.variable}`}
         >
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <div vaul-drawer-wrapper="">
