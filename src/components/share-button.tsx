@@ -46,10 +46,10 @@ export function ShareButton({ title, url, text }: ShareButtonProps) {
       <Tooltip>
         <TooltipTrigger asChild>
           <Button
-            variant="link"
-            className="h-fit w-fit rounded-full p-2 text-primary hover:bg-accent focus-visible:bg-accent cursor-pointer"
             onClick={handleShare}
+            className="h-fit w-fit rounded-full p-2 text-primary hover:bg-accent focus-visible:bg-accent cursor-pointer"
             aria-label="Share this post"
+            variant="link"
           >
             <Share2Icon />
           </Button>

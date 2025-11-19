@@ -44,7 +44,7 @@ export function ClipboardCopyButton({
         <TooltipTrigger asChild>
           <Button
             onClick={handleCopy}
-            className={`${className} px-2 py-1 h-fit w-fit cursor-pointer rounded-full p-2 text-primary hover:bg-accent focus-visible:bg-accent`}
+            className={`${className} px-2 py-1 h-fit w-fit cursor-pointer rounded-full p-2 text-primary hover:bg-accent focus-visible:bg-accent block`}
             aria-label="Copy code to clipboard"
             variant="outline"
           >

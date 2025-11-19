@@ -29,11 +29,10 @@ const components: MDXComponents = {
 
     if (language) {
       return (
-        <span className="dark:invert relative">
-          <ClipboardCopyButton
-            text={children}
-            className="absolute top-2 right-2 z-10 dark:invert"
-          />
+        <span className="block dark:invert relative">
+          <div className="absolute top-2 right-2 z-10">
+            <ClipboardCopyButton text={children} className="dark:invert" />
+          </div>
 
           <SyntaxHighlighter
             showLineNumbers
