@@ -37,7 +37,7 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
     <ViewTransitions>
       <html lang="en" suppressHydrationWarning>
         <body
-          className={`min-h-screen font-sans antialiased ${josefinSans.variable} ${josefinSlab.variable}`}
+          className={`min-h-screen font-sans antialiased ${josefinSans.variable} ${josefinSlab.variable} [@media(display-mode:standalone)]:overscroll-y-contain [@media(display-mode:fullscreen)]:overscroll-y-contain [@media(display-mode:minimal-ui)]:overscroll-y-contain`}
         >
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <div vaul-drawer-wrapper="">
