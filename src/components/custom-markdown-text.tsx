@@ -24,6 +24,14 @@ const components: MDXComponents = {
   pre: (props) => {
     return <pre {...props} className="not-prose" />;
   },
+  blockquote: (props) => {
+    return (
+      <blockquote
+        {...props}
+        className="[&>p]:before:content-none [&>p]:not-italic"
+      />
+    );
+  },
   code: ({ children, className, ...rest }) => {
     const language = className?.replace(/language-/, "");
 

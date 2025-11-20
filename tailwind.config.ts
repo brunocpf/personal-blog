@@ -69,6 +69,8 @@ const config: Config = {
             "--tw-prose-headings": theme("colors.foreground"),
             "--tw-prose-lead": theme("colors.foreground"),
             "--tw-prose-links": theme("colors.secondary.DEFAULT"),
+            "--tw-prose-bold": theme("colors.foreground"),
+            "--tw-prose-quotes": theme("colors.foreground"),
             code: {
               "&::before": {
                 content: "'' !important",
