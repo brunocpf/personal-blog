@@ -1,15 +1,25 @@
-const path = require("path");
+import { relative } from "path";
 
 const buildEslintCommand = (filenames) =>
-  `next lint --fix --file ${filenames
-    .map((f) => path.relative(process.cwd(), f))
-    .join(" --file ")}`;
+  `eslint --fix --max-warnings=0 ${filenames
+    .map((f) => relative(process.cwd(), f))
+    .map((f) => {
+      console.log(f);
+      return f;
+    })
+    .join(" ")}`;
 
 const buildPrettierCommand = (filenames) =>
   `prettier --write ${filenames
-    .map((f) => path.relative(process.cwd(), f))
+    .map((f) => relative(process.cwd(), f))
+    .map((f) => {
+      console.log(f);
+      return f;
+    })
     .join(" ")}`;
 
-module.exports = {
-  "!(studio/**/*)*.{js,jsx,ts,tsx}": [buildEslintCommand, buildPrettierCommand],
+const lintStagedConfig = {
+  "*.{js,jsx,ts,tsx}": [buildEslintCommand, buildPrettierCommand],
 };
+
+export default lintStagedConfig;
