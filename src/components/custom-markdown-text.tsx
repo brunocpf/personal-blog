@@ -28,7 +28,7 @@ const components: MDXComponents = {
     return (
       <blockquote
         {...props}
-        className="[&>p]:before:content-none [&>p]:not-italic"
+        className="[&>p]:not-italic [&>p]:before:content-none"
       />
     );
   },
@@ -37,7 +37,7 @@ const components: MDXComponents = {
 
     if (language) {
       return (
-        <span className="block dark:invert relative">
+        <span className="relative block dark:invert">
           <div className="absolute top-2 right-2 z-10">
             <ClipboardCopyButton text={children} className="dark:invert" />
           </div>
@@ -61,7 +61,7 @@ const components: MDXComponents = {
     } else {
       return (
         <code
-          className="rounded px-1 py-0.5 whitespace-pre-wrap bg-gray-100 dark:bg-black text-current"
+          className="rounded bg-gray-100 px-1 py-0.5 whitespace-pre-wrap text-current dark:bg-black"
           {...rest}
         >
           {children}
@@ -71,12 +71,12 @@ const components: MDXComponents = {
   },
   img: ({ title, src, alt, ...rest }) => {
     return (
-      <figure className="my-6 relative w-full h-96 overflow-hidden bg-gray-50 dark:bg-gray-900">
+      <figure className="relative my-6 h-96 w-full overflow-hidden bg-gray-50 dark:bg-gray-900">
         <Image
           src={src}
           alt={alt || "Image"}
           fill
-          className="m-0 not-prose object-contain py-2"
+          className="not-prose m-0 object-contain py-2"
           priority
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           {...rest}
