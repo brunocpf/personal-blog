@@ -1,6 +1,6 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
-@config '../../tailwind.config.ts';
+@config "../../tailwind.config.ts";
 
 /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,
@@ -101,5 +101,39 @@
 @media (min-width: --theme(--breakpoint-sm)) {
   .container {
     @apply px-6;
+  }
+}
+
+a:hover {
+  anchor-name: --follow;
+}
+
+.follow-border {
+  background: repeating-conic-gradient(
+    var(--secondary),
+    transparent,
+    var(--secondary),
+    transparent,
+    var(--secondary),
+    transparent
+  );
+}
+
+.animate-on-view {
+  animation: fadeout linear both;
+  animation-timeline: view();
+  animation-range: exit 30% exit 100%;
+}
+
+@keyframes fadeout {
+  from {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    filter: blur(4px);
+    transform: translateY(-20px);
   }
 }

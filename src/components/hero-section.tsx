@@ -8,13 +8,13 @@ const bio = `I'm a software developer located in Belo Horizonte (MG), Brazil. I 
 
 export function HeroSection() {
   return (
-    <div className="container flex flex-wrap py-8">
+    <div className="animate-on-view container flex flex-wrap py-8">
       <div className="max-w-60 grow-0 basis-1/3">
         <div className="relative h-0 w-full overflow-hidden rounded-full pb-[100%]">
           <Image
             src={image}
             alt="Hero Image"
-            className="object-cover relative bottom-[45px] sm:bottom-[65px]"
+            className="relative bottom-[45px] object-cover sm:bottom-[65px]"
             sizes="50vw"
             draggable={false}
             priority

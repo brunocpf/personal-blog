@@ -28,13 +28,13 @@ export function PostSummaryCard({
   return (
     <div>
       <div
-        className="min-w-48 rounded bg-card shadow-lg dark:border-2"
+        className="bg-card animate-on-view min-w-48 rounded shadow-lg dark:border-2"
         style={{
           viewTransitionName: `article-view-${slug}`,
         }}
       >
         <div
-          className="flex justify-between bg-background px-2 pt-6"
+          className="bg-background flex justify-between px-2 pt-6"
           style={{
             viewTransitionName: `article-view-header-${slug}`,
           }}
@@ -58,12 +58,12 @@ export function PostSummaryCard({
           style={{
             viewTransitionName: `article-view-content-${slug}`,
           }}
-          className="prose min-h-28 p-2 prose-h2:mb-3 prose-h2:text-xl/[1.6]"
+          className="prose prose-h2:mb-3 prose-h2:text-xl/[1.6] min-h-28 p-2"
         >
           <h2>
             <Link href={`/blog/${slug}`}>{title}</Link>{" "}
             {isDraft ? (
-              <span className="text-xs not-prose">(Draft)</span>
+              <span className="not-prose text-xs">(Draft)</span>
             ) : null}
           </h2>
 
@@ -80,7 +80,7 @@ export function PostSummaryCard({
         <div className="flex justify-center px-2 py-2">
           <Button
             variant="link"
-            className="h-fit w-fit rounded-full p-2 text-primary hover:bg-accent focus-visible:bg-accent"
+            className="text-primary hover:bg-accent focus-visible:bg-accent h-fit w-fit rounded-full p-2"
             asChild
             title="More"
           >
