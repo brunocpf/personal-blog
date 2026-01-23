@@ -21,7 +21,7 @@ export function ContactLinks({ size = "sm" }: ContactLinksProps) {
     <div className="flex justify-center gap-1">
       <Button
         variant="link"
-        className="h-fit w-fit rounded-full p-2 text-primary hover:bg-accent focus-visible:bg-accent"
+        className="text-primary hover:bg-accent focus-visible:bg-accent h-fit w-fit rounded-full p-2"
         asChild
       >
         <a
@@ -35,11 +35,11 @@ export function ContactLinks({ size = "sm" }: ContactLinksProps) {
       </Button>
       <Button
         variant="link"
-        className="h-fit w-fit rounded-full p-2 text-primary hover:bg-accent focus-visible:bg-accent"
+        className="text-primary hover:bg-accent focus-visible:bg-accent h-fit w-fit rounded-full p-2"
         asChild
       >
         <a
-          href="https://www.linkedin.com/in/bruno-cesar-pimenta-fernandes-72a2a6139/"
+          href="https://www.linkedin.com/in/brunofernandes-/"
           target="_blank"
           rel="noopener noreferrer"
           title="LinkedIn"
@@ -50,7 +50,7 @@ export function ContactLinks({ size = "sm" }: ContactLinksProps) {
 
       <Button
         variant="link"
-        className="h-fit w-fit rounded-full p-2 text-primary hover:bg-accent focus-visible:bg-accent"
+        className="text-primary hover:bg-accent focus-visible:bg-accent h-fit w-fit rounded-full p-2"
         asChild
         title="Email"
       >
