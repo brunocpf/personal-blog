@@ -4,7 +4,7 @@ import { Display as DisplayIcon } from "@geist-ui/icons";
 import { SunIcon, MoonIcon } from "@radix-ui/react-icons";
 import * as SwitchPrimitives from "@radix-ui/react-switch";
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 
 import { Toggle } from "@/components/ui/toggle";
 import {
@@ -15,13 +15,15 @@ import {
 } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 
+const subscribeToHydration = () => () => {};
+
 export function ThemeToggler() {
   const { setTheme, theme, resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const mounted = useSyncExternalStore(
+    subscribeToHydration,
+    () => true,
+    () => false,
+  );
 
   return (
     <TooltipProvider>
@@ -39,7 +41,7 @@ export function ThemeToggler() {
               <Toggle
                 suppressHydrationWarning
                 variant="outline"
-                className="h-fit rounded-full p-2 cursor-pointer"
+                className="h-fit cursor-pointer rounded-full p-2"
                 pressed={mounted && theme === "system"}
                 aria-label="Toggle automatic light/dark mode"
                 onPressedChange={() =>
@@ -64,15 +66,15 @@ export function ThemeToggler() {
                   onCheckedChange={(checked) =>
                     void setTheme(checked ? "dark" : "light")
                   }
-                  className="peer inline-flex h-7 w-14 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent shadow-xs transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input"
+                  className="peer focus-visible:ring-ring focus-visible:ring-offset-background data-[state=checked]:bg-primary data-[state=unchecked]:bg-input inline-flex h-7 w-14 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent shadow-xs transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   <SwitchPrimitives.Thumb
                     suppressHydrationWarning
-                    className="group pointer-events-none relative block h-6 w-6 rounded-full bg-background p-1 shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-7 data-[state=unchecked]:translate-x-0"
+                    className="group bg-background pointer-events-none relative block h-6 w-6 rounded-full p-1 ring-0 shadow-lg transition-transform data-[state=checked]:translate-x-7 data-[state=unchecked]:translate-x-0"
                     aria-label="Toggle light/dark mode"
                   >
-                    <SunIcon className="absolute left-0 right-0 mx-auto w-fit transition-none group-data-[state=checked]:opacity-0" />
-                    <MoonIcon className="absolute left-0 right-0 mx-auto w-fit opacity-0 transition-none group-data-[state=checked]:opacity-100" />
+                    <SunIcon className="absolute right-0 left-0 mx-auto w-fit transition-none group-data-[state=checked]:opacity-0" />
+                    <MoonIcon className="absolute right-0 left-0 mx-auto w-fit opacity-0 transition-none group-data-[state=checked]:opacity-100" />
                   </SwitchPrimitives.Thumb>
                 </SwitchPrimitives.Root>
               </div>
@@ -86,35 +88,35 @@ export function ThemeToggler() {
             <Tooltip>
               <TooltipTrigger asChild>
                 <div>
-                  <div className="dark:hidden flex">
+                  <div className="flex dark:hidden">
                     <SwitchPrimitives.Root
                       suppressHydrationWarning
                       checked={false}
-                      className="peer inline-flex h-7 w-14 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent shadow-xs transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input"
+                      className="peer focus-visible:ring-ring focus-visible:ring-offset-background data-[state=checked]:bg-primary data-[state=unchecked]:bg-input inline-flex h-7 w-14 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent shadow-xs transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden disabled:cursor-not-allowed disabled:opacity-50"
                     >
                       <SwitchPrimitives.Thumb
                         suppressHydrationWarning
-                        className="group pointer-events-none relative block h-6 w-6 rounded-full bg-background p-1 shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-7 data-[state=unchecked]:translate-x-0"
+                        className="group bg-background pointer-events-none relative block h-6 w-6 rounded-full p-1 ring-0 shadow-lg transition-transform data-[state=checked]:translate-x-7 data-[state=unchecked]:translate-x-0"
                         aria-label="Toggle light/dark mode"
                       >
-                        <SunIcon className="absolute left-0 right-0 mx-auto w-fit transition-none group-data-[state=checked]:opacity-0" />
-                        <MoonIcon className="absolute left-0 right-0 mx-auto w-fit opacity-0 transition-none group-data-[state=checked]:opacity-100" />
+                        <SunIcon className="absolute right-0 left-0 mx-auto w-fit transition-none group-data-[state=checked]:opacity-0" />
+                        <MoonIcon className="absolute right-0 left-0 mx-auto w-fit opacity-0 transition-none group-data-[state=checked]:opacity-100" />
                       </SwitchPrimitives.Thumb>
                     </SwitchPrimitives.Root>
                   </div>
-                  <div className="dark:flex hidden">
+                  <div className="hidden dark:flex">
                     <SwitchPrimitives.Root
                       suppressHydrationWarning
                       checked
-                      className="peer inline-flex h-7 w-14 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent shadow-xs transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input"
+                      className="peer focus-visible:ring-ring focus-visible:ring-offset-background data-[state=checked]:bg-primary data-[state=unchecked]:bg-input inline-flex h-7 w-14 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent shadow-xs transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden disabled:cursor-not-allowed disabled:opacity-50"
                     >
                       <SwitchPrimitives.Thumb
                         suppressHydrationWarning
-                        className="group pointer-events-none relative block h-6 w-6 rounded-full bg-background p-1 shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-7 data-[state=unchecked]:translate-x-0"
+                        className="group bg-background pointer-events-none relative block h-6 w-6 rounded-full p-1 ring-0 shadow-lg transition-transform data-[state=checked]:translate-x-7 data-[state=unchecked]:translate-x-0"
                         aria-label="Toggle light/dark mode"
                       >
-                        <SunIcon className="absolute left-0 right-0 mx-auto w-fit transition-none group-data-[state=checked]:opacity-0" />
-                        <MoonIcon className="absolute left-0 right-0 mx-auto w-fit opacity-0 transition-none group-data-[state=checked]:opacity-100" />
+                        <SunIcon className="absolute right-0 left-0 mx-auto w-fit transition-none group-data-[state=checked]:opacity-0" />
+                        <MoonIcon className="absolute right-0 left-0 mx-auto w-fit opacity-0 transition-none group-data-[state=checked]:opacity-100" />
                       </SwitchPrimitives.Thumb>
                     </SwitchPrimitives.Root>
                   </div>
