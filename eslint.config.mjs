@@ -21,12 +21,22 @@ const eslintConfig = defineConfig([
       "check-file/folder-naming-convention": [
         "error",
         {
-          "src/**/": "KEBAB_CASE",
+          "src/app/**/": "NEXT_JS_APP_ROUTER_CASE",
+          "src/!(app)/**/": "KEBAB_CASE",
         },
+        { ignoreWords: ["12912184-1dc3-4db8-9405-3d5f772d2753"] },
       ],
     },
   },
-  globalIgnores([".next/**", "out/**", "build/**", "next-env.d.ts"]),
+  globalIgnores([
+    ".next/**",
+    "out/**",
+    "build/**",
+    "next-env.d.ts",
+    "studio/node_modules/**",
+    "studio/dist/**",
+    "studio/.sanity/**",
+  ]),
 ]);
 
 export default eslintConfig;

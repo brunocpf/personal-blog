@@ -1,13 +1,14 @@
-import {at, defineMigration, set, setIfMissing} from 'sanity/migrate'
-//@ts-ignore
+import {at, defineMigration, setIfMissing} from 'sanity/migrate'
+// @ts-expect-error This legacy converter does not publish TypeScript declarations.
 import blocksToMarkdown from '@sanity/block-content-to-markdown'
 
 const serializers = {
   types: {
-    code: (props: any) => '```' + props.node.language + '\n' + props.node.code + '\n```',
+    code: (props: {node: {language: string; code: string}}) =>
+      '```' + props.node.language + '\n' + props.node.code + '\n```',
   },
   marks: {
-    inlineCode: (props: any) => '`' + props.children + '`',
+    inlineCode: (props: {children: string}) => '`' + props.children + '`',
   },
 }
 
