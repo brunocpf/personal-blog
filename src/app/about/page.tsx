@@ -1,35 +1,65 @@
-import { Metadata } from "next";
-import { groq, PortableTextBlock } from "next-sanity";
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { Suspense } from "react";
 
-import client from "@/client";
+import { ProseSkeleton } from "@/components/content-skeleton";
 import { CustomPortableText } from "@/components/custom-portable-text";
+import { ArrowUpRight } from "@/components/site-icon";
+import { getContent } from "@/lib/content";
+
+import portrait from "../../../public/img/hero.jpg";
 
 export const metadata: Metadata = {
-  title: "About | bruno-fernandes.dev",
-  description: "About Bruno",
+  title: "About",
+  description:
+    "Meet Bruno Fernandes, a software developer in Belo Horizonte, Brazil.",
 };
-
-export default async function About() {
-  const content = await client.fetch<{
-    title: string;
-    body: PortableTextBlock[];
-  }>(
-    groq`
-        *[_type == "content" && slug.current == "about"][0]{
-            title,
-            body
-        }`,
-  );
-
+export default function About() {
   return (
-    <div className="min-h-screen bg-card">
-      <div className="container py-8">
-        <article className="rounded bg-card shadow-lg dark:border-2">
-          <div className="prose min-w-full p-4">
-            <CustomPortableText value={content.body} />
+    <section className="about-page container">
+      <header className="inner-page-heading">
+        <h1>About</h1>
+        <p>Bruno Fernandes · Belo Horizonte, Brazil</p>
+      </header>
+      <div className="about-layout">
+        <figure>
+          <Image
+            src={portrait}
+            alt="Bruno Fernandes"
+            sizes="(max-width: 700px) 90vw, 360px"
+            className="about-portrait"
+            draggable={false}
+          />
+        </figure>
+        <div>
+          <div className="prose about-copy">
+            <Suspense fallback={<ProseSkeleton />}>
+              <AboutCopy />
+            </Suspense>
           </div>
-        </article>
+          <Link className="text-link" href="/contact">
+            Contact me <ArrowUpRight size={18} aria-hidden="true" />
+          </Link>
+        </div>
       </div>
-    </div>
+    </section>
+  );
+}
+
+async function AboutCopy() {
+  const content = await getContent("about");
+  return (
+    <>
+      {content ? (
+        <CustomPortableText demoteHeadings value={content.body} />
+      ) : (
+        <p>
+          I’m a software developer in Belo Horizonte, Brazil. This is where I
+          share my projects, experiences, and discoveries, both as a developer
+          and in my personal life.
+        </p>
+      )}
+    </>
   );
 }

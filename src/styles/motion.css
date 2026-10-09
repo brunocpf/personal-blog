@@ -1,0 +1,126 @@
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+  .mobile-nav nav {
+    animation: menu-enter 180ms var(--ease-out);
+  }
+  @supports (animation-timeline: scroll()) {
+    .reading-progress {
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      z-index: 60;
+      background: hsl(var(--secondary));
+      transform-origin: left;
+      animation: reading-progress auto linear;
+      animation-timeline: scroll(root);
+    }
+  }
+  ::view-transition-group(*) {
+    animation-duration: 420ms;
+    animation-timing-function: var(--ease-out);
+  }
+  ::view-transition-old(.page-transition) {
+    animation: page-leave 180ms ease both;
+  }
+  ::view-transition-new(.page-transition) {
+    animation: page-enter 350ms var(--ease-out) both;
+  }
+}
+@keyframes menu-enter {
+  from {
+    opacity: 0.5;
+    transform: translateY(-8px);
+  }
+}
+@keyframes reading-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+@keyframes page-leave {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    translate: 0 8px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mobile-nav nav {
+    animation: none;
+  }
+  .post-arrow,
+  .featured-read svg,
+  .text-link svg,
+  .nav-link::after {
+    transition: none;
+  }
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+@media (prefers-contrast: more) {
+  :root {
+    --color-quiet: #38343b;
+    --border: 225 9% 30%;
+  }
+  .dark {
+    --color-quiet: #e5e3e0;
+    --border: 215 10% 65%;
+  }
+}
+
+/* The transition overlay has its own stacking order, above normal page z-index. */
+::view-transition-group(site-header) {
+  animation: none;
+  z-index: 100;
+}
+::view-transition-old(site-header) {
+  display: none;
+}
+::view-transition-new(site-header) {
+  animation: none;
+}
+
+/* Keep the backing surface with the shared text, including the burgundy feature. */
+::view-transition-group(.article-surface) {
+  z-index: 1;
+}
+::view-transition-group(.article-title),
+::view-transition-group(.article-date),
+::view-transition-group(.article-summary) {
+  z-index: 2;
+}
+
+/* Morph geometry without crossfading two differently wrapped text snapshots.
+   Text and its backing surface switch together, preserving contrast on return. */
+::view-transition-old(.article-surface),
+::view-transition-old(.article-title),
+::view-transition-old(.article-date),
+::view-transition-old(.article-summary) {
+  display: none !important;
+}
+::view-transition-new(.article-surface),
+::view-transition-new(.article-title),
+::view-transition-new(.article-date),
+::view-transition-new(.article-summary) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-new(.article-surface) {
+  height: 100%;
+  object-fit: fill;
+}

@@ -1,64 +1,39 @@
 "use client";
 
-import { Copy as CopyIcon, Check as CheckIcon } from "@geist-ui/icons";
-import { useRef, useState } from "react";
+import { useState } from "react";
 
-import { Button } from "@/components/ui/button";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-
-export interface ClipboardCopyButtonProps {
-  text: string;
-  className?: string;
-}
+import { Check, Copy } from "@/components/site-icon";
 
 export function ClipboardCopyButton({
   text,
-  className,
-}: ClipboardCopyButtonProps) {
-  const [copied, setCopied] = useState(false);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-
-  const handleCopy = async () => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-      setCopied(false);
-    }
-
+  className = "",
+}: {
+  text: string;
+  className?: string;
+}) {
+  const [status, setStatus] = useState("");
+  async function copy() {
     try {
       await navigator.clipboard.writeText(text);
-      setCopied(true);
-      timeoutRef.current = setTimeout(() => setCopied(false), 1000);
+      setStatus("Copied");
     } catch {
-      setCopied(false);
+      setStatus("Select the code to copy it manually.");
     }
-  };
-
+  }
   return (
-    <TooltipProvider>
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <Button
-            onClick={handleCopy}
-            className={`${className} px-2 py-1 h-fit w-fit cursor-pointer rounded-full p-2 text-primary hover:bg-accent focus-visible:bg-accent block`}
-            aria-label="Copy code to clipboard"
-            variant="outline"
-          >
-            {copied ? (
-              <CheckIcon className="w-4 h-4" />
-            ) : (
-              <CopyIcon className="w-4 h-4" />
-            )}
-          </Button>
-        </TooltipTrigger>
-        <TooltipContent>
-          <p className="not-prose">Copy to clipboard</p>
-        </TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
+    <div className={`copy-control ${className}`}>
+      <span role="status">{status}</span>
+      <button
+        className="icon-button"
+        aria-label="Copy code to clipboard"
+        onClick={copy}
+      >
+        {status === "Copied" ? (
+          <Check size={18} aria-hidden="true" />
+        ) : (
+          <Copy size={18} aria-hidden="true" />
+        )}
+      </button>
+    </div>
   );
 }

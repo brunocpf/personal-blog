@@ -1,23 +1,35 @@
-import { Link } from "next-view-transitions";
+import Link from "next/link";
+import { Suspense } from "react";
 
+import { PostListSkeleton } from "@/components/content-skeleton";
 import { HeroSection } from "@/components/hero-section";
 import { PostList } from "@/components/post-list";
-import { Button } from "@/components/ui/button";
-
-export const revalidate = 3600;
+import { ArrowUpRight } from "@/components/site-icon";
 
 export default function Home() {
   return (
-    <div>
+    <>
       <HeroSection />
-      <div className="bg-card">
-        <PostList pageSize={6} />
-        <div className="flex justify-center">
-          <Button variant="link" size="lg" className="mx-auto mb-10" asChild>
-            <Link href="/blog">View all posts</Link>
-          </Button>
+      <section
+        id="writing"
+        className="writing-section container"
+        aria-labelledby="writing-title"
+      >
+        <div className="section-heading">
+          <h2 id="writing-title">Latest posts</h2>
+          <Link prefetch={true} className="text-link" href="/blog">
+            All posts <ArrowUpRight size={18} aria-hidden="true" />
+          </Link>
         </div>
-      </div>
-    </div>
+        <Suspense fallback={<PostListSkeleton />}>
+          <PostList pageSize={6} featured />
+        </Suspense>
+        <div className="archive-link">
+          <Link prefetch={true} className="text-link" href="/blog">
+            All posts <ArrowUpRight size={18} aria-hidden="true" />
+          </Link>
+        </div>
+      </section>
+    </>
   );
 }

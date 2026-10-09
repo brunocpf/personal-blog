@@ -1,10 +1,6 @@
-import { notFound } from "next/navigation";
-
 import Blog from "@/components/blog";
 import { getCategories } from "@/lib/blog-categories";
 import { getPaginationTotals } from "@/lib/blog-pagination";
-
-export const dynamicParams = false;
 
 export async function generateMetadata({
   params,
@@ -17,13 +13,13 @@ export async function generateMetadata({
   return {
     title:
       pageNum === 1
-        ? `Blog - #${category} | bruno-fernandes.dev`
-        : `Blog – Page ${pageNum} - #${category} | bruno-fernandes.dev`,
+        ? `Blog - #${category}`
+        : `Blog – Page ${pageNum} - #${category}`,
     description: "Bruno's blog",
     alternates: {
       canonical:
         pageNum === 1
-          ? "/blog/categories/1"
+          ? `/blog/categories/${encodeURIComponent(category)}/1`
           : `/blog/categories/${category}/${pageNum}`,
     },
   };
@@ -46,25 +42,10 @@ export async function generateStaticParams() {
   return params;
 }
 
-export default async function BlogPage({
+export default function BlogPage({
   params,
 }: {
-  params: Promise<{ page: string; category: string }>;
+  params: Promise<{ page: string; category?: string }>;
 }) {
-  const { page, category } = await params;
-
-  const categories = await getCategories();
-
-  if (!categories.includes(category)) {
-    notFound();
-  }
-
-  const pageNum = Number(page);
-  const { totalPages } = await getPaginationTotals(category);
-
-  if (!Number.isInteger(pageNum) || pageNum < 1 || pageNum > totalPages) {
-    notFound();
-  }
-
-  return <Blog page={pageNum} category={category} />;
+  return <Blog params={params} categoryPage />;
 }

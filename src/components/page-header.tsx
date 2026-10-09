@@ -1,19 +1,21 @@
-import { Link } from "next-view-transitions";
+import Link from "next/link";
 
+import { BrandMark } from "@/components/brand-mark";
 import { MainNav } from "@/components/main-nav";
 import { MobileNav } from "@/components/mobile-nav";
 
 export function PageHeader() {
   return (
-    <header className="sticky top-0 z-50 w-full border-border/40 bg-card/95 backdrop-blur-sm supports-backdrop-filter:bg-card/60">
-      <div className="container flex h-14 max-w-(--breakpoint-xl) items-center justify-between">
-        <Link href="/" className="flex items-center gap-2">
-          <span className="text-lg font-bold">bruno-fernandes.dev</span>
+    <header className="site-header">
+      <div className="header-inner container">
+        <Link href="/" className="wordmark" aria-label="Bruno Fernandes — home">
+          <BrandMark />
+          <span>
+            bruno-fernandes<span className="domain-end">.dev</span>
+          </span>
         </Link>
-        <div className="flex">
-          <MainNav />
-          <MobileNav />
-        </div>
+        <MainNav />
+        <MobileNav />
       </div>
     </header>
   );

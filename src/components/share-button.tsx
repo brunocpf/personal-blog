@@ -1,63 +1,39 @@
 "use client";
 
-import { Share2Icon } from "@radix-ui/react-icons";
+import { useState } from "react";
 
-import { Button } from "@/components/ui/button";
-import {
-  Tooltip,
-  TooltipProvider,
-  TooltipTrigger,
-  TooltipContent,
-} from "@/components/ui/tooltip";
+import { Check, Share2 } from "@/components/site-icon";
 
 export interface ShareButtonProps {
   url: string;
   title: string;
   text: string;
 }
-
 export function ShareButton({ title, url, text }: ShareButtonProps) {
-  const handleShare = async () => {
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title,
-          url,
-          text,
-        });
-      } catch (error) {
-        if (error instanceof DOMException && error.name === "AbortError") {
-          console.warn("Sharing aborted:", error);
-          return;
-        } else if (
-          error instanceof DOMException &&
-          error.name === "InvalidStateError"
-        ) {
-          console.warn("Sharing failed: Invalid state", error);
-        } else {
-          console.error("Error sharing:", error);
-        }
+  const [status, setStatus] = useState("");
+  async function share() {
+    try {
+      if (navigator.share) await navigator.share({ title, url, text });
+      else {
+        await navigator.clipboard.writeText(url);
+        setStatus("Link copied");
       }
+    } catch (error) {
+      if (error instanceof DOMException && error.name === "AbortError") return;
+      setStatus("Couldn’t share. Copy the address from your browser.");
     }
-  };
-
+  }
   return (
-    <TooltipProvider>
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <Button
-            onClick={handleShare}
-            className="h-fit w-fit rounded-full p-2 text-primary hover:bg-accent focus-visible:bg-accent cursor-pointer"
-            aria-label="Share this post"
-            variant="link"
-          >
-            <Share2Icon />
-          </Button>
-        </TooltipTrigger>
-        <TooltipContent>
-          <p className="not-prose">Share this post</p>
-        </TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
+    <div className="share-control">
+      <button className="text-link" onClick={share}>
+        {status === "Link copied" ? (
+          <Check size={17} aria-hidden="true" />
+        ) : (
+          <Share2 size={17} aria-hidden="true" />
+        )}{" "}
+        Share post
+      </button>
+      <span role="status">{status}</span>
+    </div>
   );
 }

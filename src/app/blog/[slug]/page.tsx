@@ -1,154 +1,138 @@
-import { ResolvingMetadata } from "next";
-import { groq, PortableTextBlock, toPlainText } from "next-sanity";
-import { Link } from "next-view-transitions";
+import type { Metadata } from "next";
+import { toPlainText } from "next-sanity";
+import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Suspense, ViewTransition } from "react";
 
-import client from "@/client";
+import { ArticleSkeleton } from "@/components/content-skeleton";
 import { CustomMarkdownText } from "@/components/custom-markdown-text";
 import { ShareButton } from "@/components/share-button";
-import { dateFormatter } from "@/lib/utils";
+import { ArrowLeft, ArrowUpRight } from "@/components/site-icon";
+import { getPost, getPostSlugs } from "@/lib/content";
+import { articleTransition } from "@/lib/transitions";
 
 interface BlogPostProps {
-  params: Promise<{
-    slug: string;
-  }>;
+  params: Promise<{ slug: string }>;
 }
+const dateFormat = new Intl.DateTimeFormat("en", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+  timeZone: "UTC",
+});
 
-export const revalidate = 3600;
-
-export default async function BlogPost(props: BlogPostProps) {
-  const params = await props.params;
-
-  const { slug } = params;
-
-  const post = await client.fetch<
-    | {
-        title: string;
-        bodyMd: string;
-        summary: PortableTextBlock[];
-        publishedAt: string;
-        author?: { name: string };
-        categories?: { title: string }[];
-      }
-    | undefined
-  >(
-    groq`
-    *[_type == "post" && slug.current == $slug][0]{
-        title,
-        bodyMd,
-        publishedAt,
-        summary,
-        author->{
-          name
-        },
-        categories[]->{
-            title
-        }
-    }`,
-    { slug },
+async function BlogPostContent({ params }: BlogPostProps) {
+  const { slug } = await params;
+  const post = await getPost(slug);
+  if (!post) notFound();
+  const readingMinutes = Math.max(
+    1,
+    Math.ceil(post.bodyMd.split(/\s+/).length / 220),
   );
-
-  if (!post) {
-    notFound();
-  }
-
-  const formattedDate = dateFormatter.format(new Date(post.publishedAt));
-
+  // CMS markdown historically includes its own title; the page owns the single h1.
+  const body = post.bodyMd.replace(/^\s*# [^\n]+\r?\n/, "");
   return (
-    <div className="min-h-screen bg-card">
-      <div className="container py-8">
-        <article
-          className="article-view rounded bg-card shadow-lg dark:border-2"
-          style={{
-            viewTransitionName: `article-view-${slug}`,
-          }}
-        >
-          <div
-            className="flex justify-between bg-background px-2 pt-10"
-            style={{
-              viewTransitionName: `article-view-header-${slug}`,
-            }}
-          >
-            <span
-              style={{
-                viewTransitionName: `article-view-timestamp-${slug}`,
-              }}
+    <>
+      <ViewTransition
+        name={articleTransition(slug, "surface")}
+        default="none"
+        share="article-surface"
+      >
+        <header className="article-header container">
+          <div className="article-meta">
+            <ViewTransition
+              name={articleTransition(slug, "date")}
+              default="none"
+              share="article-date"
             >
-              {formattedDate}
-            </span>
-            <span
-              style={{
-                viewTransitionName: `article-view-author-${slug}`,
-              }}
-            >
-              {post.author?.name}
-            </span>
+              <time dateTime={post.publishedAt}>
+                {dateFormat.format(new Date(post.publishedAt))}
+              </time>
+            </ViewTransition>
+            <span>{readingMinutes} min read</span>
           </div>
-          <div
-            className="prose min-w-full p-4"
-            style={{
-              viewTransitionName: `article-view-content-${slug}`,
-            }}
+          <ViewTransition
+            name={articleTransition(slug, "title")}
+            default="none"
+            share="article-title"
           >
-            <CustomMarkdownText value={post.bodyMd} />
-          </div>
-          <aside className="prose flex min-w-full flex-wrap gap-2 bg-background px-2 py-4">
+            <h1>{post.title}</h1>
+          </ViewTransition>
+          <ViewTransition
+            name={articleTransition(slug, "summary")}
+            default="none"
+            share="article-summary"
+          >
+            <p className="article-deck">{toPlainText(post.summary ?? [])}</p>
+          </ViewTransition>
+          <div className="article-byline">
+            <span>By {post.author?.name ?? "Bruno Fernandes"}</span>
             <ShareButton
               title={post.title}
               url={`https://bruno-fernandes.dev/blog/${slug}`}
-              text={`"${toPlainText(post.summary)}"`}
+              text={toPlainText(post.summary ?? [])}
             />
-            {post.categories?.map((category) => (
-              <Link
-                key={category.title}
-                href={`/blog/categories/${category.title}`}
-              >{`#${category.title}`}</Link>
-            ))}
-          </aside>
-        </article>
+          </div>
+        </header>
+      </ViewTransition>
+      <div className="article-content prose">
+        <CustomMarkdownText value={body} />
       </div>
-    </div>
+      <aside className="article-end">
+        <p>Filed under</p>
+        <div className="post-topics">
+          {post.categories?.map((c) => (
+            <Link
+              prefetch={true}
+              key={c.title}
+              href={`/blog/categories/${encodeURIComponent(c.title)}`}
+            >
+              {c.title}
+            </Link>
+          ))}
+        </div>
+        <Link prefetch={true} className="text-link" href="/blog">
+          All posts <ArrowUpRight size={18} aria-hidden="true" />
+        </Link>
+      </aside>
+    </>
   );
 }
 
-export async function generateMetadata(
-  props: BlogPostProps,
-  parent: ResolvingMetadata,
-) {
-  const params = await props.params;
-
-  const { slug } = params;
-
-  const post = await client.fetch<
-    | {
-        title: string;
-        summary: PortableTextBlock[];
-      }
-    | undefined
-  >(
-    groq`
-    *[_type == "post" && slug.current == $slug][0]{
-        title,
-        summary
-    }`,
-    { slug },
-  );
-
+export async function generateMetadata({
+  params,
+}: BlogPostProps): Promise<Metadata> {
+  const { slug } = await params;
+  const post = await getPost(slug);
+  if (!post) return { title: "Story not found" };
   return {
-    title: `${post?.title ?? (await parent).title} | bruno-fernandes.dev`,
-    description: post?.summary
-      ? toPlainText(post?.summary)
-      : (await parent).description,
+    title: post.title,
+    description: toPlainText(post.summary ?? []),
+    alternates: { canonical: `/blog/${slug}` },
+    openGraph: {
+      type: "article",
+      title: post.title,
+      publishedTime: post.publishedAt,
+    },
   };
 }
 
 export async function generateStaticParams() {
-  const paths = await client.fetch<string[]>(
-    groq`
-    *[_type == "post" && defined(slug.current)][].slug.current`,
-  );
+  return (await getPostSlugs()).map((slug) => ({ slug }));
+}
 
-  return paths.map((path) => ({
-    slug: path,
-  }));
+export default function BlogPost({ params }: BlogPostProps) {
+  return (
+    <article className="reading-page">
+      <div className="reading-progress" aria-hidden="true" />
+      <div className="article-navigation container">
+        <Link prefetch={true} className="text-link subtle-link" href="/blog">
+          <ArrowLeft size={18} aria-hidden="true" /> All posts
+        </Link>
+      </div>
+      <Suspense fallback={<ArticleSkeleton />}>
+        <BlogPostContent params={params} />
+      </Suspense>
+    </article>
+  );
 }

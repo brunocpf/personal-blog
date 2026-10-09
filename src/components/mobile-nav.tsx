@@ -1,72 +1,54 @@
 "use client";
 
-import { HamburgerMenuIcon } from "@radix-ui/react-icons";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 import { NavLink } from "@/components/nav-link";
+import { Menu, X } from "@/components/site-icon";
 import { ThemeToggler } from "@/components/theme-toggler";
-import { Button } from "@/components/ui/button";
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
 
 export function MobileNav() {
-  const [open, setOpen] = useState(false);
-
+  const pathname = usePathname();
+  const [openPath, setOpenPath] = useState<string | null>(null);
+  const open = openPath === pathname;
   return (
-    <Sheet open={open} onOpenChange={setOpen}>
-      <SheetTrigger asChild>
-        <Button
-          variant="ghost"
-          className="mr-2 px-0 text-base opacity-70 transition-opacity hover:bg-transparent hover:opacity-100 focus-visible:bg-transparent md:hidden cursor-pointer"
-          aria-label="Menu"
-        >
-          <HamburgerMenuIcon className="h-8 w-8" />
-        </Button>
-      </SheetTrigger>
-      <SheetContent
-        style={{
-          viewTransitionName: "mobile-nav",
-        }}
+    <div className="mobile-nav">
+      <ThemeToggler />
+      <button
+        className="icon-button"
+        aria-label={open ? "Close menu" : "Open menu"}
+        aria-expanded={open}
+        aria-controls="mobile-navigation"
+        onClick={() => setOpenPath(open ? null : pathname)}
       >
-        <SheetHeader className="mt-10">
-          <SheetTitle className="sr-only cursor-default">
-            bruno-fernandes.dev
-          </SheetTitle>
-          <SheetDescription className="sr-only">Nav</SheetDescription>
-          <div className="flex w-full justify-center">
-            <ThemeToggler />
-          </div>
-        </SheetHeader>
-        <nav className="my-4 flex flex-col gap-3">
-          <div>
-            <NavLink href="/">Home</NavLink>
-          </div>
-          <div>
-            <NavLink href="/blog">Blog</NavLink>
-          </div>
-          <div>
-            <NavLink href="/about">About</NavLink>
-          </div>
-          <div>
-            <NavLink href="/contact">Contact</NavLink>
-          </div>
+        {open ? (
+          <X aria-hidden="true" size={22} />
+        ) : (
+          <Menu aria-hidden="true" size={22} />
+        )}
+      </button>
+      {open && (
+        <nav
+          id="mobile-navigation"
+          aria-label="Mobile navigation"
+          onClick={() => setOpenPath(null)}
+          onKeyDown={(event) => {
+            if (event.key === "Escape") {
+              setOpenPath(null);
+              document
+                .querySelector<HTMLButtonElement>(
+                  '[aria-controls="mobile-navigation"]',
+                )
+                ?.focus();
+            }
+          }}
+        >
+          <NavLink href="/">Home</NavLink>
+          <NavLink href="/blog">Writing</NavLink>
+          <NavLink href="/about">About</NavLink>
+          <NavLink href="/contact">Contact</NavLink>
         </nav>
-      </SheetContent>
-      <style jsx global>{`
-        ::view-transition-group(mobile-nav) {
-          z-index: 99999;
-        }
-
-        ::view-transition-group(sheet-overlay) {
-          z-index: 99999;
-        }
-      `}</style>
-    </Sheet>
+      )}
+    </div>
   );
 }

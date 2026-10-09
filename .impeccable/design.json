@@ -1,0 +1,438 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-09T02:14:19.872709+00:00",
+  "title": "Design System: Bruno Fernandes — Blog",
+  "extensions": {
+    "colorMeta": {
+      "background": {
+        "role": "neutral",
+        "displayName": "Warm Paper",
+        "tonalRamp": [
+          "oklch(15% 0.0025 84.56)",
+          "oklch(26% 0.0025 84.56)",
+          "oklch(38% 0.0025 84.56)",
+          "oklch(49% 0.0025 84.56)",
+          "oklch(61% 0.0025 84.56)",
+          "oklch(72% 0.0025 84.56)",
+          "oklch(84% 0.0025 84.56)",
+          "oklch(95% 0.0025 84.56)"
+        ]
+      },
+      "foreground": {
+        "role": "neutral",
+        "displayName": "Charcoal Ink",
+        "tonalRamp": [
+          "oklch(15% 0.0116 271.00)",
+          "oklch(26% 0.0116 271.00)",
+          "oklch(38% 0.0116 271.00)",
+          "oklch(49% 0.0116 271.00)",
+          "oklch(61% 0.0116 271.00)",
+          "oklch(72% 0.0116 271.00)",
+          "oklch(84% 0.0116 271.00)",
+          "oklch(95% 0.0116 271.00)"
+        ]
+      },
+      "secondary": {
+        "role": "primary",
+        "displayName": "Burgundy",
+        "tonalRamp": [
+          "oklch(15% 0.1382 13.62)",
+          "oklch(26% 0.1382 13.62)",
+          "oklch(38% 0.1382 13.62)",
+          "oklch(49% 0.1382 13.62)",
+          "oklch(61% 0.1382 13.62)",
+          "oklch(72% 0.1382 13.62)",
+          "oklch(84% 0.1382 13.62)",
+          "oklch(95% 0.1382 13.62)"
+        ]
+      },
+      "secondary-foreground": {
+        "role": "primary",
+        "displayName": "White Accent Ink",
+        "tonalRamp": [
+          "oklch(15% 0.0000 89.88)",
+          "oklch(26% 0.0000 89.88)",
+          "oklch(38% 0.0000 89.88)",
+          "oklch(49% 0.0000 89.88)",
+          "oklch(61% 0.0000 89.88)",
+          "oklch(72% 0.0000 89.88)",
+          "oklch(84% 0.0000 89.88)",
+          "oklch(95% 0.0000 89.88)"
+        ]
+      },
+      "border": {
+        "role": "neutral",
+        "displayName": "Warm Rule",
+        "tonalRamp": [
+          "oklch(15% 0.0057 67.75)",
+          "oklch(26% 0.0057 67.75)",
+          "oklch(38% 0.0057 67.75)",
+          "oklch(49% 0.0057 67.75)",
+          "oklch(61% 0.0057 67.75)",
+          "oklch(72% 0.0057 67.75)",
+          "oklch(84% 0.0057 67.75)",
+          "oklch(95% 0.0057 67.75)"
+        ]
+      },
+      "surface-soft": {
+        "role": "neutral",
+        "displayName": "Soft Stone",
+        "tonalRamp": [
+          "oklch(15% 0.0052 67.76)",
+          "oklch(26% 0.0052 67.76)",
+          "oklch(38% 0.0052 67.76)",
+          "oklch(49% 0.0052 67.76)",
+          "oklch(61% 0.0052 67.76)",
+          "oklch(72% 0.0052 67.76)",
+          "oklch(84% 0.0052 67.76)",
+          "oklch(95% 0.0052 67.76)"
+        ]
+      },
+      "color-quiet": {
+        "role": "neutral",
+        "displayName": "Quiet Ink",
+        "tonalRamp": [
+          "oklch(15% 0.0116 305.23)",
+          "oklch(26% 0.0116 305.23)",
+          "oklch(38% 0.0116 305.23)",
+          "oklch(49% 0.0116 305.23)",
+          "oklch(61% 0.0116 305.23)",
+          "oklch(72% 0.0116 305.23)",
+          "oklch(84% 0.0116 305.23)",
+          "oklch(95% 0.0116 305.23)"
+        ]
+      },
+      "accent-fill": {
+        "role": "primary",
+        "displayName": "Wine Feature",
+        "tonalRamp": [
+          "oklch(15% 0.1377 13.28)",
+          "oklch(26% 0.1377 13.28)",
+          "oklch(38% 0.1377 13.28)",
+          "oklch(49% 0.1377 13.28)",
+          "oklch(61% 0.1377 13.28)",
+          "oklch(72% 0.1377 13.28)",
+          "oklch(84% 0.1377 13.28)",
+          "oklch(95% 0.1377 13.28)"
+        ]
+      },
+      "accent-ink": {
+        "role": "primary",
+        "displayName": "Pale Feature Ink",
+        "tonalRamp": [
+          "oklch(15% 0.0098 25.07)",
+          "oklch(26% 0.0098 25.07)",
+          "oklch(38% 0.0098 25.07)",
+          "oklch(49% 0.0098 25.07)",
+          "oklch(61% 0.0098 25.07)",
+          "oklch(72% 0.0098 25.07)",
+          "oklch(84% 0.0098 25.07)",
+          "oklch(95% 0.0098 25.07)"
+        ]
+      },
+      "dark-background": {
+        "role": "neutral",
+        "displayName": "Warm Charcoal",
+        "tonalRamp": [
+          "oklch(15% 0.0051 345.73)",
+          "oklch(26% 0.0051 345.73)",
+          "oklch(38% 0.0051 345.73)",
+          "oklch(49% 0.0051 345.73)",
+          "oklch(61% 0.0051 345.73)",
+          "oklch(72% 0.0051 345.73)",
+          "oklch(84% 0.0051 345.73)",
+          "oklch(95% 0.0051 345.73)"
+        ]
+      },
+      "dark-foreground": {
+        "role": "neutral",
+        "displayName": "Warm Light Ink",
+        "tonalRamp": [
+          "oklch(15% 0.0053 67.76)",
+          "oklch(26% 0.0053 67.76)",
+          "oklch(38% 0.0053 67.76)",
+          "oklch(49% 0.0053 67.76)",
+          "oklch(61% 0.0053 67.76)",
+          "oklch(72% 0.0053 67.76)",
+          "oklch(84% 0.0053 67.76)",
+          "oklch(95% 0.0053 67.76)"
+        ]
+      },
+      "dark-secondary": {
+        "role": "primary",
+        "displayName": "Muted Rose",
+        "tonalRamp": [
+          "oklch(15% 0.0721 5.71)",
+          "oklch(26% 0.0721 5.71)",
+          "oklch(38% 0.0721 5.71)",
+          "oklch(49% 0.0721 5.71)",
+          "oklch(61% 0.0721 5.71)",
+          "oklch(72% 0.0721 5.71)",
+          "oklch(84% 0.0721 5.71)",
+          "oklch(95% 0.0721 5.71)"
+        ]
+      },
+      "dark-secondary-foreground": {
+        "role": "primary",
+        "displayName": "Deep Wine Ink",
+        "tonalRamp": [
+          "oklch(15% 0.0292 3.10)",
+          "oklch(26% 0.0292 3.10)",
+          "oklch(38% 0.0292 3.10)",
+          "oklch(49% 0.0292 3.10)",
+          "oklch(61% 0.0292 3.10)",
+          "oklch(72% 0.0292 3.10)",
+          "oklch(84% 0.0292 3.10)",
+          "oklch(95% 0.0292 3.10)"
+        ]
+      },
+      "dark-border": {
+        "role": "neutral",
+        "displayName": "Charcoal Rule",
+        "tonalRamp": [
+          "oklch(15% 0.0093 345.73)",
+          "oklch(26% 0.0093 345.73)",
+          "oklch(38% 0.0093 345.73)",
+          "oklch(49% 0.0093 345.73)",
+          "oklch(61% 0.0093 345.73)",
+          "oklch(72% 0.0093 345.73)",
+          "oklch(84% 0.0093 345.73)",
+          "oklch(95% 0.0093 345.73)"
+        ]
+      },
+      "dark-surface-soft": {
+        "role": "neutral",
+        "displayName": "Raised Charcoal",
+        "tonalRamp": [
+          "oklch(15% 0.0057 337.68)",
+          "oklch(26% 0.0057 337.68)",
+          "oklch(38% 0.0057 337.68)",
+          "oklch(49% 0.0057 337.68)",
+          "oklch(61% 0.0057 337.68)",
+          "oklch(72% 0.0057 337.68)",
+          "oklch(84% 0.0057 337.68)",
+          "oklch(95% 0.0057 337.68)"
+        ]
+      },
+      "dark-color-quiet": {
+        "role": "neutral",
+        "displayName": "Quiet Rose Gray",
+        "tonalRamp": [
+          "oklch(15% 0.0124 342.75)",
+          "oklch(26% 0.0124 342.75)",
+          "oklch(38% 0.0124 342.75)",
+          "oklch(49% 0.0124 342.75)",
+          "oklch(61% 0.0124 342.75)",
+          "oklch(72% 0.0124 342.75)",
+          "oklch(84% 0.0124 342.75)",
+          "oklch(95% 0.0124 342.75)"
+        ]
+      },
+      "dark-accent-fill": {
+        "role": "primary",
+        "displayName": "Deep Burgundy Feature",
+        "tonalRamp": [
+          "oklch(15% 0.0348 355.69)",
+          "oklch(26% 0.0348 355.69)",
+          "oklch(38% 0.0348 355.69)",
+          "oklch(49% 0.0348 355.69)",
+          "oklch(61% 0.0348 355.69)",
+          "oklch(72% 0.0348 355.69)",
+          "oklch(84% 0.0348 355.69)",
+          "oklch(95% 0.0348 355.69)"
+        ]
+      },
+      "dark-accent-ink": {
+        "role": "primary",
+        "displayName": "Rose Feature Ink",
+        "tonalRamp": [
+          "oklch(15% 0.0244 358.32)",
+          "oklch(26% 0.0244 358.32)",
+          "oklch(38% 0.0244 358.32)",
+          "oklch(49% 0.0244 358.32)",
+          "oklch(61% 0.0244 358.32)",
+          "oklch(72% 0.0244 358.32)",
+          "oklch(84% 0.0244 358.32)",
+          "oklch(95% 0.0244 358.32)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Archive and secondary-page headings."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Article title."
+      },
+      "featured-title": {
+        "displayName": "Featured Title",
+        "purpose": "Featured post title."
+      },
+      "author-title": {
+        "displayName": "Author Title",
+        "purpose": "Compact author name."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "General interface and introductory copy."
+      },
+      "reading": {
+        "displayName": "Reading",
+        "purpose": "Long-form article prose."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Dates, topics, and footer details."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Underline, arrow, menu, and page transitions."
+      },
+      {
+        "name": "control-state",
+        "value": "160ms",
+        "purpose": "Color and background changes."
+      },
+      {
+        "name": "link-detail",
+        "value": "240ms",
+        "purpose": "Link arrow translation and navigation underline."
+      },
+      {
+        "name": "featured-arrow",
+        "value": "300ms",
+        "purpose": "Featured reading-action rotation."
+      },
+      {
+        "name": "shared-title",
+        "value": "420ms",
+        "purpose": "Native view-transition group duration."
+      },
+      {
+        "name": "page-enter",
+        "value": "350ms",
+        "purpose": "Page entry opacity and 8px translation."
+      },
+      {
+        "name": "page-leave",
+        "value": "180ms",
+        "purpose": "Page leave opacity."
+      },
+      {
+        "name": "menu-enter",
+        "value": "180ms",
+        "purpose": "Mobile menu opacity and vertical entry."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "intermediate",
+        "value": "1000px"
+      },
+      {
+        "name": "mobile",
+        "value": "700px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Solid action",
+      "kind": "button",
+      "refersTo": "button-solid",
+      "description": "Recovery and status-page actions.",
+      "html": "<button class=\"ds-solid\">Try again</button>",
+      "css": ".ds-solid{font-family:var(--font-body,\"Source Sans 3\"),sans-serif;display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:10px 22px;background:hsl(var(--secondary,348 58% 35%));color:hsl(var(--secondary-foreground,0 0% 100%));border:0;border-radius:99px;font-size:17px;font-weight:600;cursor:pointer}.ds-solid:hover{filter:brightness(1.1)}.ds-solid:focus-visible{outline:2px solid hsl(var(--secondary,348 58% 35%));outline-offset:5px;border-radius:3px}"
+    },
+    {
+      "name": "Icon action",
+      "kind": "button",
+      "refersTo": "button-icon",
+      "description": "Theme, menu, share, or image controls.",
+      "html": "<button class=\"ds-icon\" aria-label=\"Expand image\"><svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 17 17 7M7 7h10v10\"/></svg></button>",
+      "css": ".ds-icon{display:inline-grid;place-items:center;width:44px;height:44px;border-radius:50%;color:hsl(var(--foreground,225 9% 18%));background:transparent;border:1px solid hsl(var(--border,30 6% 79%));transition:background 160ms;cursor:pointer}.ds-icon:hover{background:var(--surface-soft,#e9e6e3)}.ds-icon:focus-visible{outline:2px solid hsl(var(--secondary,348 58% 35%));outline-offset:5px;border-radius:3px}"
+    },
+    {
+      "name": "Text action",
+      "kind": "button",
+      "refersTo": "link-text",
+      "description": "Low-weight navigation beside content.",
+      "html": "<a class=\"ds-text\" href=\"#writing\">All posts<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 17 17 7M7 7h10v10\"/></svg></a>",
+      "css": ".ds-text{font-family:var(--font-body,\"Source Sans 3\"),sans-serif;display:inline-flex;align-items:center;gap:10px;min-height:44px;color:hsl(var(--secondary,348 58% 35%));font-size:16px;font-weight:600;text-decoration:none;text-underline-offset:.22em}.ds-text:hover{text-decoration:underline}.ds-text svg{transition:translate 240ms var(--ease-out,cubic-bezier(0.16,1,0.3,1))}.ds-text:hover svg{translate:2px -2px}.ds-text:focus-visible{outline:2px solid hsl(var(--secondary,348 58% 35%));outline-offset:5px;border-radius:3px}@media(prefers-reduced-motion:reduce){.ds-text svg{transition:none}}"
+    },
+    {
+      "name": "Primary navigation",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Text navigation with a persistent current-page underline.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Main\"><a href=\"#home\" aria-current=\"page\">Home</a><a href=\"#writing\">Writing</a><a href=\"#about\">About</a><a href=\"#contact\">Contact</a></nav>",
+      "css": ".ds-nav{display:flex;flex-wrap:wrap;gap:24px;font-family:var(--font-body,\"Source Sans 3\"),sans-serif;}.ds-nav a{position:relative;display:inline-flex;align-items:center;min-height:44px;font-size:16px;color:var(--color-quiet,#646168);text-decoration:none;transition:color 160ms ease}.ds-nav a::after{content:\"\";position:absolute;bottom:2px;left:0;right:0;height:2px;background:hsl(var(--secondary,348 58% 35%));transform:scaleX(0);transform-origin:left;transition:transform 240ms var(--ease-out,cubic-bezier(0.16,1,0.3,1))}.ds-nav a:hover,.ds-nav a[aria-current]{color:hsl(var(--foreground,225 9% 18%))}.ds-nav a:hover::after,.ds-nav a[aria-current]::after{transform:scaleX(1)}.ds-nav a:focus-visible{outline:2px solid hsl(var(--secondary,348 58% 35%));outline-offset:5px;border-radius:3px}@media(prefers-reduced-motion:reduce){.ds-nav a::after{transition:none}}"
+    },
+    {
+      "name": "Category filters",
+      "kind": "chip",
+      "refersTo": "chip-topic",
+      "description": "Outlined archive filters and their selected state.",
+      "html": "<div class=\"ds-filters\"><a href=\"#all\" aria-current=\"page\">All posts</a><a href=\"#projects\">projects</a></div>",
+      "css": ".ds-filters{display:flex;gap:8px;font-family:var(--font-body,\"Source Sans 3\"),sans-serif;}.ds-filters a{display:inline-flex;align-items:center;min-height:44px;padding:8px 16px;border:1px solid hsl(var(--border,30 6% 79%));border-radius:99px;font-size:15px;color:hsl(var(--foreground,225 9% 18%));text-decoration:none;transition:background 160ms,color 160ms}.ds-filters a:hover{background:var(--surface-soft,#e9e6e3)}.ds-filters a[aria-current]{background:hsl(var(--secondary,348 58% 35%));color:hsl(var(--secondary-foreground,0 0% 100%));border-color:transparent}.ds-filters a:focus-visible{outline:2px solid hsl(var(--secondary,348 58% 35%));outline-offset:5px;border-radius:3px}"
+    },
+    {
+      "name": "Featured article",
+      "kind": "card",
+      "refersTo": "card-featured",
+      "description": "The index’s single emphasized article surface.",
+      "html": "<article class=\"ds-feature\"><time datetime=\"2026-01-14\">14 Jan 2026</time><div><h3><a href=\"#article\">Mnemos: A Local-First AI-Powered App</a></h3><p>A local-first notes app with on-device AI, offline semantic search, and a modern PWA stack</p><a class=\"ds-category\" href=\"#projects\">projects</a></div><a class=\"ds-read\" href=\"#article\"><svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 17 17 7M7 7h10v10\"/></svg><span>Read post</span></a></article>",
+      "css": ".ds-feature{font-family:var(--font-body,\"Source Sans 3\"),sans-serif;display:grid;grid-template-columns:143px 1fr 100px;gap:25px;padding:42px 38px;background:var(--accent-fill,#8d263b);color:var(--accent-ink,#fff6f5);border-radius:16px}.ds-feature time{font-size:14px;font-variant-numeric:tabular-nums;padding-top:8px}.ds-feature h3{font-family:var(--font-display,\"Bricolage Grotesque\"),sans-serif;font-size:clamp(1.7rem,3.2vw,2.6rem);font-weight:600;letter-spacing:-.022em;line-height:1.2;margin:0 0 18px;max-width:630px}.ds-feature a{color:inherit;text-decoration:none;text-underline-offset:.22em}.ds-feature h3 a:hover{text-decoration:underline;text-decoration-thickness:1px}.ds-feature p{font-size:17px;line-height:1.55;margin:0 0 14px;max-width:65ch}.ds-feature .ds-category{font-size:14px;min-height:32px;display:inline-flex;align-items:center;text-decoration:underline;text-decoration-color:color-mix(in srgb,currentColor 40%,transparent)}.ds-feature .ds-category:hover{text-decoration-color:currentColor}.ds-read{display:flex;flex-direction:column;align-items:center;align-self:center;justify-self:end;gap:16px;font-size:14px}.ds-read svg{width:30px;height:30px;padding:16px;border:1px solid currentColor;border-radius:50%;transition:rotate 300ms var(--ease-out,cubic-bezier(0.16,1,0.3,1))}.ds-read:hover svg{rotate:45deg}.ds-feature a:focus-visible{outline:2px solid hsl(var(--secondary,348 58% 35%));outline-offset:5px;border-radius:3px}@media(max-width:1000px){.ds-feature{grid-template-columns:1fr 85px;padding:30px}.ds-feature time{grid-column:1/-1}}@media(max-width:700px){.ds-feature{display:block;padding:25px}.ds-feature time{display:block;margin-bottom:25px}.ds-feature h3{font-size:31px}.ds-read{flex-direction:row;gap:12px;margin-top:20px}.ds-read svg{width:20px;height:20px;padding:8px}}@media(prefers-reduced-motion:reduce){.ds-read svg{transition:none}}@supports(corner-shape:squircle){.ds-feature{corner-shape:squircle;border-radius:32px}}"
+    },
+    {
+      "name": "Code container",
+      "kind": "custom",
+      "refersTo": "code-block",
+      "description": "Theme-aware code and a compact copy toolbar.",
+      "html": "<div class=\"ds-code\"><div class=\"ds-toolbar\"><span>TypeScript</span><button class=\"ds-copy\" aria-label=\"Copy code\"><svg width=\"19\" height=\"19\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><rect x=\"9\" y=\"9\" width=\"13\" height=\"13\" rx=\"2\"/><path d=\"M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1\"/></svg></button></div><pre><code>const title = \"Hello, world\";</code></pre></div>",
+      "css": ".ds-code{background:var(--surface-soft,#e9e6e3);color:hsl(var(--foreground,225 9% 18%));border-radius:12px;overflow:hidden;font-size:14px;line-height:1.6}.ds-toolbar{font-family:var(--font-body,\"Source Sans 3\"),sans-serif;display:flex;align-items:center;justify-content:space-between;gap:15px;padding:8px 14px 8px 20px;border-bottom:1px solid hsl(var(--border,30 6% 79%))}.ds-copy{display:inline-grid;place-items:center;width:44px;height:44px;border-radius:50%;background:transparent;color:hsl(var(--foreground,225 9% 18%));border:1px solid hsl(var(--border,30 6% 79%));transition:background 160ms;cursor:pointer}.ds-copy:hover{background:var(--surface-soft,#e9e6e3)}.ds-code pre{overflow-x:auto;font-family:monospace;padding:16px}.ds-copy:focus-visible{outline:2px solid hsl(var(--secondary,348 58% 35%));outline-offset:5px;border-radius:3px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Personal Reading Room",
+    "overview": "A calm, personal setting for published writing and software projects. Warm surfaces, expressive sans-serif headings, and precise rules give the blog character without competing with the author’s words. The compact author masthead and open index establish the current homepage; their composition is specified in `.impeccable/surfaces/blog.md`.\n\nThe system is flat, readable, and quietly responsive. Color marks links, selected categories, and the featured article. Motion explains navigation and state changes; portrait photography stays still. This description records the implemented design and the user’s delegated creative direction, not a new marketing message.",
+    "keyCharacteristics": [
+      "Warm paper and charcoal themes with burgundy and muted rose accents.",
+      "Bricolage Grotesque headings with Source Sans 3 reading text.",
+      "Open rows, date columns, thin rules, and a narrow reading measure.",
+      "Clear keyboard focus, stable page geometry, and optional motion."
+    ],
+    "rules": [
+      {
+        "name": "The Semantic Theme Rule",
+        "body": "Use the same semantic roles in both themes; burgundy becomes muted rose for controls while the featured surface remains a deep burgundy.",
+        "section": "colors"
+      },
+      {
+        "name": "The Flat Surface Rule",
+        "body": "Use spacing, rules, and tonal fills to separate content; the blog shell and article list have no decorative box shadows.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do use the existing semantic CSS variables so both themes remain coherent.",
+      "Do preserve the author’s published writing and factual biography.",
+      "Do keep article images in their original colors in both themes.",
+      "Do retain visible keyboard focus, accessible control names, and reduced-motion behavior.",
+      "Do use static loading geometry and a stable scrollbar gutter."
+    ],
+    "donts": [
+      "Don’t bring back the large marketing hero, slogans, or draggable portrait on the blog homepage.",
+      "Don’t reintroduce blue accents as the dark theme’s identity.",
+      "Don’t animate the author portrait or add shimmer to the content skeleton.",
+      "Don’t turn every article into a filled or elevated card.",
+      "Don’t add visible loading prose that displaces the reading layout."
+    ]
+  }
+}

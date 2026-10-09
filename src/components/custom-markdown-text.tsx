@@ -3,9 +3,8 @@ import type {
   MDXRemoteOptions,
   MDXComponents,
 } from "next-mdx-remote-client/rsc";
-import SyntaxHighlighter from "react-syntax-highlighter";
 
-import { ClipboardCopyButton } from "@/components/clipboard-copy-button";
+import { CodeBlock } from "@/components/code-block";
 import { ExpandableImage } from "@/components/expandable-image";
 
 const components: MDXComponents = {
@@ -21,9 +20,7 @@ const components: MDXComponents = {
       </a>
     );
   },
-  pre: (props) => {
-    return <pre {...props} className="not-prose" />;
-  },
+  pre: ({ children }) => <div className="not-prose">{children}</div>,
   blockquote: (props) => {
     return (
       <blockquote
@@ -32,42 +29,13 @@ const components: MDXComponents = {
       />
     );
   },
-  code: ({ children, className, ...rest }) => {
+  code: ({ children, className }) => {
     const language = className?.replace(/language-/, "");
-
-    if (language) {
-      return (
-        <span className="relative block dark:invert">
-          <div className="absolute top-2 right-2 z-10">
-            <ClipboardCopyButton text={children} className="dark:invert" />
-          </div>
-
-          <SyntaxHighlighter
-            showLineNumbers
-            showInlineLineNumbers
-            language={language}
-            wrapLines={false}
-            wrapLongLines={false}
-            customStyle={{
-              padding: "1em",
-              marginBottom: "2em",
-            }}
-            {...rest}
-          >
-            {children.replace(/\r?\n$/, "")}
-          </SyntaxHighlighter>
-        </span>
-      );
-    } else {
-      return (
-        <code
-          className="rounded bg-gray-100 px-1 py-0.5 whitespace-pre-wrap text-current dark:bg-black"
-          {...rest}
-        >
-          {children}
-        </code>
-      );
-    }
+    return language ? (
+      <CodeBlock language={language}>{children}</CodeBlock>
+    ) : (
+      <code className="inline-code">{children}</code>
+    );
   },
   img: ({ title, src, alt, ...rest }) => {
     if (typeof src !== "string" || src.length === 0) return null;

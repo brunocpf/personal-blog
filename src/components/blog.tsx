@@ -1,119 +1,127 @@
-import {
-  ArrowLeft as ArrowLeftIcon,
-  ArrowRight as ArrowRightIcon,
-} from "@geist-ui/icons";
-import { Link } from "next-view-transitions";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { cache, Suspense } from "react";
 
+import { ArchiveTitle, TopicLink } from "@/components/archive-location";
+import { PostListSkeleton, TextSkeleton } from "@/components/content-skeleton";
 import { PostList } from "@/components/post-list";
-import { Button } from "@/components/ui/button";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+import { ArrowLeft, ArrowRight } from "@/components/site-icon";
 import { getCategories } from "@/lib/blog-categories";
 import { getPaginationTotals, PAGE_SIZE } from "@/lib/blog-pagination";
-import { cn } from "@/lib/utils";
 
-interface BlogPostProps {
-  category?: string;
-  page?: number;
+type ArchiveParams = Promise<{ page: string; category?: string }>;
+
+// Reuse validation and totals across the independent count and results regions.
+const resolveArchive = cache(async (params: ArchiveParams) => {
+  const { category, page } = await params;
+  const pageNum = Number(page);
+  if (!Number.isInteger(pageNum) || pageNum < 1) notFound();
+  const [categories, totals] = await Promise.all([
+    getCategories(),
+    getPaginationTotals(category),
+  ]);
+  if (
+    (category && !categories.includes(category)) ||
+    pageNum > Math.max(totals.totalPages, 1)
+  )
+    notFound();
+  return { category, page: pageNum, ...totals };
+});
+
+async function PostCount({ params }: { params: ArchiveParams }) {
+  const { totalPosts } = await resolveArchive(params);
+  return (
+    <p>
+      {totalPosts} {totalPosts === 1 ? "post" : "posts"}
+    </p>
+  );
 }
 
-export default async function Blog({ category, page = 1 }: BlogPostProps) {
+async function Topics() {
   const categories = await getCategories();
-  const { totalPosts } = await getPaginationTotals(category);
-
-  const isLastPage = page * PAGE_SIZE >= totalPosts;
-
   return (
-    <div className="min-h-screen bg-card">
-      <div className="container pt-2">
-        <div className="prose flex min-w-full flex-wrap gap-2 rounded-xl bg-background p-2">
-          <Link
-            href="/blog"
-            className={cn({
-              "font-bold underline": !category,
-            })}
-          >
-            All
-          </Link>
-          {categories.map((c) => (
-            <Link
-              key={c}
-              href={`/blog/categories/${c}`}
-              className={cn({
-                "font-bold underline": c === category,
-              })}
-            >
-              #{c}
-            </Link>
-          ))}
-        </div>
-      </div>
-      <div className="flex flex-col sm:flex-col-reverse">
-        <PostList category={category} pageSize={PAGE_SIZE} page={page} />
-        <TooltipProvider>
-          <div className="flex container gap-2 pb-8 sm:pb-0 sm:pt-8 justify-center">
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  variant="link"
-                  className="h-fit w-fit rounded-full p-2 text-primary hover:bg-accent focus-visible:bg-accent aria-disabled:pointer-events-none aria-disabled:opacity-50"
-                  asChild
-                  disabled={page === 1}
-                  aria-disabled={page === 1}
-                  aria-label="Previous page"
-                >
-                  <Link
-                    href={
-                      page === 1
-                        ? ""
-                        : category
-                          ? `/blog/categories/${category}/${page - 1}`
-                          : `/blog/pages/${page - 1}`
-                    }
-                  >
-                    <ArrowLeftIcon className="w-6 h-6" />
-                  </Link>
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Previous page</p>
-              </TooltipContent>
-            </Tooltip>
+    <>
+      {categories.sort().map((category) => (
+        <TopicLink key={category} category={category}>
+          {category}
+        </TopicLink>
+      ))}
+    </>
+  );
+}
 
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  variant="link"
-                  className="h-fit w-fit rounded-full p-2 text-primary hover:bg-accent focus-visible:bg-accent aria-disabled:pointer-events-none aria-disabled:opacity-50"
-                  asChild
-                  disabled={isLastPage}
-                  aria-disabled={isLastPage}
-                  aria-label="Next page"
-                >
-                  <Link
-                    href={
-                      isLastPage
-                        ? ""
-                        : category
-                          ? `/blog/categories/${category}/${page + 1}`
-                          : `/blog/pages/${page + 1}`
-                    }
-                  >
-                    <ArrowRightIcon className="w-6 h-6" />
-                  </Link>
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Next page</p>
-              </TooltipContent>
-            </Tooltip>
-          </div>
-        </TooltipProvider>
+async function ArchiveResults({ params }: { params: ArchiveParams }) {
+  const { category, page, totalPosts, totalPages } =
+    await resolveArchive(params);
+  const pageLink = (n: number) =>
+    category
+      ? `/blog/categories/${encodeURIComponent(category)}/${n}`
+      : `/blog/pages/${n}`;
+  return (
+    <>
+      <h2 className="sr-only">
+        {category ? `${category} posts` : "All posts"}
+      </h2>
+      <PostList category={category} pageSize={PAGE_SIZE} page={page} />
+      <nav className="pagination" aria-label="Article pages">
+        {page > 1 ? (
+          <Link prefetch={true} className="text-link" href={pageLink(page - 1)}>
+            <ArrowLeft size={18} aria-hidden="true" /> Newer posts
+          </Link>
+        ) : (
+          <span className="disabled-page" aria-disabled="true">
+            <ArrowLeft size={18} aria-hidden="true" /> Newer posts
+          </span>
+        )}
+        <span>
+          Page {page} of {Math.max(totalPages, 1)}
+        </span>
+        {page * PAGE_SIZE < totalPosts ? (
+          <Link prefetch={true} className="text-link" href={pageLink(page + 1)}>
+            Older posts <ArrowRight size={18} aria-hidden="true" />
+          </Link>
+        ) : (
+          <span className="disabled-page" aria-disabled="true">
+            Older posts <ArrowRight size={18} aria-hidden="true" />
+          </span>
+        )}
+      </nav>
+    </>
+  );
+}
+
+export default function Blog({
+  params,
+  categoryPage = false,
+}: {
+  params: ArchiveParams;
+  categoryPage?: boolean;
+}) {
+  return (
+    <section className="archive-page container">
+      <div className="archive-heading">
+        {categoryPage ? (
+          <Suspense fallback={<h1>Writing</h1>}>
+            <ArchiveTitle />
+          </Suspense>
+        ) : (
+          <h1>Writing</h1>
+        )}
+        <Suspense fallback={<TextSkeleton label="Loading post count" />}>
+          <PostCount params={params} />
+        </Suspense>
       </div>
-    </div>
+      <nav className="topic-filter" aria-label="Filter writing by topic">
+        <Suspense fallback={<Link href="/blog">All posts</Link>}>
+          <TopicLink>All posts</TopicLink>
+        </Suspense>
+        <Suspense fallback={<TextSkeleton label="Loading topics" />}>
+          <Topics />
+        </Suspense>
+      </nav>
+      <Suspense fallback={<PostListSkeleton />}>
+        <ArchiveResults params={params} />
+      </Suspense>
+    </section>
   );
 }

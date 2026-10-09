@@ -1,8 +1,8 @@
-import { MoreHorizontal as MoreIcon } from "@geist-ui/icons";
-import { Link } from "next-view-transitions";
+import Link from "next/link";
+import { ViewTransition } from "react";
 
-import { Button } from "@/components/ui/button";
-import { dateFormatter } from "@/lib/utils";
+import { ArrowUpRight } from "@/components/site-icon";
+import { articleTransition } from "@/lib/transitions";
 
 export interface PostSummaryCardProps {
   slug: string;
@@ -12,84 +12,90 @@ export interface PostSummaryCardProps {
   publishedAt: Date;
   categories: string[];
   summary: string;
+  featured?: boolean;
 }
+
+const dateFormat = new Intl.DateTimeFormat("en", {
+  day: "numeric",
+  month: "short",
+  year: "numeric",
+  timeZone: "UTC",
+});
 
 export function PostSummaryCard({
   slug,
   isDraft,
   title,
-  author,
   publishedAt,
   categories,
   summary,
+  featured = false,
 }: PostSummaryCardProps) {
-  const formattedDate = dateFormatter.format(publishedAt);
-
   return (
-    <div>
-      <div
-        className="bg-card animate-on-view min-w-48 rounded shadow-lg dark:border-2"
-        style={{
-          viewTransitionName: `article-view-${slug}`,
-        }}
+    <ViewTransition
+      name={articleTransition(slug, "surface")}
+      default="none"
+      share="article-surface"
+    >
+      <article
+        className={featured ? "post-entry featured-entry" : "post-entry"}
       >
-        <div
-          className="bg-background flex justify-between px-2 pt-6"
-          style={{
-            viewTransitionName: `article-view-header-${slug}`,
-          }}
-        >
-          <span
-            style={{
-              viewTransitionName: `article-view-timestamp-${slug}`,
-            }}
+        <div className="post-date">
+          <ViewTransition
+            name={articleTransition(slug, "date")}
+            default="none"
+            share="article-date"
           >
-            {formattedDate}
-          </span>
-          <span
-            style={{
-              viewTransitionName: `article-view-author-${slug}`,
-            }}
-          >
-            {author}
-          </span>
+            <time dateTime={publishedAt.toISOString()}>
+              {dateFormat.format(publishedAt)}
+            </time>
+          </ViewTransition>
         </div>
-        <div
-          style={{
-            viewTransitionName: `article-view-content-${slug}`,
-          }}
-          className="prose prose-h2:mb-3 prose-h2:text-xl/[1.6] min-h-28 p-2"
-        >
-          <h2>
-            <Link href={`/blog/${slug}`}>{title}</Link>{" "}
-            {isDraft ? (
-              <span className="not-prose text-xs">(Draft)</span>
-            ) : null}
-          </h2>
-
-          <span className="flex flex-wrap gap-2">
+        <div className="post-entry-body">
+          <ViewTransition
+            name={articleTransition(slug, "title")}
+            default="none"
+            share="article-title"
+          >
+            <h3>
+              <Link prefetch={true} href={`/blog/${slug}`}>
+                {title}
+                {isDraft && <small> (Draft)</small>}
+                <ArrowUpRight className="post-arrow" aria-hidden="true" />
+              </Link>
+            </h3>
+          </ViewTransition>
+          <ViewTransition
+            name={articleTransition(slug, "summary")}
+            default="none"
+            share="article-summary"
+          >
+            <p>{summary}</p>
+          </ViewTransition>
+          <div className="post-topics">
             {categories.map((category) => (
               <Link
+                prefetch={true}
                 key={category}
-                href={`/blog/categories/${category}`}
-              >{`#${category}`}</Link>
+                href={`/blog/categories/${encodeURIComponent(category)}`}
+              >
+                {category}
+              </Link>
             ))}
-          </span>
-          <p>{summary}</p>
+          </div>
         </div>
-        <div className="flex justify-center px-2 py-2">
-          <Button
-            variant="link"
-            className="text-primary hover:bg-accent focus-visible:bg-accent h-fit w-fit rounded-full p-2"
-            asChild
-            title="More"
+        {featured && (
+          <Link
+            prefetch={true}
+            className="featured-read"
+            href={`/blog/${slug}`}
+            aria-label={`Read ${title}`}
           >
-            <Link href={`/blog/${slug}`}>
-              <MoreIcon className="h-6 w-6" />
-            </Link>
-          </Button>
-        </div>
-      </div>
-    </div>
+            <ArrowUpRight aria-hidden="true" size={30} />
+            <span>Read post</span>
+          </Link>
+        )}
+      </article>
+    </ViewTransition>
   );
 }

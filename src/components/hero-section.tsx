@@ -1,40 +1,39 @@
 import Image from "next/image";
+import Link from "next/link";
 
-import { ContactLinks } from "@/components/contact-links";
+import { ArrowUpRight } from "@/components/site-icon";
 
-import image from "../../public/img/hero.jpg";
-
-const bio = `I'm a software developer located in Belo Horizonte (MG), Brazil. I currently work full time as a web developer, but I'm always open to taking on new exciting projects. This is my space on the internet, where I share my projects, experiences and discoveries, both as a developer and in my personal life.`;
+import portrait from "../../public/img/hero.jpg";
 
 export function HeroSection() {
   return (
-    <div className="animate-on-view container flex flex-wrap py-8">
-      <div className="max-w-60 grow-0 basis-1/3">
-        <div className="relative h-0 w-full overflow-hidden rounded-full pb-[100%]">
-          <Image
-            src={image}
-            alt="Hero Image"
-            className="relative bottom-[45px] object-cover sm:bottom-[65px]"
-            sizes="50vw"
-            draggable={false}
-            priority
-          />
-        </div>
+    <section className="author-intro container" aria-labelledby="intro-title">
+      <div className="intro-copy">
+        <h1 id="intro-title">
+          Bruno Fernandes<span aria-hidden="true">.</span>
+        </h1>
+        <p>
+          Software developer in Belo Horizonte, Brazil.
+          <br className="intro-break" /> I write about web development and my
+          projects.
+        </p>
+        <Link href="/about" className="text-link intro-about">
+          More about me <ArrowUpRight size={18} />
+        </Link>
       </div>
-      <div className="ml-8 flex-1">
-        <header>
-          <h1 className="text-xl font-semibold">Bruno Fernandes</h1>
-          <p>Software Engineer, Web Developer, App Developer</p>
-        </header>
-        <p className="mt-8 hidden sm:block">{bio}</p>
-        <div className="my-1 hidden w-fit sm:block">
-          <ContactLinks size="md" />
-        </div>
+      <div className="portrait-composition">
+        <div className="portrait-outline" aria-hidden="true" />
+        <Image
+          src={portrait}
+          alt="Bruno Fernandes"
+          width={160}
+          height={160}
+          sizes="(max-width: 700px) 88px, 160px"
+          className="author-portrait"
+          draggable={false}
+          preload
+        />
       </div>
-      <p className="mt-8 block sm:hidden">{bio}</p>
-      <div className="my-1 block w-fit sm:hidden">
-        <ContactLinks size="md" />
-      </div>
-    </div>
+    </section>
   );
 }

@@ -1,9 +1,5 @@
-import { notFound } from "next/navigation";
-
 import Blog from "@/components/blog";
 import { getPaginationTotals } from "@/lib/blog-pagination";
-
-export const dynamicParams = false;
 
 export async function generateMetadata({
   params,
@@ -14,10 +10,7 @@ export async function generateMetadata({
 
   const pageNum = Number(page);
   return {
-    title:
-      pageNum === 1
-        ? "Blog | bruno-fernandes.dev"
-        : `Blog – Page ${pageNum} | bruno-fernandes.dev`,
+    title: pageNum === 1 ? "Writing" : `Blog – Page ${pageNum}`,
     description: "Bruno's blog",
     alternates: {
       canonical: pageNum === 1 ? "/blog/pages/1" : `/blog/pages/${pageNum}`,
@@ -33,19 +26,10 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function BlogPage({
+export default function BlogPage({
   params,
 }: {
-  params: Promise<{ page: string }>;
+  params: Promise<{ page: string; category?: string }>;
 }) {
-  const { page } = await params;
-
-  const pageNum = Number(page);
-  const { totalPages } = await getPaginationTotals();
-
-  if (!Number.isInteger(pageNum) || pageNum < 1 || pageNum > totalPages) {
-    notFound();
-  }
-
-  return <Blog page={pageNum} />;
+  return <Blog params={params} />;
 }

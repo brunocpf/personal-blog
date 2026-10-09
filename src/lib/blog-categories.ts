@@ -1,15 +1,14 @@
 import { groq } from "next-sanity";
-import { cache } from "react";
+import { cacheLife, cacheTag } from "next/cache";
 
 import client from "@/client";
 
-export const getCategories = cache(async function () {
+export async function getCategories() {
+  "use cache";
+  cacheLife("hours");
+  cacheTag("blog-content");
   const categories = await client.fetch<{ title: string }[]>(
-    groq`
-    *[_type == "category"]{
-        title
-    }`,
+    groq`*[_type == "category" && defined(title)]{title}`,
   );
-
   return categories.map((cat) => cat.title);
-});
+}

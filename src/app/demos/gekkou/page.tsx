@@ -5,10 +5,16 @@ const middleLayerStars = 100;
 const foregroundLayerStars = 50;
 
 function createStars(n: number) {
+  // Stable per layer so the static shell and client hydration share one sky.
+  let seed = n;
+  const random = () => {
+    seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+    return seed / 4294967296;
+  };
   return Array.from({ length: n })
     .map(() => {
-      const x = Math.floor(Math.random() * 2000) - 2000 / 4;
-      const y = Math.floor(Math.random() * 2000) - 2000 / 4;
+      const x = Math.floor(random() * 2000) - 2000 / 4;
+      const y = Math.floor(random() * 2000) - 2000 / 4;
       return `${x}px ${y}px 1px white`;
     })
     .join(",");
@@ -37,7 +43,7 @@ export default function Gekkou() {
   ];
 
   return (
-    <div className="grid flex-1 w-screen place-items-center bg-white saturate-200">
+    <div className="grid w-screen flex-1 place-items-center bg-white saturate-200">
       <div className="relative h-[500px] w-[500px] overflow-hidden bg-linear-to-b from-[#0b042e] to-[#292465] shadow-lg shadow-gray-900">
         {starLayers.map((layer) => (
           <div

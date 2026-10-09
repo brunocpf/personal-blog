@@ -59,8 +59,8 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        sans: ["var(--josefin-sans)", "ui-sans-serif", "system-ui"],
-        serif: ["var(--josefin-slab)", "ui-serif", "Georgia"],
+        sans: ["var(--font-body)", "ui-sans-serif", "system-ui"],
+        serif: ["var(--font-display)", "ui-serif", "Georgia"],
       },
       typography: ({ theme }: { theme: (cls: string) => string }) => ({
         DEFAULT: {

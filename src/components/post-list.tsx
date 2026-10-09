@@ -1,67 +1,40 @@
-import { groq, PortableTextBlock, toPlainText } from "next-sanity";
-import type { Image } from "sanity";
+import { toPlainText } from "next-sanity";
 
-import client from "@/client";
 import { PostSummaryCard } from "@/components/post-summary-card";
+import { getPosts } from "@/lib/content";
 
 export interface PostListProps {
   category?: string;
   pageSize?: number;
   page?: number;
+  featured?: boolean;
 }
 
 export async function PostList({
   category,
-  pageSize,
+  pageSize = 6,
   page = 1,
+  featured = false,
 }: PostListProps) {
-  const start = pageSize ? pageSize * (page - 1) : 0;
-  const end = pageSize ? start + pageSize - 1 : undefined;
-  const slice = pageSize ? `[${start}..${end}]` : "";
-  const posts = await client.fetch<
-    {
-      _id: string;
-      _originalId?: string | null;
-      title: string;
-      author: { name: string };
-      publishedAt: string;
-      summary: PortableTextBlock[];
-      slug: string;
-      categories?: { title: string }[];
-      mainImage?: Image;
-    }[]
-  >(
-    groq`
-      *[_type == "post" ${category ? `&& $category in categories[]->title` : ""}] | order(publishedAt desc) ${slice}{
-        _id,
-        _originalId,
-        title,
-        author->{
-          name
-        },
-        publishedAt,
-        summary,
-        "slug": slug.current,
-        categories[]->{
-          title
-        },
-      }
-    `,
-    category ? { category } : {},
-  );
-
+  const posts = await getPosts(category, page, pageSize);
   return (
-    <div className="container grid grid-cols-1 gap-8 py-8 sm:grid-cols-2 lg:grid-cols-3">
-      {posts.map((post) => (
+    <div className="post-list">
+      {posts.length === 0 && (
+        <p className="empty-state">
+          No posts in this category yet. Try another topic.
+        </p>
+      )}
+      {posts.map((post, index) => (
         <PostSummaryCard
           key={post.slug}
+          featured={featured && index === 0}
           isDraft={post._originalId?.startsWith("drafts.") ?? false}
           title={post.title}
-          author={post.author.name}
+          author={post.author?.name ?? "Bruno Fernandes"}
           publishedAt={new Date(post.publishedAt)}
           slug={post.slug}
-          summary={toPlainText(post.summary)}
-          categories={post.categories?.map((category) => category.title) ?? []}
+          summary={toPlainText(post.summary ?? [])}
+          categories={post.categories?.map((c) => c.title) ?? []}
         />
       ))}
     </div>

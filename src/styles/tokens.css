@@ -1,0 +1,118 @@
+@layer base {
+  :root {
+    color-scheme: light;
+    --background: 40 13% 96%;
+    --foreground: 225 9% 18%;
+    --card: 0 0% 100%;
+    --card-foreground: 225 9% 18%;
+    --popover: 40 13% 96%;
+    --popover-foreground: 225 9% 18%;
+    --primary: 225 9% 18%;
+    --primary-foreground: 40 13% 96%;
+    --secondary: 348 58% 35%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 30 7% 90%;
+    --muted-foreground: 225 5% 40%;
+    --accent: 348 45% 92%;
+    --accent-foreground: 348 58% 35%;
+    --destructive: 350 65% 38%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 30 6% 79%;
+    --input: 30 6% 79%;
+    --ring: 348 58% 35%;
+    --radius: 0.75rem;
+    --surface-soft: #e9e6e3;
+    --color-quiet: #646168;
+    --accent-fill: #8d263b;
+    --accent-ink: #fff6f5;
+    --accent-line: #c88d99;
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .dark {
+    color-scheme: dark;
+    --background: 330 5% 11%;
+    --foreground: 30 10% 88%;
+    --card: 330 5% 14%;
+    --card-foreground: 30 10% 88%;
+    --popover: 330 5% 14%;
+    --popover-foreground: 30 10% 88%;
+    --primary: 30 10% 88%;
+    --primary-foreground: 330 5% 11%;
+    --secondary: 348 43% 73%;
+    --secondary-foreground: 345 25% 14%;
+    --muted: 330 4% 19%;
+    --muted-foreground: 330 5% 68%;
+    --accent: 345 18% 22%;
+    --accent-foreground: 348 43% 73%;
+    --destructive: 0 65% 74%;
+    --destructive-foreground: 330 5% 11%;
+    --border: 330 4% 29%;
+    --input: 330 4% 29%;
+    --ring: 348 43% 73%;
+    --surface-soft: #292628;
+    --color-quiet: #b2a9ae;
+    --accent-fill: #422c34;
+    --accent-ink: #f1dce2;
+    --accent-line: #885260;
+  }
+  * {
+    border-color: hsl(var(--border));
+  }
+  html {
+    scroll-padding-top: 100px;
+    scrollbar-gutter: stable;
+    --scrollbar-thumb: hsl(var(--secondary));
+    --scrollbar-track: hsl(var(--background));
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+  }
+  body {
+    margin: 0;
+    background: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: var(--font-body), sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display), sans-serif;
+    font-weight: 600;
+    text-wrap: balance;
+  }
+  button,
+  select,
+  input,
+  textarea {
+    font: inherit;
+  }
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+  button {
+    cursor: pointer;
+  }
+  a {
+    text-underline-offset: 0.22em;
+  }
+  :focus-visible {
+    outline: 2px solid hsl(var(--secondary));
+    outline-offset: 5px;
+    border-radius: 3px;
+  }
+  ::selection {
+    background: hsl(var(--secondary));
+    color: hsl(var(--secondary-foreground));
+  }
+  input,
+  textarea {
+    caret-color: hsl(var(--secondary));
+  }
+}
+@utility text-balance {
+  text-wrap: balance;
+}

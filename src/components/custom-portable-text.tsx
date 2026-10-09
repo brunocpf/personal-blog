@@ -12,12 +12,21 @@ import ImageBox from "@/components/image-box";
 export function CustomPortableText({
   paragraphClasses,
   value,
+  demoteHeadings = false,
 }: {
   paragraphClasses?: string;
+  demoteHeadings?: boolean;
   value: PortableTextBlock[];
 }) {
   const components: PortableTextComponents = {
     block: {
+      ...(demoteHeadings
+        ? {
+            h1: ({ children }: { children?: React.ReactNode }) => (
+              <h2>{children}</h2>
+            ),
+          }
+        : {}),
       normal: ({ children }) => {
         return <p className={paragraphClasses}>{children}</p>;
       },
@@ -85,7 +94,7 @@ export function CustomPortableText({
         }
 
         return (
-          <div className="dark:invert relative">
+          <div className="relative dark:invert">
             <ClipboardCopyButton
               text={code}
               className="absolute top-2 right-2 z-10 dark:invert"

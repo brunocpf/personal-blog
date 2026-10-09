@@ -3,20 +3,12 @@ import { ThemeToggler } from "@/components/theme-toggler";
 
 export function MainNav() {
   return (
-    <div className="hidden gap-4 md:flex md:items-center">
-      <nav className="my-4 flex items-center gap-3">
-        <div>
-          <NavLink href="/">Home</NavLink>
-        </div>
-        <div>
-          <NavLink href="/blog">Blog</NavLink>
-        </div>
-        <div>
-          <NavLink href="/about">About</NavLink>
-        </div>
-        <div>
-          <NavLink href="/contact">Contact</NavLink>
-        </div>
+    <div className="desktop-nav">
+      <nav aria-label="Main navigation">
+        <NavLink href="/">Home</NavLink>
+        <NavLink href="/blog">Writing</NavLink>
+        <NavLink href="/about">About</NavLink>
+        <NavLink href="/contact">Contact</NavLink>
       </nav>
       <ThemeToggler />
     </div>
