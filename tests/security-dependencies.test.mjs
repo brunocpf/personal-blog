@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { spawnSync } from "node:child_process";
 import { createRequire } from "node:module";
 import { test } from "node:test";
 
@@ -58,6 +59,32 @@ for (const project of ["..", "../studio"]) {
     );
   });
 
+  test(`${project}: legacy YAML CLI works with dependency-free argparse 2`, () => {
+    const cli = frameworkRequire.resolve("js-yaml/bin/js-yaml.js");
+    for (const args of [[], ["--compact"], ["--to-json"]]) {
+      const result = spawnSync(process.execPath, [cli, ...args], {
+        input: "build:\n  command: npm run build\n",
+        encoding: "utf8",
+        timeout: 5000,
+      });
+      assert.equal(result.status, 0, result.stderr);
+      assert.deepEqual(JSON.parse(result.stdout), {
+        build: { command: "npm run build" },
+      });
+    }
+    const help = spawnSync(process.execPath, [cli, "--help"], {
+      encoding: "utf8",
+      timeout: 5000,
+    });
+    assert.equal(help.status, 0, help.stderr);
+    assert.match(help.stdout, /--compact/);
+    const yamlRequire = createRequire(frameworkRequire.resolve("js-yaml"));
+    assert.equal(yamlRequire("argparse/package.json").version, "2.0.1");
+    assert.throws(() => yamlRequire.resolve("sprintf-js"), {
+      code: "MODULE_NOT_FOUND",
+    });
+  });
+
   test(`${project}: federation HTTP requests work with the patched Undici`, async () => {
     const { MockAgent, request } = federationRequire("undici");
     const dispatcher = new MockAgent();
@@ -78,3 +105,41 @@ for (const project of ["..", "../studio"]) {
     }
   });
 }
+
+test("indexed source maps reject excessive and nested section offsets", () => {
+  const require = createRequire(import.meta.url);
+  const { SourceMapConsumer } = require("source-map-js");
+  const map = {
+    version: 3,
+    sources: ["input.js"],
+    names: [],
+    mappings: "AAAA",
+  };
+  const section = (line, inner = map) => ({
+    version: 3,
+    sections: [{ offset: { line, column: 0 }, map: inner }],
+  });
+  assert.throws(() => new SourceMapConsumer(section(1e9)), /offset line/);
+  assert.throws(
+    () => new SourceMapConsumer(section(6e6, section(6e6))),
+    /nested sections/,
+  );
+  assert.deepEqual(
+    new SourceMapConsumer(section(10)).originalPositionFor({
+      line: 11,
+      column: 1,
+    }),
+    { source: "input.js", line: 1, column: 0, name: null },
+  );
+});
+
+test("typography's selector parser preserves complex selectors", () => {
+  const require = createRequire(import.meta.url);
+  const typographyRequire = createRequire(
+    require.resolve("@tailwindcss/typography"),
+  );
+  const parser = typographyRequire("postcss-selector-parser");
+  const selector = ':where(.prose) :is(h1, h2) > a[href^="https"]::before';
+  assert.equal(parser().processSync(selector), selector);
+  assert.equal(parser().astSync(selector).nodes.length, 1);
+});

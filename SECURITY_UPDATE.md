@@ -1,4 +1,26 @@
-# Dependency security update — 2026-10-02
+# Dependency security updates
+
+## Follow-up — 2026-10-09
+
+New advisories published since the original update affected four underlying packages. This follow-up resolves three:
+
+| Dependency | Change | Verification |
+| --- | --- | --- |
+| `source-map-js` | Pin the patched 1.2.2 release in the blog | Reject excessive indexed-map offsets, including combined nested offsets; preserve ordinary mappings |
+| `@tailwindcss/typography` → `postcss-selector-parser` | Override the pinned 6.0.10 dependency with patched 7.1.6 | Complex-selector round trip, production CSS build and browser checks |
+| `argparse@1.0.10` → `sprintf-js` | Override only argparse 1.0.10 with 2.0.1 in both projects, removing sprintf-js entirely | YAML `safeLoad`, CLI stdin conversion, legacy flags and help work through argparse's v1 compatibility layer |
+
+Fresh audits report **13 high findings in the blog and 11 in Studio**, all propagated from the single [braces advisory GHSA-vfj7-8cjw-p6xm](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm). The prior zero-audit results below describe the October 2 advisory database, not the current state.
+
+`braces` 3.0.3 remains the latest release and has no published fix. It is used by tooling through micromatch and Sanity codegen's Chokidar 3. The application source does not accept user-supplied glob patterns or call these APIs directly; this is not proof that every transitive path is unreachable. Replacing Chokidar 3 with a current major would remove its glob support, and changing the glob parser wholesale would require a maintained compatibility solution. No local fork or speculative replacement is included.
+
+The existing audit commands and severity threshold remain unchanged, so security CI still fails on this unresolved advisory. Upgrade when a patched release or compatible upstream dependency change becomes available. Remove the argparse override when its parent stops requiring version 1, and the typography override when its manifest accepts a patched parser.
+
+Validation on Node 24.15.0: clean lockfile installs for both projects, both linters, both type checks, 18 unit/compatibility tests and both production builds passed. Desktop/light and mobile/dark browser smoke checks passed with no page errors or accessibility violations; article screenshots were inspected for typography regressions. The normal production build keeps the Next.js testing API disabled.
+
+References: [source-map-js advisory](https://github.com/advisories/GHSA-68fv-2mgg-jv7q), [selector parser advisory](https://github.com/advisories/GHSA-rj75-hqrm-r3gf), [sprintf-js advisory](https://github.com/advisories/GHSA-hp3w-g68c-fv3c).
+
+## Original update — 2026-10-02
 
 The baseline commit is `232e0391ffdc9d6253653c8e9691c9f60704c519`. GitHub reported 275 open Dependabot alerts across 32 packages (4 critical, 128 high, 122 medium, 21 low). These counts include duplicate advisories across manifests and lockfiles. Both npm projects are covered.
 
